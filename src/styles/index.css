@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #232323;
+  background: #f7f3ea;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #c6a86b;
+  color: #1f3347;
+}
+
+.prose-equinoxe h2 {
+  margin-top: 2rem;
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.75rem;
+  color: #1f3347;
+}
+
+.prose-equinoxe p,
+.prose-equinoxe li {
+  line-height: 1.8;
+  color: #3d3d3d;
+}
+
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne focus-visible:ring-offset-2;
+}
