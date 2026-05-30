@@ -61,7 +61,7 @@ export function AdminPage() {
 const labels: Record<Tab, string> = { dashboard: 'Tableau de bord', articles: 'Articles', leads: 'Leads', testimonials: 'Témoignages', faqs: 'FAQ', settings: 'Paramètres' };
 
 function AdminShell({ children }: { children: React.ReactNode }) {
-  return <div className="min-h-screen bg-ivory text-anthracite">{children}</div>;
+  return <div className="min-h-screen bg-[#EAF3FF] text-anthracite">{children}</div>;
 }
 
 function Dashboard() {

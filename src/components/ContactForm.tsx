@@ -42,9 +42,9 @@ export function ContactForm() {
     }
   }
 
-  const input = 'focus-ring w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-sm';
+  const input = 'focus-ring w-full rounded-xl border border-ink/10 bg-white px-4 py-3 text-sm transition focus:border-sage-dark';
   return (
-    <form onSubmit={submit} className="grid gap-4 rounded-lg border border-ink/10 bg-white/75 p-6 shadow-soft">
+    <form onSubmit={submit} className="grid gap-4 rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_18px_44px_rgba(31,51,71,0.06)]">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Prénom"><input required className={input} value={form.first_name} onChange={(e) => setForm({ ...form, first_name: e.target.value })} /></Field>
         <Field label="Nom"><input required className={input} value={form.last_name} onChange={(e) => setForm({ ...form, last_name: e.target.value })} /></Field>
@@ -61,7 +61,7 @@ export function ContactForm() {
         <input required type="checkbox" checked={form.consent} onChange={(e) => setForm({ ...form, consent: e.target.checked })} />
         J’accepte que les informations transmises soient utilisées pour répondre à ma demande.
       </label>
-      <button disabled={status === 'loading'} className="focus-ring rounded-full bg-ink px-6 py-3 font-semibold text-white transition hover:bg-sage-dark disabled:opacity-60">
+      <button disabled={status === 'loading'} className="focus-ring rounded-full bg-ink px-6 py-3 font-semibold text-white shadow-[0_12px_28px_rgba(31,51,71,0.18)] transition hover:bg-sage-dark disabled:opacity-60">
         {status === 'loading' ? 'Envoi en cours...' : 'Envoyer ma demande'}
       </button>
       {status === 'success' ? <p className="rounded-lg bg-sage/25 p-4 text-sm text-ink">Merci pour votre message. Caroline Tillou Maratuech reviendra vers vous prochainement afin d’échanger sur votre situation et vos besoins.</p> : null}
@@ -75,5 +75,5 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 function Select({ value, onChange, options }: { value: string; onChange: (value: string) => void; options: string[] }) {
-  return <select className="focus-ring w-full rounded-lg border border-ink/15 bg-white px-4 py-3 text-sm" value={value} onChange={(e) => onChange(e.target.value)}>{options.map((option) => <option key={option}>{option}</option>)}</select>;
+  return <select className="focus-ring w-full rounded-xl border border-ink/10 bg-white px-4 py-3 text-sm transition focus:border-sage-dark" value={value} onChange={(e) => onChange(e.target.value)}>{options.map((option) => <option key={option}>{option}</option>)}</select>;
 }

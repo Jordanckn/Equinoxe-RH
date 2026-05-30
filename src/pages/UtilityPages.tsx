@@ -27,8 +27,8 @@ export function FAQPage() {
           <div className="grid gap-12 lg:grid-cols-[1fr_0.4fr] items-start">
             <FAQAccordion items={liveFaqs} grouped />
             <aside className="space-y-6 lg:sticky lg:top-24">
-              <div className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-sage/20 text-sage-dark">
+              <div className="rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_18px_44px_rgba(31,51,71,0.06)]">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-sage/15 text-sage-dark">
                   <MessageCircleQuestion size={22} />
                 </div>
                 <h2 className="font-serif text-xl font-semibold text-ink">Vous ne trouvez pas la réponse ?</h2>
@@ -44,8 +44,8 @@ export function FAQPage() {
                   </a>
                 </div>
               </div>
-              <div className="rounded-2xl border border-sage/20 bg-sage/5 p-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.15em] text-sage-dark mb-3">Accompagnements</p>
+              <div className="rounded-2xl border border-sage/25 bg-sage/10 p-6">
+                <p className="text-sm font-bold uppercase tracking-[0.15em] text-sage-dark mb-3">Accompagnements</p>
                 <div className="space-y-2">
                   {services.map((s) => (
                     <a key={s.slug} href={`/services/${s.slug}`} className="block text-sm text-anthracite/80 hover:text-sage-dark transition-colors py-1 border-b border-ink/5 last:border-0">

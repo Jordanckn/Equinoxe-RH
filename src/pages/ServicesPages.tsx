@@ -10,23 +10,23 @@ export function ServicesIndexPage() {
   return (
     <>
       <SEOHead title="Services RH, coaching et bilan de compétences | Equinoxe Conseil RH" description="Conseil RH, accompagnement du changement, accompagnement individuel, bilan de compétences, formations et co-développement." />
-      <div className="bg-ivory pt-14 border-b border-ink/5">
+      <div className="border-b border-ink/5 bg-white pt-14">
         <Container className="pb-12 pt-10 sm:pb-16 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-sage-dark">Services</p>
-            <h1 className="font-serif text-4xl font-semibold leading-tight text-ink sm:text-6xl">Des accompagnements RH et coaching sur mesure</h1>
-            <p className="mt-6 text-lg leading-8 text-anthracite/80">Equinoxe Conseil RH accompagne les entreprises, collectifs et personnes dans leurs transitions avec une approche structurée, humaine et confidentielle.</p>
+            <p className="mb-5 inline-flex rounded-full border border-sage/35 bg-sage/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Services</p>
+            <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-ink sm:text-6xl">Des accompagnements RH et coaching sur mesure</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-anthracite/80">Equinoxe Conseil RH accompagne les entreprises, collectifs et personnes dans leurs transitions avec une approche structurée, humaine et confidentielle.</p>
           </div>
-          <div className="overflow-hidden rounded-2xl border border-ink/5 bg-white p-3 shadow-soft aspect-[4/3] max-w-[480px] lg:max-w-none mx-auto w-full">
+          <div className="mx-auto aspect-[4/3] w-full max-w-[480px] overflow-hidden rounded-[1.75rem] border border-ink/10 bg-white p-3 shadow-[0_28px_80px_rgba(31,51,71,0.12)] lg:max-w-none">
             <img 
               src="/images/coaching_collaboration.png" 
               alt="Séance de coaching et conseil RH" 
-              className="h-full w-full rounded-xl object-cover"
+              className="h-full w-full rounded-[1.25rem] object-cover hue-rotate-[125deg] saturate-[0.62]"
             />
           </div>
         </Container>
       </div>
-      <Section><Container><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{services.map((service) => <ServiceCard key={service.slug} service={service} />)}</div></Container></Section>
+      <Section className="border-y border-ink/5 bg-[#EAF3FF]"><Container><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{services.map((service) => <ServiceCard key={service.slug} service={service} />)}</div></Container></Section>
     </>
   );
 }
@@ -59,11 +59,11 @@ export function ServiceDetailPage() {
           </div>
           
           <aside className="space-y-5 lg:sticky lg:top-24">
-            <div className="overflow-hidden rounded-2xl border border-ink/5 bg-white p-3 shadow-soft">
+            <div className="overflow-hidden rounded-[1.75rem] border border-ink/10 bg-white p-3 shadow-[0_24px_60px_rgba(31,51,71,0.1)]">
               <img 
                 src="/images/coaching_collaboration.png" 
                 alt="Accompagnement et Coaching" 
-                className="w-full aspect-[4/3] rounded-xl object-cover"
+                className="aspect-[4/3] w-full rounded-[1.25rem] object-cover hue-rotate-[125deg] saturate-[0.62]"
               />
             </div>
             
@@ -72,7 +72,7 @@ export function ServiceDetailPage() {
               <p className="mt-3 leading-7 text-anthracite/80">Equinoxe Conseil RH accompagne à Toulouse, en Occitanie et à distance les enjeux liés à : {service.title.toLowerCase()}.</p>
             </Card>
             
-            <Card className="bg-ivory/30">
+            <Card className="bg-[#EAF3FF]">
               <h2 className="font-serif text-2xl text-ink">Échanger sur ce besoin</h2>
               <p className="mt-3 leading-7 text-anthracite/75">Un premier échange permet de qualifier la situation et le cadre adapté.</p>
               <div className="mt-5">
@@ -82,7 +82,7 @@ export function ServiceDetailPage() {
           </aside>
         </Container>
       </Section>
-      <Section>
+      <Section className="border-y border-ink/5 bg-[#EAF3FF]">
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div><h2 className="font-serif text-4xl text-ink">FAQ spécifique</h2><p className="mt-4 text-anthracite/75">Questions fréquentes sur cet accompagnement.</p></div>
           <FAQAccordion items={service.faqs} />

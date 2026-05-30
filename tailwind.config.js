@@ -4,16 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        ivory: '#F7F3EA',
-        sand: '#E8DED0',
-        sage: '#A8B8A0',
-        'sage-dark': '#6F8268',
+        ivory: '#F2F6FA',
+        sand: '#E4ECF4',
+        sage: '#F0DCE5',
+        'sage-dark': '#7A2F45',
         ink: '#1F3347',
         anthracite: '#232323',
-        champagne: '#C6A86B'
+        champagne: '#7F95AA'
       },
       fontFamily: {
-        serif: ['Fraunces', 'Cormorant Garamond', 'Playfair Display', 'Georgia', 'serif'],
+        serif: ['Source Serif 4', 'Georgia', 'serif'],
         sans: ['Inter', 'Manrope', 'Source Sans 3', 'system-ui', 'sans-serif']
       },
       boxShadow: {

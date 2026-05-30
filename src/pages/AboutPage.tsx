@@ -47,15 +47,15 @@ export function AboutPage() {
             </div>
             
             <div className="space-y-6 lg:sticky lg:top-24">
-              <div className="overflow-hidden rounded-2xl border border-ink/5 bg-white p-3 shadow-soft">
+              <div className="overflow-hidden rounded-[1.75rem] border border-ink/10 bg-white p-3 shadow-[0_24px_60px_rgba(31,51,71,0.1)]">
                 <img 
-                  src="/images/caroline_portrait.png" 
+                  src="/images/Professeur TILLOU Caroline - TBS Education.webp" 
                   alt="Portrait de Caroline Tillou Maratuech" 
-                  className="w-full aspect-[4/5] rounded-xl object-cover"
+                  className="aspect-[4/5] w-full rounded-[1.25rem] object-cover object-center"
                 />
               </div>
               
-              <Card className="bg-ivory/30">
+              <Card className="bg-[#EAF3FF]">
                 <h3 className="font-serif text-xl font-semibold text-ink mb-4">Points forts</h3>
                 <div className="grid gap-3.5">
                   {[
@@ -83,4 +83,3 @@ export function AboutPage() {
     </>
   );
 }
-
