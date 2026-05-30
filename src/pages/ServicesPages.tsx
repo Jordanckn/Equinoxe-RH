@@ -8,10 +8,10 @@ import { faqSchema, serviceSchema } from '../lib/schemaMarkup';
 
 const serviceImages: Record<string, string> = {
   'conseil-rh-entreprises': '/images/service_conseil_rh.png',
-  'accompagnement-changement': '/images/service_accompagnement_changement.png',
-  'accompagnement-individuel': '/images/service_accompagnement_individuel.png',
-  'bilan-de-competences': '/images/service_bilan_competences.png',
-  'formations-ateliers-codeveloppement': '/images/service_formations_ateliers.png',
+  'accompagnement-changement': '/images/transition_professionnelle.png',
+  'accompagnement-individuel': '/images/coaching_collaboration.png',
+  'bilan-de-competences': '/images/service_conseil_rh.png',
+  'formations-ateliers-codeveloppement': '/images/meeting_collaboration.png',
 };
 
 export function ServicesIndexPage() {
