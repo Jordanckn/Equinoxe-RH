@@ -1,5 +1,5 @@
 import { Menu, X, Linkedin, Mail, Phone, ChevronDown, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { contactInfo, navItems, services } from '../data/content';
 import { trackEvent } from '../lib/analytics';
@@ -14,6 +14,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [mobileAudienceOpen, setMobileAudienceOpen] = useState(false);
   const [mobilePlusOpen, setMobilePlusOpen] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
   const audienceItems = [
     {
       label: 'Entreprises et dirigeants',
@@ -213,8 +223,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </button>
         </Container>
         {open ? (
-          <div className="border-t border-ink/10 bg-white lg:hidden">
-            <Container className="grid gap-3 py-5">
+          <div className="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-ink/10 bg-white overscroll-contain lg:hidden">
+            <Container className="grid gap-3 py-5 pb-8">
               {navItems.map((item) => {
                 if (item.href === '/services') {
                   return (

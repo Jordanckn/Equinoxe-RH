@@ -1,5 +1,9 @@
 import { useEffect } from 'react';
 
+const DEFAULT_TITLE = 'Equinoxe Conseil RH | Conseil RH, coaching et transitions professionnelles';
+const DEFAULT_DESCRIPTION = 'Equinoxe Conseil RH accompagne les entreprises, dirigeants, managers et particuliers en conseil RH, coaching professionnel, accompagnement du changement et bilan de compétences.';
+const DEFAULT_IMAGE = '/images/equinoxe-RH-logo.webp';
+
 type SEOHeadProps = {
   title: string;
   description: string;
@@ -11,18 +15,30 @@ type SEOHeadProps = {
 
 export function SEOHead({ title, description, canonical, image, type = 'website', schema }: SEOHeadProps) {
   useEffect(() => {
-    document.title = title;
-    upsertMeta('name', 'description', description);
-    upsertMeta('property', 'og:title', title);
-    upsertMeta('property', 'og:description', description);
+    const pageTitle = title || DEFAULT_TITLE;
+    const pageDescription = description || DEFAULT_DESCRIPTION;
+    const pageUrl = canonical ?? window.location.href;
+    const pageImage = image ?? DEFAULT_IMAGE;
+    const absoluteImage = pageImage.startsWith('http') ? pageImage : `${window.location.origin}${pageImage}`;
+
+    document.title = pageTitle;
+    upsertMeta('name', 'description', pageDescription);
+    upsertMeta('name', 'robots', 'index, follow');
+    upsertMeta('property', 'og:title', pageTitle);
+    upsertMeta('property', 'og:description', pageDescription);
     upsertMeta('property', 'og:type', type);
+    upsertMeta('property', 'og:site_name', 'Equinoxe Conseil RH');
+    upsertMeta('property', 'og:locale', 'fr_FR');
+    upsertMeta('property', 'og:url', pageUrl);
+    upsertMeta('property', 'og:image', absoluteImage);
+    upsertMeta('property', 'og:image:secure_url', absoluteImage);
+    upsertMeta('property', 'og:image:alt', 'Equinoxe Conseil RH - conseil RH, coaching et accompagnement professionnel');
     upsertMeta('name', 'twitter:card', 'summary_large_image');
-    if (image) {
-      const absoluteImage = image.startsWith('http') ? image : `${window.location.origin}${image}`;
-      upsertMeta('property', 'og:image', absoluteImage);
-      upsertMeta('name', 'twitter:image', absoluteImage);
-    }
-    upsertLink('canonical', canonical ?? window.location.href);
+    upsertMeta('name', 'twitter:title', pageTitle);
+    upsertMeta('name', 'twitter:description', pageDescription);
+    upsertMeta('name', 'twitter:image', absoluteImage);
+    upsertMeta('name', 'twitter:image:alt', 'Equinoxe Conseil RH');
+    upsertLink('canonical', pageUrl);
 
     const id = 'schema-jsonld';
     document.getElementById(id)?.remove();
