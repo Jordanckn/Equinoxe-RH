@@ -57,14 +57,18 @@ export function serviceSchema(service: Service) {
 }
 
 export function articleSchema(post: BlogPost) {
+  const image = post.cover_image_url ?? '/images/meeting_collaboration.png';
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
     description: post.excerpt,
+    image: image.startsWith('http') ? image : `${baseUrl}${image}`,
+    keywords: post.tags.join(', '),
     author: personSchema,
     publisher: organizationSchema,
     datePublished: post.published_at,
+    dateModified: post.published_at,
     mainEntityOfPage: `${baseUrl}/blog/${post.slug}`
   };
 }

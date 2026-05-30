@@ -14,8 +14,6 @@ export const navItems = [
   { label: 'Accueil', href: '/' },
   { label: 'Le Cabinet', href: '/a-propos' },
   { label: 'Conseil & Coaching', href: '/services' },
-  { label: 'Ressources RH', href: '/blog' },
-  { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' }
 ];
 

@@ -4,17 +4,24 @@ type SEOHeadProps = {
   title: string;
   description: string;
   canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
   schema?: object | object[];
 };
 
-export function SEOHead({ title, description, canonical, schema }: SEOHeadProps) {
+export function SEOHead({ title, description, canonical, image, type = 'website', schema }: SEOHeadProps) {
   useEffect(() => {
     document.title = title;
     upsertMeta('name', 'description', description);
     upsertMeta('property', 'og:title', title);
     upsertMeta('property', 'og:description', description);
-    upsertMeta('property', 'og:type', 'website');
+    upsertMeta('property', 'og:type', type);
     upsertMeta('name', 'twitter:card', 'summary_large_image');
+    if (image) {
+      const absoluteImage = image.startsWith('http') ? image : `${window.location.origin}${image}`;
+      upsertMeta('property', 'og:image', absoluteImage);
+      upsertMeta('name', 'twitter:image', absoluteImage);
+    }
     upsertLink('canonical', canonical ?? window.location.href);
 
     const id = 'schema-jsonld';
@@ -26,7 +33,7 @@ export function SEOHead({ title, description, canonical, schema }: SEOHeadProps)
       script.text = JSON.stringify(Array.isArray(schema) ? schema : [schema]);
       document.head.appendChild(script);
     }
-  }, [title, description, canonical, schema]);
+  }, [title, description, canonical, image, type, schema]);
 
   return null;
 }

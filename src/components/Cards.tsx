@@ -37,16 +37,30 @@ export function ServiceCard({ service }: { service: Service }) {
 }
 
 export function BlogCard({ post }: { post: BlogPost }) {
+  const image = post.cover_image_url ?? blogImageForCategory(post.category);
   return (
-    <Card className="group flex h-full flex-col transition-all duration-500 hover:-translate-y-2 hover:border-champagne/30 hover:shadow-[0_30px_70px_rgba(14,27,41,0.08)] bg-white border border-sand">
-      <p className="text-xs font-bold uppercase tracking-[0.16em] text-sage-dark">{post.category}</p>
-      <h3 className="mt-3 font-serif text-2xl font-semibold text-ink transition-colors duration-500 group-hover:text-sage-dark">{post.title}</h3>
-      <p className="mt-4 flex-1 leading-7 text-anthracite/75 group-hover:text-anthracite/90 transition-colors duration-500">{post.excerpt}</p>
-      <Link className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-sage-dark transition-colors duration-500 hover:text-ink group-hover:translate-x-1" to={`/blog/${post.slug}`}>
-        Lire l’article <ArrowRight size={16} className="transition-transform duration-500 group-hover:translate-x-1.5" />
+    <Card className="group grid h-full overflow-hidden rounded-xl p-0 transition-all duration-500 hover:-translate-y-1 hover:border-champagne/30 hover:shadow-[0_18px_42px_rgba(14,27,41,0.07)] bg-white border border-sand sm:grid-cols-[9rem_minmax(0,1fr)]">
+      <Link to={`/blog/${post.slug}`} className="block aspect-[16/7] overflow-hidden bg-sand sm:aspect-auto sm:min-h-full">
+        <img src={image} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
       </Link>
+      <div className="flex min-w-0 flex-1 flex-col p-4">
+        <p className="text-[0.64rem] font-bold uppercase tracking-[0.13em] text-sage-dark">{post.category}</p>
+        <h3 className="mt-2 font-serif text-lg font-semibold leading-snug text-ink transition-colors duration-500 group-hover:text-sage-dark">{post.title}</h3>
+        <p className="mt-2 flex-1 text-sm leading-5 text-anthracite/72 transition-colors duration-500 group-hover:text-anthracite/90">{post.excerpt}</p>
+        <Link className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-sage-dark transition-colors duration-500 hover:text-ink group-hover:translate-x-1" to={`/blog/${post.slug}`}>
+          Lire l’article <ArrowRight size={14} className="transition-transform duration-500 group-hover:translate-x-1.5" />
+        </Link>
+      </div>
     </Card>
   );
+}
+
+function blogImageForCategory(category: string) {
+  if (category.includes('changement')) return '/images/transition_professionnelle.png';
+  if (category.includes('Coaching')) return '/images/coaching_collaboration.png';
+  if (category.includes('Bilan')) return '/images/service_conseil_rh.png';
+  if (category.includes('Management')) return '/images/meeting_collaboration.png';
+  return '/images/meeting_collaboration.png';
 }
 
 export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {

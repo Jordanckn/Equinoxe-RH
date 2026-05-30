@@ -12,6 +12,7 @@ import {
   CheckCircle2 
 } from 'lucide-react';
 import { BlogCard, ServiceCard, TestimonialCard } from '../components/Cards';
+import { CookieConsent } from '../components/CookieConsent';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { SEOHead } from '../components/SEOHead';
 import { ScrollReveal } from '../components/ScrollReveal';
@@ -29,6 +30,7 @@ export function HomePage() {
   return (
     <>
       <SEOHead title="Conseil RH, coaching et accompagnement du changement à Toulouse | Equinoxe Conseil RH" description="Caroline Tillou Maratuech accompagne entreprises, dirigeants, managers et particuliers à Toulouse, en Occitanie et à distance." schema={[organizationSchema, personSchema, faqSchema(liveFaqs.slice(0, 5))]} />
+      <CookieConsent />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-sand bg-rosé py-10 sm:py-16">
@@ -214,7 +216,7 @@ export function HomePage() {
               Voir le blog <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
             </Link>
           </ScrollReveal>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
             {livePosts.slice(0, 3).map((post, index) => (
               <ScrollReveal key={post.id} delay={index * 100}>
                 <BlogCard post={post} />
