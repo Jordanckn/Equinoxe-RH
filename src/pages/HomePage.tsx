@@ -22,6 +22,21 @@ import { organizationSchema, personSchema, faqSchema } from '../lib/schemaMarkup
 import { useSupabaseRows } from '../hooks/useSupabaseRows';
 import type { BlogPost, FAQ, Testimonial } from '../types';
 
+const trustedLogos = [
+  { name: 'Harmonie Mutuelle', src: '/Logo/Harmonie Mutuelle logo.webp' },
+  { name: 'Prévaly', src: '/Logo/Prevaly logo.webp' },
+  { name: 'HEC Montréal', src: '/Logo/Logo de HEC Montréal.webp' },
+  { name: 'Toulouse School of Management', src: '/Logo/Logo de Toulouse School of Management.webp' },
+  { name: 'Kedge Business School', src: '/Logo/File-Kedgebs-logo.png.webp' },
+  { name: 'Conseil Formation SIRH', src: '/Logo/Conseil, Formation, SIRH - 15 ans dexpertise en Gestion des Compétences.webp' },
+  { name: 'Cornell University', src: '/Logo/Cornell University Logo PNG Vectors Free Download.webp' },
+  { name: 'La REF Toulouse', src: '/Logo/La REF Toulouse, mercredi 20 octobre 2021.webp' },
+  { name: 'Toulouse Métropole', src: '/Logo/Réf - Toulouse Métropole.webp' },
+  { name: 'Pharmabest, Pharmacie Lafayette, Pharmactiv', src: '/Logo/Annuaire des groupements Pharmabest, Pharmacie Lafayette, Pharmactiv....webp' },
+  { name: 'Partenaire professionnel', src: '/Logo/posts.webp' },
+  { name: 'Partenaire RH', src: '/Logo/posts 2.webp' }
+];
+
 export function HomePage() {
   const livePosts = useSupabaseRows<BlogPost>('blog_posts', posts, 'published_at');
   const liveFaqs = useSupabaseRows<FAQ>('faqs', faqs, 'display_order');
@@ -97,6 +112,29 @@ export function HomePage() {
                     <h4 className="text-sm font-bold leading-tight text-ink sm:text-base">{String(label)}</h4>
                     <p className="text-xs text-anthracite/60 mt-1">{String(desc)}</p>
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Logos Section */}
+      <section className="border-b border-sand bg-white py-10">
+        <Container>
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Ils nous font confiance</p>
+              <h2 className="mt-2 font-serif text-2xl font-semibold text-ink">Références et collaborations</h2>
+            </div>
+          </div>
+          <div className="relative overflow-hidden rounded-2xl border border-sand bg-ivory py-5">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-ivory to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-ivory to-transparent" />
+            <div className="logo-marquee flex w-max items-center gap-6">
+              {[...trustedLogos, ...trustedLogos].map((logo, index) => (
+                <div key={`${logo.name}-${index}`} className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl border border-ink/5 bg-white px-5 shadow-[0_10px_30px_rgba(14,27,41,0.04)]">
+                  <img src={logo.src} alt={logo.name} className="max-h-12 max-w-full object-contain" loading="lazy" />
                 </div>
               ))}
             </div>
