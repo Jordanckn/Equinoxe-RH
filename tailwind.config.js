@@ -4,13 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        ivory: '#F2F6FA',
-        sand: '#E4ECF4',
-        sage: '#F0DCE5',
-        'sage-dark': '#7A2F45',
-        ink: '#1F3347',
-        anthracite: '#232323',
-        champagne: '#7F95AA'
+        ivory: '#F7F9FC',
+        sand: '#E6EDF5',
+        sage: '#F3DDE4',
+        'sage-dark': '#8A354E',
+        ink: '#0E1B29',
+        anthracite: '#2D3238',
+        champagne: '#A95A70',
+        'champagne-dark': '#8A354E',
+        rosé: '#F7E8EE'
       },
       fontFamily: {
         serif: ['Source Serif 4', 'Georgia', 'serif'],

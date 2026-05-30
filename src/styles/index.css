@@ -22,23 +22,72 @@ body {
 }
 
 ::selection {
-  background: #dbe4ee;
-  color: #1f3347;
+  background: rgba(234, 192, 189, 0.4);
+  color: #0E1B29;
 }
 
 .prose-equinoxe h2 {
   margin-top: 2rem;
   font-family: 'Source Serif 4', Georgia, serif;
   font-size: 1.75rem;
-  color: #1f3347;
+  color: #0E1B29;
 }
 
 .prose-equinoxe p,
 .prose-equinoxe li {
   line-height: 1.8;
-  color: #3d3d3d;
+  color: #2D3238;
 }
 
 .focus-ring {
   @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne focus-visible:ring-offset-2;
 }
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.delay-75 { animation-delay: 75ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }

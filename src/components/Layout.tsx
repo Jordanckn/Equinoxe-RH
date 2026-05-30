@@ -35,7 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <div key={item.href} className="relative">
                     <button 
                       onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                      className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-[#EAF3FF] hover:text-sage-dark focus-ring ${isServicesActive ? 'bg-[#EAF3FF] text-sage-dark' : 'text-ink/80'}`}
+                      className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-sage/35 hover:text-sage-dark focus-ring ${isServicesActive ? 'bg-sage/35 text-sage-dark' : 'text-ink/80'}`}
                       aria-expanded={servicesDropdownOpen}
                       aria-haspopup="true"
                     >
@@ -49,7 +49,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                           <Link 
                             to="/services" 
                             onClick={() => setServicesDropdownOpen(false)}
-                            className="flex items-center justify-between rounded-xl bg-[#EAF3FF] px-4 py-3 text-sm font-semibold text-ink transition-colors hover:text-sage-dark"
+                            className="flex items-center justify-between rounded-xl bg-rosé px-4 py-3 text-sm font-semibold text-ink transition-colors hover:text-sage-dark"
                           >
                             <span>Tous les accompagnements</span>
                             <ArrowRight size={15} />
@@ -60,7 +60,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                               key={s.slug} 
                               to={`/services/${s.slug}`}
                               onClick={() => setServicesDropdownOpen(false)}
-                              className="block rounded-xl px-4 py-3 text-sm font-medium text-ink/80 transition-all hover:bg-sage/10 hover:text-ink"
+                              className="block rounded-xl px-4 py-3 text-sm font-medium text-ink/80 transition-all hover:bg-sage/15 hover:text-ink"
                             >
                               {s.title}
                             </Link>
@@ -72,7 +72,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 );
               }
               return (
-                <NavLink key={item.href} to={item.href} className={({ isActive }) => `rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-[#EAF3FF] hover:text-sage-dark ${isActive ? 'bg-[#EAF3FF] text-sage-dark' : 'text-ink/80'}`}>
+                <NavLink key={item.href} to={item.href} className={({ isActive }) => `rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-sage/35 hover:text-sage-dark ${isActive ? 'bg-sage/35 text-sage-dark' : 'text-ink/80'}`}>
                   {item.label}
                 </NavLink>
               );

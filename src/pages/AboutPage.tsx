@@ -55,7 +55,7 @@ export function AboutPage() {
                 />
               </div>
               
-              <Card className="bg-[#EAF3FF]">
+              <Card className="bg-rosé border border-sand">
                 <h3 className="font-serif text-xl font-semibold text-ink mb-4">Points forts</h3>
                 <div className="grid gap-3.5">
                   {[

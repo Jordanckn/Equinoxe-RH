@@ -5,6 +5,7 @@ import { AdminPage } from './pages/AdminPage';
 import { ArticlePage, BlogPage } from './pages/BlogPages';
 import { ContactPage } from './pages/ContactPage';
 import { HomePage } from './pages/HomePage';
+import { AudiencePage } from './pages/AudiencePage';
 import { ServiceDetailPage, ServicesIndexPage } from './pages/ServicesPages';
 import { FAQPage, LegalPage, LocalSeoPage, TestimonialsPage } from './pages/UtilityPages';
 
@@ -22,6 +23,7 @@ function PublicRoutes() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/a-propos" element={<AboutPage />} />
+      <Route path="/pour-qui/:slug" element={<AudiencePage />} />
       <Route path="/services" element={<ServicesIndexPage />} />
       <Route path="/services/:slug" element={<ServiceDetailPage />} />
       <Route path="/blog" element={<BlogPage />} />

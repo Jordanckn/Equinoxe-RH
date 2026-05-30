@@ -13,7 +13,7 @@ export function BlogPage() {
     <>
       <SEOHead title="Blog RH, management et transitions professionnelles | Equinoxe Conseil RH" description="Articles sur le conseil RH, le management, l’accompagnement du changement, le bilan de compétences et les transitions professionnelles." />
       <PageHeader eyebrow="Blog" title="Ressources RH, management et accompagnement professionnel" text="Des articles structurés pour Google, Bing, les moteurs IA et les lecteurs qui cherchent des repères utiles." />
-      <Section><Container><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{livePosts.map((post) => <BlogCard key={post.id} post={post} />)}</div></Container></Section>
+      <Section className="bg-white"><Container><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{livePosts.map((post) => <BlogCard key={post.id} post={post} />)}</div></Container></Section>
     </>
   );
 }

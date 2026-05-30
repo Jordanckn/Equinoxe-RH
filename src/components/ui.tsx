@@ -23,8 +23,13 @@ export function ButtonLink({ to, children, variant = 'primary', className = '' }
 
 export function PageHeader({ eyebrow, title, text }: { eyebrow?: string; title: string; text: string }) {
   return (
-    <div className="border-b border-ink/10 bg-white pt-14">
-      <Container className="pb-12 pt-10 sm:pb-16">
+    <div className="relative overflow-hidden border-b border-sand bg-rosé pt-14">
+      {/* Decorative background elements - enhanced visibility and explicit styling */}
+      <div className="absolute -right-16 -top-16 z-0 h-96 w-96 rounded-full border-[32px] border-white opacity-40" />
+      <div className="absolute -left-12 -bottom-12 z-0 h-64 w-64 rounded-full border-[24px] border-white opacity-25" />
+      <div className="absolute right-[15%] top-1/4 z-0 h-32 w-32 rounded-full border-[12px] border-white opacity-20" />
+      
+      <Container className="relative z-10 pb-12 pt-10 sm:pb-16">
         {eyebrow ? <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-sage-dark">{eyebrow}</p> : null}
         <div className="max-w-5xl">
           <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-ink sm:text-6xl">{title}</h1>

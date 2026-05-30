@@ -22,13 +22,13 @@ export function FAQPage() {
         title="Tout ce que vous voulez savoir"
         text="Retrouvez ici des réponses claires sur les accompagnements proposés, les publics concernés, les modalités et les façons de prendre contact."
       />
-      <Section>
+      <Section className="bg-white">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1fr_0.4fr] items-start">
             <FAQAccordion items={liveFaqs} grouped />
             <aside className="space-y-6 lg:sticky lg:top-24">
-              <div className="rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_18px_44px_rgba(31,51,71,0.06)]">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-sage/15 text-sage-dark">
+              <div className="rounded-2xl border border-sand bg-white p-6 shadow-soft">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-sage px-2.5 py-2.5 text-sage-dark">
                   <MessageCircleQuestion size={22} />
                 </div>
                 <h2 className="font-serif text-xl font-semibold text-ink">Vous ne trouvez pas la réponse ?</h2>
@@ -37,18 +37,18 @@ export function FAQPage() {
                   <ButtonLink to="/contact" className="w-full justify-center">Envoyer un message</ButtonLink>
                   <a
                     href={`tel:${contactInfo.phoneHref}`}
-                    className="flex items-center justify-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 text-sm font-semibold text-ink hover:border-sage-dark hover:text-sage-dark transition-all duration-200"
+                    className="flex items-center justify-center gap-2 rounded-full border border-sand px-5 py-2.5 text-sm font-bold text-ink hover:border-sage-dark hover:text-sage-dark transition-all duration-200"
                   >
                     <Phone size={15} />
                     {contactInfo.phone}
                   </a>
                 </div>
               </div>
-              <div className="rounded-2xl border border-sage/25 bg-sage/10 p-6">
+              <div className="rounded-2xl border border-sand bg-sage/20 p-6">
                 <p className="text-sm font-bold uppercase tracking-[0.15em] text-sage-dark mb-3">Accompagnements</p>
                 <div className="space-y-2">
                   {services.map((s) => (
-                    <a key={s.slug} href={`/services/${s.slug}`} className="block text-sm text-anthracite/80 hover:text-sage-dark transition-colors py-1 border-b border-ink/5 last:border-0">
+                    <a key={s.slug} href={`/services/${s.slug}`} className="block text-sm text-anthracite/80 hover:text-sage-dark transition-colors py-1 border-b border-sand last:border-0">
                       {s.title}
                     </a>
                   ))}
@@ -64,7 +64,7 @@ export function FAQPage() {
 
 export function TestimonialsPage() {
   const liveTestimonials = useSupabaseRows<Testimonial>('testimonials', testimonials, 'display_order');
-  return <><SEOHead title="Témoignages | Equinoxe Conseil RH" description="Avis et témoignages administrables concernant les accompagnements Equinoxe Conseil RH." /><PageHeader eyebrow="Témoignages" title="Retours d’accompagnement" text="Les témoignages placeholders peuvent être remplacés ou masqués depuis l’administration Supabase." /><Section><Container><div className="grid gap-6 md:grid-cols-2">{liveTestimonials.map((item) => <TestimonialCard key={item.id} testimonial={item} />)}</div></Container></Section></>;
+  return <><SEOHead title="Témoignages | Equinoxe Conseil RH" description="Avis et témoignages administrables concernant les accompagnements Equinoxe Conseil RH." /><PageHeader eyebrow="Témoignages" title="Retours d’accompagnement" text="Les témoignages placeholders peuvent être remplacés ou masqués depuis l’administration Supabase." /><Section className="bg-white"><Container><div className="grid gap-6 md:grid-cols-2">{liveTestimonials.map((item) => <TestimonialCard key={item.id} testimonial={item} />)}</div></Container></Section></>;
 }
 
 export function LocalSeoPage({ kind }: { kind: 'rh-toulouse' | 'coaching-toulouse' | 'bilan-toulouse' | 'changement-occitanie' | 'distance' }) {
