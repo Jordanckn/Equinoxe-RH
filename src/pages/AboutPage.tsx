@@ -51,6 +51,7 @@ export function AboutPage() {
                 <img 
                   src="/images/Professeur TILLOU Caroline - TBS Education.webp" 
                   alt="Portrait de Caroline Tillou Maratuech" 
+                  onError={(event) => { event.currentTarget.src = '/images/caroline_portrait.png'; }}
                   className="aspect-[4/5] w-full rounded-[1.25rem] object-cover object-center"
                 />
               </div>

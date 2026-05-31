@@ -36,6 +36,7 @@ export function ServicesIndexPage() {
             <img 
               src="/images/coaching_collaboration.png" 
               alt="Séance de coaching et conseil RH" 
+              onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }}
               className="h-full w-full rounded-[1.5rem] object-cover"
             />
           </div>
@@ -94,6 +95,7 @@ export function ServiceDetailPage() {
               <img 
                 src={serviceImages[service.slug] || '/images/meeting_collaboration.png'} 
                 alt={service.title} 
+                onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }}
                 className="aspect-[4/3] w-full rounded-[1.5rem] object-cover"
               />
             </div>

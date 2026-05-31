@@ -41,7 +41,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
   return (
     <Card className="group grid h-full overflow-hidden rounded-xl p-0 transition-all duration-500 hover:-translate-y-1 hover:border-champagne/30 hover:shadow-[0_18px_42px_rgba(14,27,41,0.07)] bg-white border border-sand sm:grid-cols-[9rem_minmax(0,1fr)]">
       <Link to={`/blog/${post.slug}`} className="block aspect-[16/7] overflow-hidden bg-sand sm:aspect-auto sm:min-h-full">
-        <img src={image} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <img src={image} alt="" onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
       </Link>
       <div className="flex min-w-0 flex-1 flex-col p-4">
         <p className="text-[0.64rem] font-bold uppercase tracking-[0.13em] text-sage-dark">{post.category}</p>

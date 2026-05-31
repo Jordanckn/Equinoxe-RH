@@ -88,6 +88,7 @@ export function HomePage() {
                 <img 
                   src="/images/Professeur TILLOU Caroline - TBS Education.webp" 
                   alt="Portrait de Caroline Tillou Maratuech" 
+                  onError={(event) => { event.currentTarget.src = '/images/caroline_portrait.png'; }}
                   className="aspect-[4/5] h-full w-full rounded-[1.5rem] object-cover object-center sm:aspect-square"
                 />
                 <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/70 bg-white/90 p-5 shadow-[0_18px_40px_rgba(14,27,41,0.06)] backdrop-blur">
@@ -134,7 +135,7 @@ export function HomePage() {
             <div className="logo-marquee flex w-max items-center gap-6">
               {[...trustedLogos, ...trustedLogos].map((logo, index) => (
                 <div key={`${logo.name}-${index}`} className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl border border-ink/5 bg-white px-5 shadow-[0_10px_30px_rgba(14,27,41,0.04)]">
-                  <img src={logo.src} alt={logo.name} className="max-h-12 max-w-full object-contain" loading="lazy" />
+                  <img src={logo.src} alt={logo.name} onError={(event) => { event.currentTarget.src = '/images/equinoxe-RH-logo.webp'; }} className="max-h-12 max-w-full object-contain" loading="lazy" />
                 </div>
               ))}
             </div>
@@ -202,6 +203,7 @@ export function HomePage() {
               <img 
                 src="/images/transition_professionnelle.png" 
                 alt="Méthode de planification de transition" 
+                onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }}
                 className="aspect-[4/3] w-full rounded-[1.5rem] object-cover"
               />
             </div>

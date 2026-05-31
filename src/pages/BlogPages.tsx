@@ -70,7 +70,7 @@ export function BlogPage() {
               className="group grid overflow-hidden rounded-2xl border border-sand bg-white shadow-[0_22px_60px_rgba(14,27,41,0.07)] transition hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(14,27,41,0.1)] lg:grid-cols-2"
             >
               <div className="aspect-[16/7] overflow-hidden bg-sand lg:aspect-auto">
-                <img src={coverImage(featured)} alt="" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src={coverImage(featured)} alt="" onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <div className="flex flex-col justify-center p-6 md:p-8">
                 <p className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-sage-dark">Article à la une</p>
@@ -241,7 +241,7 @@ export function ArticlePage() {
               </div>
             </header>
             <div className="overflow-hidden rounded-2xl border border-sand bg-sand shadow-[0_24px_70px_rgba(14,27,41,0.08)]">
-              <img src={image} alt="" className="aspect-[4/3] h-full w-full object-cover" />
+              <img src={image} alt="" onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }} className="aspect-[4/3] h-full w-full object-cover" />
             </div>
           </div>
         </Container>

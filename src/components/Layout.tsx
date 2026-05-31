@@ -70,8 +70,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-40 border-b border-ink/10 bg-white/90 backdrop-blur-xl">
         <Container className="flex h-20 items-center justify-between gap-5">
           <Link to="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="Equinoxe Conseil RH">
-            <span className="h-12 w-12 overflow-hidden rounded-full bg-white shadow-sm">
-              <img src="/images/equinoxe-RH-logo.webp" alt="" className="h-full w-full scale-[2.15] object-cover" />
+            <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm">
+              <img src="/images/equinoxe-RH-logo.webp" alt="" onError={(event) => { event.currentTarget.src = '/images/logo-equinoxe-rh.svg'; }} className="h-full w-full object-contain" />
             </span>
             <span className="flex flex-col leading-none">
               <span className="font-serif text-2xl font-semibold text-ink">Equinoxe</span>
@@ -343,8 +343,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div>
             <Link to="/" className="inline-flex items-center gap-4" aria-label="Equinoxe Conseil RH">
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white">
-                <span className="h-14 w-14 overflow-hidden rounded-full">
-                  <img src="/images/equinoxe-RH-logo.webp" alt="" className="h-full w-full scale-[2.15] object-cover" />
+                <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full">
+                  <img src="/images/equinoxe-RH-logo.webp" alt="" onError={(event) => { event.currentTarget.src = '/images/logo-equinoxe-rh.svg'; }} className="h-full w-full object-contain" />
                 </span>
               </span>
               <span className="font-serif text-3xl">Equinoxe Conseil RH</span>

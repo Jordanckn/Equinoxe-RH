@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const DEFAULT_TITLE = 'Equinoxe Conseil RH | Conseil RH, coaching et transitions professionnelles';
 const DEFAULT_DESCRIPTION = 'Equinoxe Conseil RH accompagne les entreprises, dirigeants, managers et particuliers en conseil RH, coaching professionnel, accompagnement du changement et bilan de compétences.';
-const DEFAULT_IMAGE = '/images/equinoxe-RH-logo.webp';
+const DEFAULT_IMAGE = '/images/equinoxe-social-card.png';
 
 type SEOHeadProps = {
   title: string;
@@ -33,6 +33,8 @@ export function SEOHead({ title, description, canonical, image, type = 'website'
     upsertMeta('property', 'og:image', absoluteImage);
     upsertMeta('property', 'og:image:secure_url', absoluteImage);
     upsertMeta('property', 'og:image:alt', 'Equinoxe Conseil RH - conseil RH, coaching et accompagnement professionnel');
+    upsertMeta('property', 'og:image:width', '1200');
+    upsertMeta('property', 'og:image:height', '630');
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', pageTitle);
     upsertMeta('name', 'twitter:description', pageDescription);
