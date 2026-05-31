@@ -8,7 +8,7 @@ export const contactInfo = {
   email: 'contact@equinoxe-rh.fr',
   address: '35 chemin de Buissaison, 31180 Lapeyrouse-Fossat',
   hours: '9h à 18h, sauf samedi',
-  linkedin: 'https://www.linkedin.com/'
+  linkedin: 'https://www.linkedin.com/in/caroline-tillou-maratuech-2b30372a/'
 };
 export const navItems = [
   { label: 'Accueil', href: '/' },

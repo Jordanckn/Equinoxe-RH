@@ -6,9 +6,18 @@ import {
   GraduationCap, 
   Users, 
   Building2, 
+  ChevronDown,
   Compass, 
+  ClipboardCheck,
+  HeartHandshake,
+  LineChart,
+  MonitorCheck,
+  Phone,
+  Route,
   Shuffle, 
   Lightbulb, 
+  ShieldCheck,
+  Target,
   CheckCircle2 
 } from 'lucide-react';
 import { BlogCard, ServiceCard, TestimonialCard } from '../components/Cards';
@@ -17,7 +26,7 @@ import { FAQAccordion } from '../components/FAQAccordion';
 import { SEOHead } from '../components/SEOHead';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ButtonLink, Card, Container, Section } from '../components/ui';
-import { faqs, posts, services, testimonials } from '../data/content';
+import { contactInfo, faqs, posts, services, testimonials } from '../data/content';
 import { organizationSchema, personSchema, faqSchema } from '../lib/schemaMarkup';
 import { useSupabaseRows } from '../hooks/useSupabaseRows';
 import type { BlogPost, FAQ, Testimonial } from '../types';
@@ -190,6 +199,219 @@ export function HomePage() {
                 <ServiceCard service={service} />
               </ScrollReveal>
             ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* SEO Editorial Section */}
+      <Section className="bg-white">
+        <Container>
+          <ScrollReveal className="mx-auto max-w-3xl text-center">
+            <p className="inline-flex rounded-full border border-sage-dark/20 bg-rosé px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">
+              Conseil RH, coaching et transitions
+            </p>
+            <h2 className="mt-5 font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+              Des accompagnements RH lisibles, utiles et adaptés au terrain
+            </h2>
+            <p className="mt-5 text-lg leading-8 text-anthracite/75">
+              À Toulouse, en Occitanie ou à distance, Equinoxe Conseil RH aide les organisations et les personnes à clarifier les situations humaines sensibles : structuration RH, posture managériale, transition professionnelle, bilan de compétences, cohésion d’équipe et accompagnement du changement.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <div className="mt-12 grid overflow-hidden rounded-[2rem] border border-sand bg-ivory shadow-[0_22px_60px_rgba(14,27,41,0.07)] lg:grid-cols-[0.95fr_1.05fr]">
+              <div className="relative min-h-[260px] lg:min-h-full">
+                <img
+                  src="/images/toulouse-garonne.jpg"
+                  alt="Vue de Toulouse et des bords de Garonne"
+                  onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-ink/35 via-transparent to-transparent" />
+                <div className="absolute bottom-5 left-5 rounded-full border border-white/50 bg-white/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-ink backdrop-blur">
+                  Ancrage toulousain
+                </div>
+              </div>
+
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Toulouse, Occitanie et France entière</p>
+                <h3 className="mt-3 font-serif text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+                  Une présence locale, avec des formats souples selon la mission
+                </h3>
+                <p className="mt-4 text-sm leading-7 text-anthracite/75 sm:text-base">
+                  Caroline Tillou Maratuech travaille depuis Toulouse avec des entreprises, dirigeants, managers et professionnels en transition. Les accompagnements peuvent se dérouler en visio, en présentiel à Toulouse ou sur site lorsque la mission le justifie, notamment pour les diagnostics RH, ateliers collectifs, accompagnements du changement et interventions auprès des équipes.
+                </p>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                  {[
+                    { icon: MapPin, label: 'Toulouse', text: 'Ancrage local' },
+                    { icon: MonitorCheck, label: 'Visio', text: 'Suivi à distance' },
+                    { icon: Route, label: 'Déplacement', text: 'Selon la mission' }
+                  ].map(({ icon: Icon, label, text }) => (
+                    <div key={label} className="rounded-2xl border border-sand bg-white p-4">
+                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-rosé text-sage-dark">
+                        <Icon size={18} />
+                      </span>
+                      <p className="mt-3 text-sm font-bold text-ink">{label}</p>
+                      <p className="mt-1 text-xs leading-5 text-anthracite/65">{text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {[
+              {
+                icon: Target,
+                title: 'Clarifier',
+                text: 'Comprendre les enjeux, nommer les tensions et poser les bons repères avant d’agir.'
+              },
+              {
+                icon: ShieldCheck,
+                title: 'Sécuriser',
+                text: 'Créer un cadre confidentiel, structuré et fiable pour les décisions RH ou professionnelles.'
+              },
+              {
+                icon: LineChart,
+                title: 'Faire évoluer',
+                text: 'Transformer les pratiques, renforcer la coopération et soutenir les trajectoires durables.'
+              }
+            ].map(({ icon: Icon, title, text }, index) => (
+              <ScrollReveal key={title} delay={index * 100}>
+                <Card className="h-full border border-sand bg-ivory transition-all duration-500 hover:-translate-y-1 hover:border-sage-dark/25 hover:bg-white hover:shadow-soft">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-sage-dark shadow-sm">
+                    <Icon size={21} />
+                  </span>
+                  <h3 className="mt-5 font-serif text-2xl font-semibold text-ink">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-anthracite/75">{text}</p>
+                </Card>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-8 lg:grid-cols-[0.68fr_0.32fr] lg:items-start">
+            <ScrollReveal className="space-y-4">
+              {[
+                {
+                  icon: Building2,
+                  title: 'Conseil RH pour TPE, PME et organisations',
+                  text: 'Le conseil RH permet de structurer les pratiques, clarifier les rôles, accompagner une réorganisation ou traiter une situation humaine devenue complexe. Equinoxe Conseil RH intervient auprès des dirigeants, responsables RH et managers pour analyser le fonctionnement réel, repérer les points de fragilité et construire des réponses adaptées : diagnostic RH, accompagnement de transformation, ateliers collectifs, régulation des tensions, fidélisation des talents, qualité de vie au travail et soutien au management.'
+                },
+                {
+                  icon: HeartHandshake,
+                  title: 'Coaching professionnel et posture managériale',
+                  text: 'Le coaching professionnel aide les dirigeants, managers, salariés et professionnels en transition à prendre du recul sur leurs décisions, leur communication et leur posture. Il peut soutenir une prise de poste, une évolution de carrière, une difficulté relationnelle, une surcharge, une perte de confiance ou un besoin de repositionnement. L’accompagnement reste concret : clarifier la situation, identifier les ressources, travailler les marges de manoeuvre et retrouver une manière d’agir plus alignée.'
+                },
+                {
+                  icon: ClipboardCheck,
+                  title: 'Bilan de compétences et transitions professionnelles',
+                  text: 'Le bilan de compétences s’adresse aux personnes qui souhaitent faire le point sur leur parcours, leurs motivations, leurs compétences et leurs pistes d’évolution. Il ne concerne pas uniquement la reconversion : il peut aider à préparer une mobilité, retrouver du sens, sécuriser une décision ou construire un projet professionnel réaliste. L’approche articule réflexion personnelle, réalité du marché, conditions de faisabilité et équilibre de vie.'
+                },
+                {
+                  icon: Shuffle,
+                  title: 'Accompagnement du changement et cohésion d’équipe',
+                  text: 'Une transformation RH, une croissance rapide, une fusion, une évolution de métier ou une nouvelle organisation se vit d’abord dans le quotidien des équipes. L’accompagnement du changement aide à rendre les transitions plus lisibles : clarification des objectifs, analyse des impacts humains, communication, ateliers d’équipe, soutien des managers et suivi dans la durée. L’enjeu est de préserver l’engagement, la coopération et la santé du collectif.'
+                }
+              ].map(({ icon: Icon, title, text }) => (
+                <details key={title} className="group rounded-2xl border border-sand bg-white p-0 shadow-sm transition-all duration-300 open:border-sage-dark/25 open:shadow-soft">
+                  <summary className="flex cursor-pointer list-none items-center gap-4 px-5 py-5 [&::-webkit-details-marker]:hidden">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rosé text-sage-dark">
+                      <Icon size={20} />
+                    </span>
+                    <h3 className="flex-1 font-serif text-xl font-semibold leading-snug text-ink sm:text-2xl">{title}</h3>
+                    <ChevronDown size={20} className="shrink-0 text-sage-dark transition-transform duration-300 group-open:rotate-180" />
+                  </summary>
+                  <div className="px-5 pb-6 pl-[4.25rem] text-sm leading-7 text-anthracite/75 sm:text-base">
+                    <p>{text}</p>
+                  </div>
+                </details>
+              ))}
+
+              <Card className="overflow-hidden border border-sand bg-white p-0 shadow-sm">
+                <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
+                  <div className="relative min-h-[260px] overflow-hidden bg-ivory">
+                    <iframe
+                      title="Carte Google Maps - Equinoxe Conseil RH"
+                      src="https://www.google.com/maps?q=35%20chemin%20de%20Buissaison%2C%2031180%20Lapeyrouse-Fossat&output=embed"
+                      className="absolute inset-0 h-full w-full grayscale-[15%]"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                    <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/5" />
+                  </div>
+
+                  <div className="p-6 sm:p-7">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Adresse professionnelle</p>
+                    <h3 className="mt-3 font-serif text-2xl font-semibold leading-tight text-ink">
+                      Un point d’ancrage près de Toulouse
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-anthracite/75">
+                      Les rendez-vous peuvent être organisés en visioconférence, à Toulouse ou en déplacement après cadrage de l’accompagnement, notamment pour les missions en entreprise.
+                    </p>
+
+                    <div className="mt-5 grid gap-3">
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactInfo.address)}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group flex items-start gap-3 rounded-2xl border border-sand bg-ivory px-4 py-3 text-sm font-semibold text-ink transition-all hover:border-sage-dark/25 hover:bg-white"
+                      >
+                        <MapPin size={18} className="mt-0.5 shrink-0 text-sage-dark" />
+                        <span>{contactInfo.address}</span>
+                      </a>
+                      <a
+                        href={`tel:${contactInfo.phoneHref}`}
+                        className="group flex items-center gap-3 rounded-2xl border border-sand bg-ivory px-4 py-3 text-sm font-semibold text-ink transition-all hover:border-sage-dark/25 hover:bg-white"
+                      >
+                        <Phone size={18} className="shrink-0 text-sage-dark" />
+                        <span>{contactInfo.phone}</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </ScrollReveal>
+
+            <ScrollReveal className="space-y-5 lg:sticky lg:top-28">
+              <Card className="border border-sand bg-rosé">
+                <h3 className="font-serif text-2xl font-semibold text-ink">Recherches fréquentes</h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {['Conseil RH Toulouse', 'Coaching professionnel', 'Bilan de compétences', 'Accompagnement du changement', 'Management', 'Transitions professionnelles', 'PME', 'Dirigeants'].map((keyword) => (
+                    <span key={keyword} className="rounded-full bg-white px-3 py-1.5 text-xs font-bold text-sage-dark">{keyword}</span>
+                  ))}
+                </div>
+              </Card>
+
+              <Card className="border border-sand bg-white">
+                <h3 className="font-serif text-2xl font-semibold text-ink">Trouver le bon accompagnement</h3>
+                <div className="mt-5 grid gap-3">
+                  {[
+                    ['Conseil RH', '/services/conseil-rh-entreprises'],
+                    ['Coaching professionnel', '/services/accompagnement-individuel'],
+                    ['Bilan de compétences', '/services/bilan-de-competences'],
+                    ['Changement', '/services/accompagnement-changement']
+                  ].map(([label, to]) => (
+                    <Link key={label} to={to} className="group flex items-center justify-between rounded-xl border border-sand bg-ivory px-4 py-3 text-sm font-bold text-ink transition-all hover:border-sage-dark/25 hover:bg-white">
+                      {label}
+                      <ArrowRight size={15} className="text-sage-dark transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  ))}
+                </div>
+              </Card>
+
+              <Card className="border border-sand bg-white">
+                <h3 className="font-serif text-2xl font-semibold text-ink">Zones d’intervention</h3>
+                <p className="mt-3 text-sm leading-7 text-anthracite/75">
+                  Toulouse, Haute-Garonne, Occitanie et accompagnements à distance partout en France.
+                </p>
+                <div className="mt-5">
+                  <ButtonLink to="/contact" className="w-full justify-center">Prendre contact</ButtonLink>
+                </div>
+              </Card>
+            </ScrollReveal>
           </div>
         </Container>
       </Section>

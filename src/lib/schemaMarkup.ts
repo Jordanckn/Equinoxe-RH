@@ -19,7 +19,7 @@ export const organizationSchema = {
     addressCountry: 'FR'
   },
   areaServed: ['Toulouse', 'Haute-Garonne', 'Occitanie', 'France', 'Visioconférence'],
-  sameAs: ['https://www.linkedin.com/']
+  sameAs: ['https://www.linkedin.com/in/caroline-tillou-maratuech-2b30372a/']
 };
 
 export const personSchema = {

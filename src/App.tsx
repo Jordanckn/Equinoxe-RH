@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
+import { ScrollToTop } from './components/ScrollToTop';
 import { AboutPage } from './pages/AboutPage';
 import { AdminPage } from './pages/AdminPage';
 import { ArticlePage, BlogPage } from './pages/BlogPages';
@@ -12,10 +13,13 @@ import { FAQPage, LegalPage, LocalSeoPage, TestimonialsPage } from './pages/Util
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/admin" element={<AdminPage />} />
-      <Route path="*" element={<Layout><PublicRoutes /></Layout>} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="*" element={<Layout><PublicRoutes /></Layout>} />
+      </Routes>
+    </>
   );
 }
 

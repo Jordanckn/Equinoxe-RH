@@ -46,10 +46,13 @@ export function BlogPage() {
         description="Articles, conseils et repères sur le conseil RH, le management, l’accompagnement du changement, le coaching professionnel et le bilan de compétences."
         schema={blogCollectionSchema(publishedPosts)}
       />
-      <section className="bg-white">
-        <Container className="py-16">
+      <section className="relative overflow-hidden border-b border-sand bg-rosé">
+        <div className="absolute -right-20 -top-20 z-0 h-[450px] w-[450px] rounded-full border-[55px] border-white opacity-40" />
+        <div className="absolute -left-10 -bottom-10 z-0 h-72 w-72 rounded-full border-[35px] border-white opacity-25" />
+        <div className="absolute right-[20%] top-1/3 z-0 h-40 w-40 rounded-full border-[15px] border-white opacity-20" />
+        <Container className="relative z-10 py-16">
           <div className="max-w-4xl">
-            <p className="inline-flex rounded-full border border-sage-dark/20 bg-rosé px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">
+            <p className="inline-flex rounded-full border border-sage-dark/20 bg-white/70 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">
               Ressources RH
             </p>
             <h1 className="mt-6 font-serif text-4xl font-semibold leading-tight text-ink md:text-6xl">
