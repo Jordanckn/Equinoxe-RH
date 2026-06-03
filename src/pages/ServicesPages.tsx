@@ -252,12 +252,43 @@ export function ServiceDetailPage() {
       <Section className="bg-white">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[0.95fr_0.62fr] lg:items-start">
-            <div className="prose-equinoxe max-w-none">
-              <p className="text-lg leading-8"><HighlightedText text={service.longDescription} /></p>
-              <h2 className="mt-8 font-serif text-3xl text-ink">{editorial.introTitle}</h2>
-              {editorial.introParagraphs.map((paragraph) => (
-                <p key={paragraph} className="mt-5"><HighlightedText text={paragraph} /></p>
-              ))}
+            <div>
+              <div className="prose-equinoxe max-w-none">
+                <p className="text-lg leading-8"><HighlightedText text={service.longDescription} /></p>
+                <h2 className="mt-8 font-serif text-3xl text-ink">{editorial.introTitle}</h2>
+                {editorial.introParagraphs.map((paragraph) => (
+                  <p key={paragraph} className="mt-5"><HighlightedText text={paragraph} /></p>
+                ))}
+              </div>
+
+              <div className="mt-7 rounded-[2rem] border border-sand bg-ivory p-5 sm:p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Repères pratiques</p>
+                <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                  {[
+                    {
+                      icon: MapPin,
+                      label: 'Toulouse',
+                      text: 'Présentiel possible selon le cadre.'
+                    },
+                    {
+                      icon: MonitorCheck,
+                      label: 'Visio',
+                      text: 'Accompagnement à distance structuré.'
+                    },
+                    {
+                      icon: ShieldCheck,
+                      label: 'Cadre clair',
+                      text: 'Confidentialité, méthode et objectifs.'
+                    }
+                  ].map(({ icon: Icon, label, text }) => (
+                    <div key={label} className="rounded-2xl border border-sand bg-white p-4">
+                      <Icon size={19} className="text-sage-dark" />
+                      <p className="mt-3 text-sm font-bold text-ink">{label}</p>
+                      <p className="mt-2 text-xs leading-5 text-anthracite/65"><HighlightedText text={text} /></p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div className="space-y-5">
@@ -292,7 +323,7 @@ export function ServiceDetailPage() {
             </div>
           </div>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
             {editorial.keyCards.map(({ icon, title, text }) => {
               const Icon = iconMap[icon];
               return (

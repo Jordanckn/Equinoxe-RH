@@ -512,7 +512,7 @@ export function HomePage() {
               <div className="relative z-10 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
                 <div className="max-w-3xl">
                   <p className="text-xs font-bold uppercase tracking-[0.2em] text-champagne">Échange gratuit & confidentiel</p>
-                  <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight sm:text-5xl">Vous traversez une transition humaine, managériale ou professionnelle ?</h2>
+                  <h3 className="mt-3 font-serif text-3xl font-semibold leading-tight sm:text-5xl">Vous traversez une transition humaine, managériale ou professionnelle ?</h3>
                   <p className="mt-4 text-lg text-white/75 leading-relaxed">Un échange permet de poser les premiers repères, sans pression commerciale.</p>
                 </div>
                 <Link className="focus-ring shrink-0 rounded-full bg-champagne px-8 py-4 font-bold text-ink transition-all duration-300 hover:bg-white hover:text-ink hover:scale-105 shadow-[0_12px_28px_rgba(197,168,114,0.2)]" to="/contact">

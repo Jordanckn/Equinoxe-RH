@@ -36,7 +36,7 @@ export function FAQPage() {
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-sage px-2.5 py-2.5 text-sage-dark">
                   <MessageCircleQuestion size={22} />
                 </div>
-                <h2 className="font-serif text-xl font-semibold text-ink">Vous ne trouvez pas la réponse ?</h2>
+                <h3 className="font-serif text-xl font-semibold text-ink">Vous ne trouvez pas la réponse ?</h3>
                 <p className="mt-3 text-sm leading-6 text-anthracite/75">Caroline répond personnellement à chaque demande. Un premier échange permet de clarifier le cadre et le besoin.</p>
                 <div className="mt-5 space-y-3">
                   <ButtonLink to="/contact" className="w-full justify-center">Envoyer un message</ButtonLink>
@@ -88,7 +88,7 @@ export function LocalSeoPage({ kind }: { kind: 'rh-toulouse' | 'coaching-toulous
         <Container className="prose-equinoxe max-w-4xl">
           <p><strong>Réponse courte :</strong> Equinoxe Conseil RH propose un {map[2]} avec Caroline Tillou Maratuech, consultante RH, coach professionnelle et docteure en gestion des ressources humaines.</p>
           <p>L’accompagnement s’adresse aux entreprises, dirigeants, managers, salariés, entrepreneurs, étudiants et particuliers qui souhaitent clarifier une situation RH, managériale ou professionnelle.</p>
-          <h2>Accompagnements liés</h2>
+          <h3>Accompagnements liés</h3>
           <ul>{services.map((service) => <li key={service.slug}>{service.title}</li>)}</ul>
           <div className="not-prose mt-8"><ButtonLink to="/contact">Échanger sur votre besoin</ButtonLink></div>
         </Container>
@@ -132,35 +132,35 @@ function PrivacyPage() {
         <Container className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-start">
           <div className="prose-equinoxe max-w-none rounded-2xl border border-sand bg-white p-7 shadow-[0_22px_70px_rgba(14,27,41,0.06)] md:p-10">
             <p><strong>Dernière mise à jour :</strong> 30 mai 2026.</p>
-            <h2>1. Responsable du traitement</h2>
+            <h3 className="font-serif text-3xl font-semibold text-ink">1. Responsable du traitement</h3>
             <p>Le responsable du traitement est Caroline Tillou Maratuech, Equinoxe Conseil RH, SIRET 788 556 488 00039, située 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France.</p>
             <p>Contact : <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a> - {contactInfo.phone}.</p>
 
-            <h2>2. Données collectées</h2>
+            <h3 className="font-serif text-3xl font-semibold text-ink">2. Données collectées</h3>
             <p>Les données susceptibles d’être collectées sont celles transmises volontairement via le formulaire de contact ou les échanges directs : identité, coordonnées, profil professionnel, nature du besoin, message libre et préférences de contact.</p>
             <p>Le site peut également traiter des données techniques nécessaires à son fonctionnement : adresse IP, logs techniques, navigateur, terminal utilisé et préférences cookies.</p>
 
-            <h2>3. Finalités</h2>
+            <h3 className="font-serif text-3xl font-semibold text-ink">3. Finalités</h3>
             <p>Les données sont utilisées pour répondre aux demandes, préparer un premier échange, assurer le suivi de la relation, gérer les obligations administratives et améliorer le fonctionnement du site lorsque l’utilisateur y consent.</p>
 
-            <h2>4. Bases légales</h2>
+            <h3 className="font-serif text-3xl font-semibold text-ink">4. Bases légales</h3>
             <p>Les traitements reposent selon les cas sur le consentement de la personne, l’exécution de mesures précontractuelles, l’intérêt légitime à répondre aux sollicitations reçues et les obligations légales applicables à l’activité.</p>
 
-            <h2>5. Destinataires</h2>
+            <h3 className="font-serif text-3xl font-semibold text-ink">5. Destinataires</h3>
             <p>Les données sont destinées à Equinoxe Conseil RH. Elles peuvent être techniquement hébergées ou traitées par des prestataires nécessaires au fonctionnement du site et des outils associés, notamment Netlify pour l’hébergement et Supabase pour certaines données applicatives.</p>
             <p>Les données ne sont pas vendues, louées ou transmises à des tiers à des fins commerciales.</p>
 
-            <h2>6. Durées de conservation</h2>
+            <h3 className="font-serif text-3xl font-semibold text-ink">6. Durées de conservation</h3>
             <p>Les demandes de contact sont conservées pendant une durée proportionnée au suivi de la relation, puis supprimées ou archivées lorsque leur conservation n’est plus nécessaire. Les données liées à une relation contractuelle peuvent être conservées pendant les durées légales applicables.</p>
 
-            <h2>7. Droits des personnes</h2>
+            <h3 className="font-serif text-3xl font-semibold text-ink">7. Droits des personnes</h3>
             <p>Conformément au RGPD, vous pouvez demander l’accès, la rectification, l’effacement, la limitation ou l’opposition au traitement de vos données. Lorsque le traitement repose sur votre consentement, vous pouvez le retirer à tout moment.</p>
             <p>Pour exercer vos droits : <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>. En cas de difficulté, vous pouvez saisir la CNIL.</p>
 
-            <h2>8. Sécurité</h2>
+            <h3 className="font-serif text-3xl font-semibold text-ink">8. Sécurité</h3>
             <p>Equinoxe Conseil RH met en œuvre des mesures raisonnables pour protéger les données contre l’accès non autorisé, la perte, l’altération ou la divulgation. Aucun système n’étant infaillible, seules les données nécessaires doivent être transmises via les formulaires.</p>
 
-            <h2>9. Cookies</h2>
+            <h3 className="font-serif text-3xl font-semibold text-ink">9. Cookies</h3>
             <p>Les cookies et préférences de traceurs sont détaillés sur la page dédiée. Vous pouvez modifier vos choix à tout moment depuis la page Cookies.</p>
           </div>
 
