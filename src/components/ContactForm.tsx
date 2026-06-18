@@ -65,7 +65,7 @@ export function ContactForm() {
         {status === 'loading' ? 'Envoi en cours...' : 'Envoyer ma demande'}
       </button>
       {status === 'success' ? <p className="rounded-lg bg-sage/25 p-4 text-sm text-ink">Merci pour votre message. Caroline Tillou Maratuech reviendra vers vous prochainement afin d’échanger sur votre situation et vos besoins.</p> : null}
-      {status === 'error' ? <p className="rounded-lg bg-red-50 p-4 text-sm text-red-700">Le message n’a pas pu être transmis. Vous pouvez aussi écrire directement à contact@equinoxe-rh.fr.</p> : null}
+      {status === 'error' ? <p className="rounded-lg bg-red-50 p-4 text-sm text-red-700">Le message n’a pas pu être transmis. Vous pouvez aussi écrire directement à contact.actrh@gmail.com.</p> : null}
     </form>
   );
 }

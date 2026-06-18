@@ -42,7 +42,7 @@ export function BlogPage() {
   return (
     <>
       <SEOHead
-        title="Ressources RH : blog conseil RH, management et transitions | Equinoxe Conseil RH"
+        title="Ressources RH : blog conseil RH, management et transitions | ACT&RH"
         description="Articles, conseils et repères sur le conseil RH, le management, l’accompagnement du changement, le coaching professionnel et le bilan de compétences."
         schema={blogCollectionSchema(publishedPosts)}
       />
@@ -252,7 +252,7 @@ export function ArticlePage() {
         <Section className="bg-ivory">
           <Container className="grid gap-10 lg:grid-cols-3 lg:items-start">
             <div className="rounded-2xl border border-sand bg-white p-7 shadow-[0_22px_70px_rgba(14,27,41,0.06)] md:p-10 lg:col-span-2">
-              <div className="prose-equinoxe max-w-none">
+              <div className="prose-actrh max-w-none">
                 {paragraphs.map((paragraph, index) => (
                   <p key={`${post.slug}-${index}`}>{paragraph}</p>
                 ))}
@@ -335,7 +335,7 @@ function blogCollectionSchema(items: BlogPost[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'Ressources RH - Equinoxe Conseil RH',
+    name: 'Ressources RH - ACT&RH',
     description: 'Articles sur le conseil RH, le management, le coaching professionnel et les transitions professionnelles.',
     blogPost: items.map((post) => ({
       '@type': 'BlogPosting',

@@ -73,7 +73,7 @@ const pressSections: PressSection[] = [
         title: 'Table ronde MEDEF 31 - Entrepreneurs, collaborateurs, en quête de sens au travail',
         date: '7 décembre 2022',
         themes: 'Quête de sens au travail, engagement, burnout, grande démission, rôle du manager',
-        text: 'Invitée par le MEDEF 31, Caroline Tillou Maratuech intervient comme chercheuse en GRH à TBS Education et gérante d’Equinoxe RH dans une table ronde sur la quête de sens au travail. Face à un dirigeant, un représentant d’Harmonie Mutuelle et un médecin du travail, elle décrypte les nouvelles attentes des collaborateurs, les risques de désengagement et les leviers concrets pour redonner du sens au quotidien.',
+        text: 'Invitée par le MEDEF 31, Caroline Tillou Maratuech intervient comme chercheuse en GRH à TBS Education et gérante d’ACT&RH RH dans une table ronde sur la quête de sens au travail. Face à un dirigeant, un représentant d’Harmonie Mutuelle et un médecin du travail, elle décrypte les nouvelles attentes des collaborateurs, les risques de désengagement et les leviers concrets pour redonner du sens au quotidien.',
         link: 'https://www.youtube.com/watch?v=F-eDjnBROAc',
         cta: 'Voir la vidéo'
       }
@@ -101,10 +101,10 @@ const pressSections: PressSection[] = [
         cta: 'Découvrir EQINOX'
       },
       {
-        title: 'Equinoxe - Notre expertise',
+        title: 'ACT&RH - Notre expertise',
         date: 'Site de cabinet',
         themes: 'Raison d’être, RSE, évolution des modèles managériaux et organisationnels, capital humain',
-        text: 'Sur le site Equinoxe, l’expertise mise en avant vise à aider les organisations à révéler leur raison d’être, structurer leur démarche RSE et faire évoluer leurs modèles managériaux autour du capital humain. On y retrouve la conviction que la performance durable passe par des pratiques managériales alignées avec le sens, la santé et l’engagement des équipes.',
+        text: 'Sur le site ACT&RH, l’expertise mise en avant vise à aider les organisations à révéler leur raison d’être, structurer leur démarche RSE et faire évoluer leurs modèles managériaux autour du capital humain. On y retrouve la conviction que la performance durable passe par des pratiques managériales alignées avec le sens, la santé et l’engagement des équipes.',
         link: 'https://equinoxe-management.com/notre-expertise/',
         cta: 'Découvrir notre expertise'
       },
@@ -112,7 +112,7 @@ const pressSections: PressSection[] = [
         title: 'Profil LinkedIn',
         date: 'Profil professionnel',
         themes: 'Enseignante-chercheuse TBS Education, consultante RH, coach en entreprise',
-        text: 'Sur LinkedIn, Caroline Tillou Maratuech se présente comme consultante coach en entreprise, enseignante-chercheuse en management des ressources humaines à TBS Education et consultante RH pour Equinoxe Conseil RH. Son profil illustre la continuité entre ses recherches académiques et ses interventions de terrain auprès des dirigeants et de leurs équipes.',
+        text: 'Sur LinkedIn, Caroline Tillou Maratuech se présente comme consultante coach en entreprise, enseignante-chercheuse en management des ressources humaines à TBS Education et consultante RH pour ACT&RH. Son profil illustre la continuité entre ses recherches académiques et ses interventions de terrain auprès des dirigeants et de leurs équipes.',
         link: 'https://www.linkedin.com/in/caroline-tillou-maratuech-2b30372a',
         cta: 'Voir le profil'
       }
@@ -124,7 +124,7 @@ export function PressPage() {
   return (
     <>
       <SEOHead
-        title="On parle de nous | Publications, médias et expertise | Equinoxe Conseil RH"
+        title="On parle de nous | Publications, médias et expertise | ACT&RH"
         description="Publications scientifiques, interventions médias et présence professionnelle de Caroline Tillou Maratuech, consultante RH, coach et enseignante-chercheuse."
       />
       <PageHeader

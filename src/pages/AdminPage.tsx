@@ -43,7 +43,7 @@ export function AdminPage() {
     <AdminShell>
       <div className="grid min-h-screen md:grid-cols-[260px_1fr]">
         <aside className="border-r border-ink/10 bg-white p-5">
-          <p className="font-serif text-2xl text-ink">Equinoxe Admin</p>
+          <p className="font-serif text-2xl text-ink">ACT&RH Admin</p>
           <p className={`mt-3 rounded-full px-3 py-1.5 text-xs font-bold ${localMode ? 'bg-rosé text-sage-dark' : 'bg-sage/25 text-ink'}`}>
             {localMode ? 'Mode local - Supabase à configurer' : 'Connecté à Supabase'}
           </p>

@@ -69,12 +69,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </a>
       <header className="sticky top-0 z-40 border-b border-ink/10 bg-white/90 backdrop-blur-xl">
         <Container className="flex h-20 items-center justify-between gap-5">
-          <Link to="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="Equinoxe Conseil RH">
+          <Link to="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="ACT&RH">
             <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm">
               <img src="/images/equinoxe-RH-logo.webp" alt="" onError={(event) => { event.currentTarget.src = '/images/logo-equinoxe-rh.svg'; }} className="h-full w-full object-contain" />
             </span>
             <span className="flex flex-col leading-none">
-              <span className="font-serif text-2xl font-semibold text-ink">Equinoxe</span>
+              <span className="font-serif text-2xl font-semibold text-ink">ACT&RH</span>
               <span className="mt-1 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-sage-dark">Conseil RH</span>
             </span>
           </Link>
@@ -341,13 +341,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <footer className="border-t border-ink/10 bg-ink text-white">
         <Container className="grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-[1.2fr_0.9fr_0.9fr_0.8fr]">
           <div>
-            <Link to="/" className="inline-flex items-center gap-4" aria-label="Equinoxe Conseil RH">
+            <Link to="/" className="inline-flex items-center gap-4" aria-label="ACT&RH">
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white">
                 <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full">
                   <img src="/images/equinoxe-RH-logo.webp" alt="" onError={(event) => { event.currentTarget.src = '/images/logo-equinoxe-rh.svg'; }} className="h-full w-full object-contain" />
                 </span>
               </span>
-              <span className="font-serif text-3xl">Equinoxe Conseil RH</span>
+              <span className="font-serif text-3xl">ACT&RH</span>
             </Link>
             <p className="mt-4 max-w-md text-white/75">Conseil RH, coaching professionnel, accompagnement du changement et bilan de compétences à Toulouse, en Occitanie et à distance.</p>
             <div className="mt-6 flex items-center gap-3" aria-label="Réseaux sociaux">

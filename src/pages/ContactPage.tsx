@@ -8,7 +8,7 @@ import { organizationSchema } from '../lib/schemaMarkup';
 export function ContactPage() {
   return (
     <>
-      <SEOHead title="Contact | Equinoxe Conseil RH Toulouse" description="Contacter Caroline Tillou Maratuech pour un besoin de conseil RH, coaching, accompagnement du changement ou bilan de compétences." schema={organizationSchema} />
+      <SEOHead title="Contact | ACT&RH Toulouse" description="Contacter Caroline Tillou Maratuech pour un besoin de conseil RH, coaching, accompagnement du changement ou bilan de compétences." schema={organizationSchema} />
       <PageHeader eyebrow="Contact" title="Échanger sur votre situation et vos besoins" text="Le formulaire permet de qualifier votre demande. Caroline Tillou Maratuech reviendra vers vous prochainement." />
       <Section className="bg-white">
         <Container className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">

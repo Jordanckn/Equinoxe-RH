@@ -19,7 +19,7 @@ const audienceContent: Record<string, any> = {
     icon: Building2,
     eyebrow: 'Pour les organisations',
     description: 'Sécuriser la croissance, structurer les RH et accompagner les transformations de votre structure.',
-    longDescription: 'Pour une TPE, une PME ou une grande entreprise, les enjeux humains sont les piliers de la performance durable. Equinoxe Conseil RH apporte un regard extérieur expert pour clarifier vos pratiques et soutenir vos équipes de direction.',
+    longDescription: "Pour une TPE, une PME ou une grande entreprise, les enjeux humains sont les piliers de la performance durable. J'apporte un regard extérieur expert pour clarifier vos pratiques et soutenir vos équipes de direction.",
     challenges: [
       'Structuration de la fonction RH (recrutement, intégration, fidélisation)',
       'Prévention des risques psychosociaux et des tensions sociales',
@@ -27,9 +27,8 @@ const audienceContent: Record<string, any> = {
       'Développement d’une culture managériale cohérente'
     ],
     examples: [
-      'Audit et optimisation des processus RH pour une PME en forte croissance.',
-      'Mise en place d’un baromètre d’engagement et plan d’action associé.',
-      'Accompagnement du CODIR dans la définition d’une nouvelle vision RH.'
+      "Audit et optimisation des processus RH pour une PME en forte croissance.",
+      "Mise en place d'un baromètre d'engagement et plan d'action associé."
     ],
     relatedServices: ['conseil-rh-entreprises', 'accompagnement-changement', 'formations-ateliers-codeveloppement']
   },
@@ -38,7 +37,7 @@ const audienceContent: Record<string, any> = {
     icon: Compass,
     eyebrow: 'Pour l’encadrement',
     description: 'Développer votre posture, gérer les complexités relationnelles et affirmer votre leadership.',
-    longDescription: 'Le manager est au cœur des tensions et des attentes. Equinoxe Conseil RH vous aide à prendre du recul sur votre pratique quotidienne pour gagner en sérénité et en efficacité.',
+    longDescription: 'Le manager est au cœur des tensions et des attentes. Je vous aide à prendre du recul sur votre pratique quotidienne pour gagner en sérénité et en efficacité.',
     challenges: [
       'Prise de fonction ou évolution vers un poste de direction',
       'Gestion de conflits au sein de l’équipe',
@@ -95,7 +94,7 @@ const audienceContent: Record<string, any> = {
     icon: GraduationCap,
     eyebrow: 'Pour votre avenir',
     description: 'Clarifier votre orientation et préparer votre entrée sur le marché du travail.',
-    longDescription: 'Le passage du monde académique au monde professionnel est une transition majeure. Equinoxe Conseil RH vous aide à valoriser vos atouts et à cibler les environnements qui vous correspondent.',
+    longDescription: 'Le passage du monde académique au monde professionnel est une transition majeure. Je vous aide à valoriser vos atouts et à cibler les environnements qui vous correspondent.',
     challenges: [
       'Choix de spécialisation ou de master',
       'Identification des compétences transférables',
@@ -138,14 +137,14 @@ export function AudiencePage() {
   return (
     <>
       <SEOHead 
-        title={`${audience.title} | Accompagnement RH & Coaching | Equinoxe`} 
+        title={`${audience.title} | Accompagnement RH & Coaching | ACT&RH`} 
         description={audience.description} 
       />
       <PageHeader eyebrow={audience.eyebrow} title={audience.title} text={audience.description} />
       
       <Section className="bg-white">
         <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="prose-equinoxe max-w-none">
+          <div className="prose-actrh max-w-none">
             <h2 className="font-serif text-3xl text-ink">L'enjeu de cette situation</h2>
             <p className="text-lg leading-8 text-anthracite/80">{audience.longDescription}</p>
             

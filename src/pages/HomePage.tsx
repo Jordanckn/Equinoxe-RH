@@ -53,7 +53,7 @@ export function HomePage() {
 
   return (
     <>
-      <SEOHead title="Conseil RH, coaching et accompagnement du changement à Toulouse | Equinoxe Conseil RH" description="Caroline Tillou Maratuech accompagne entreprises, dirigeants, managers et particuliers à Toulouse, en Occitanie et à distance." schema={[organizationSchema, personSchema, faqSchema(liveFaqs.slice(0, 5))]} />
+      <SEOHead title="Conseil RH, coaching et accompagnement du changement à Toulouse | ACT&RH" description="Caroline Tillou Maratuech accompagne entreprises, dirigeants, managers et particuliers à Toulouse, en Occitanie et à distance." schema={[organizationSchema, personSchema, faqSchema(liveFaqs.slice(0, 5))]} />
       <CookieConsent />
       
       {/* Hero Section */}
@@ -70,10 +70,10 @@ export function HomePage() {
                 Toulouse, Occitanie et à distance
               </p>
               <h1 className="animate-fade-in-up max-w-4xl text-balance font-serif text-4xl font-semibold leading-[1.06] text-ink sm:text-6xl xl:text-7xl">
-                Clarifier les transitions humaines, RH et managériales
+                Comprendre les transformations pour mieux les conduire.
               </h1>
               <p className="animate-fade-in-up delay-100 max-w-2xl text-lg leading-8 text-anthracite/80">
-                Equinoxe Conseil RH accompagne les entreprises, dirigeants, managers et particuliers avec une approche structurée, confidentielle et ancrée dans le réel du travail.
+                J'accompagne les dirigeants d'entreprise, les managers et leurs équipes dans leurs transitions RH, managériales et organisationnelles en m'appuyant sur mon expérience professionnelle, académique et pédagogique.
               </p>
               <div className="animate-fade-in-up delay-150 flex flex-wrap gap-3 pt-2">
                 <ButtonLink to="/contact">Échanger sur votre besoin</ButtonLink>
@@ -156,7 +156,7 @@ export function HomePage() {
       <Section className="bg-white">
         <Container>
           <ScrollReveal>
-            <GridTitle title="Pour qui ?" text="Equinoxe Conseil RH s’adresse aux organisations comme aux personnes, avec un cadre clair et adapté à chaque situation." />
+            <GridTitle title="Pour qui ?" text="Un accompagnement pour les organisations comme pour les personnes, avec un cadre clair et adapté à chaque situation." />
           </ScrollReveal>
           
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -214,7 +214,7 @@ export function HomePage() {
               Des accompagnements RH lisibles, utiles et adaptés au terrain
             </h2>
             <p className="mt-5 text-lg leading-8 text-anthracite/75">
-              À Toulouse, en Occitanie ou à distance, Equinoxe Conseil RH aide les organisations et les personnes à clarifier les situations humaines sensibles : structuration RH, posture managériale, transition professionnelle, bilan de compétences, cohésion d’équipe et accompagnement du changement.
+              À Toulouse, en Occitanie ou à distance, je travaille avec les organisations et les personnes pour clarifier les situations humaines sensibles : structuration RH, posture managériale, transition professionnelle, bilan de compétences, cohésion d’équipe et accompagnement du changement.
             </p>
           </ScrollReveal>
 
@@ -298,7 +298,7 @@ export function HomePage() {
                 {
                   icon: Building2,
                   title: 'Conseil RH pour TPE, PME et organisations',
-                  text: 'Le conseil RH permet de structurer les pratiques, clarifier les rôles, accompagner une réorganisation ou traiter une situation humaine devenue complexe. Equinoxe Conseil RH intervient auprès des dirigeants, responsables RH et managers pour analyser le fonctionnement réel, repérer les points de fragilité et construire des réponses adaptées : diagnostic RH, accompagnement de transformation, ateliers collectifs, régulation des tensions, fidélisation des talents, qualité de vie au travail et soutien au management.'
+                  text: "Le conseil RH permet de structurer les pratiques, clarifier les rôles, accompagner une réorganisation ou traiter une situation humaine devenue complexe. J'interviens auprès des dirigeants, responsables RH et managers pour analyser le fonctionnement réel, repérer les points de fragilité et construire des réponses adaptées : diagnostic RH, accompagnement de transformation, ateliers collectifs, régulation des tensions, fidélisation des talents, qualité de vie au travail et soutien au management."
                 },
                 {
                   icon: HeartHandshake,
@@ -334,7 +334,7 @@ export function HomePage() {
                 <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
                   <div className="relative min-h-[260px] overflow-hidden bg-ivory">
                     <iframe
-                      title="Carte Google Maps - Equinoxe Conseil RH"
+                      title="Carte Google Maps - ACT&RH"
                       src="https://www.google.com/maps?q=35%20chemin%20de%20Buissaison%2C%2031180%20Lapeyrouse-Fossat&output=embed"
                       className="absolute inset-0 h-full w-full grayscale-[15%]"
                       loading="lazy"
@@ -457,7 +457,7 @@ export function HomePage() {
       <Section className="border-y border-sand bg-rosé">
         <Container>
           <ScrollReveal>
-            <GridTitle title="Témoignages" text="Découvrez les retours d'expérience sur les accompagnements d'Equinoxe Conseil RH." />
+            <GridTitle title="Témoignages" text="Découvrez les retours d'expérience sur les accompagnements proposés." />
           </ScrollReveal>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {liveTestimonials.map((t, index) => (

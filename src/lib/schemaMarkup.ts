@@ -5,10 +5,10 @@ const baseUrl = 'https://www.equinoxe-rh.fr';
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'ProfessionalService'],
-  name: 'Equinoxe Conseil RH',
+  name: 'ACT&RH',
   founder: 'Caroline Tillou Maratuech',
   url: baseUrl,
-  email: 'contact@equinoxe-rh.fr',
+  email: 'contact.actrh@gmail.com',
   telephone: '+33687022508',
   address: {
     '@type': 'PostalAddress',
@@ -27,7 +27,7 @@ export const personSchema = {
   '@type': 'Person',
   name: 'Caroline Tillou Maratuech',
   jobTitle: 'Consultante RH, coach professionnelle et docteure en gestion des ressources humaines',
-  worksFor: { '@type': 'Organization', name: 'Equinoxe Conseil RH' },
+  worksFor: { '@type': 'Organization', name: 'ACT&RH' },
   knowsAbout: ['Conseil RH', 'Accompagnement du changement', 'Coaching professionnel', 'Bilan de compétences']
 };
 

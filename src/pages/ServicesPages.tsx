@@ -59,8 +59,8 @@ const serviceEditorialContent: Record<string, {
   'conseil-rh-entreprises': {
     introTitle: 'Un appui RH externe pour décider avec plus de recul',
     introParagraphs: [
-      'Le conseil RH pour entreprises s’adresse aux dirigeants, DRH, RRH, managers et structures qui ont besoin de clarifier une situation humaine, managériale ou organisationnelle. Dans une TPE, une PME ou une organisation en transformation, les sujets RH sont rarement isolés : ils touchent à la stratégie, à la qualité du travail, à la communication interne, à la fidélisation des équipes et à la posture des responsables.',
-      'Equinoxe Conseil RH intervient comme partenaire de recul. L’objectif est de comprendre le fonctionnement réel de l’organisation, d’identifier les priorités et de construire des réponses concrètes, proportionnées et applicables. L’accompagnement peut se faire à Toulouse, en Occitanie, à distance en visioconférence ou sur site lorsque la mission d’entreprise le nécessite.'
+      "Les décisions RH engagent durablement l'entreprise. Lorsqu'une situation devient complexe, un regard extérieur permet souvent de clarifier les enjeux et d'identifier les meilleures options.",
+      "J'accompagne les dirigeants, managers et responsables RH dans l'analyse de leurs problématiques humaines et organisationnelles : évolution des équipes, recrutement, tensions relationnelles, transformations ou structuration des pratiques RH. Mon intervention apporte une vision objective, des outils éprouvés et des recommandations concrètes pour sécuriser les décisions, faciliter l'action et concilier performance de l'entreprise et qualité des relations de travail."
     ],
     sideNote: {
       eyebrow: 'Enjeu entreprise',
@@ -86,11 +86,11 @@ const serviceEditorialContent: Record<string, {
   'accompagnement-changement': {
     introTitle: 'Préparer les transitions sans perdre le sens ni l’engagement',
     introParagraphs: [
-      'L’accompagnement du changement concerne les entreprises, équipes et managers confrontés à une transformation : réorganisation, croissance, évolution de métier, nouvelle gouvernance, changement d’outils, fusion, repositionnement stratégique ou évolution des pratiques RH. Un changement réussi ne dépend pas seulement d’un calendrier ou d’un plan de communication. Il dépend aussi de la manière dont les personnes comprennent, vivent et s’approprient la transition.',
-      'Equinoxe Conseil RH aide à rendre le changement plus lisible. L’intervention permet d’anticiper les impacts humains, de structurer les messages, de soutenir les managers de proximité et de créer des espaces de dialogue. Selon le contexte, l’accompagnement peut combiner diagnostic, ateliers collectifs, coaching de managers, temps de régulation et suivi après déploiement.'
+      "Le changement ne se décrète pas. Il se construit avec celles et ceux qui le vivent au quotidien.",
+      "J'aide les dirigeants, managers et équipes à comprendre les enjeux de la transformation, à exprimer leurs préoccupations et à participer activement à la mise en œuvre des évolutions attendues. Grâce à une approche fondée sur l'écoute, le dialogue et la mobilisation collective, je facilite l'appropriation du changement, limite les résistances et favorise une transition durable, cohérente avec les objectifs de l'organisation et les réalités du terrain."
     ],
     sideNote: {
-      eyebrow: 'Transformation',
+      eyebrow: "MON OFFRE",
       title: 'Préparer le changement avec les personnes concernées',
       text: 'L’enjeu est de rendre la transformation compréhensible, d’anticiper ses impacts humains et de soutenir les managers comme les équipes dans les moments de transition.'
     },
@@ -113,11 +113,11 @@ const serviceEditorialContent: Record<string, {
   'accompagnement-individuel': {
     introTitle: 'Un espace confidentiel pour clarifier sa posture et ses décisions',
     introParagraphs: [
-      'L’accompagnement individuel s’adresse aux managers, dirigeants, salariés, entrepreneurs, étudiants et professionnels en transition qui souhaitent prendre du recul sur une situation professionnelle. Il peut s’agir d’une prise de poste, d’un questionnement de carrière, d’une difficulté relationnelle, d’un besoin de confiance, d’une surcharge, d’une décision importante ou d’un repositionnement.',
-      'L’approche proposée par Equinoxe Conseil RH n’est pas standardisée. Elle part de la situation vécue, du contexte de travail, des ressources de la personne et de ses contraintes réelles. Les séances permettent de clarifier ce qui se joue, d’identifier les marges de manœuvre et de construire une manière d’agir plus alignée.'
+      "Certaines situations professionnelles méritent un temps de réflexion pour prendre du recul, retrouver de la sérénité et faire des choix éclairés.",
+      "J'accompagne les managers, dirigeants et salariés confrontés à des questionnements, des difficultés relationnelles, des périodes de changement ou des décisions importantes dans leur parcours professionnel. Dans un cadre confidentiel et professionnel, nous explorons ensemble la situation, clarifions les enjeux et identifions des pistes d'action concrètes. Mon objectif est de vous aider à renforcer votre confiance, ajuster votre posture et avancer avec davantage de clarté et de cohérence."
     ],
     sideNote: {
-      eyebrow: 'Accompagnement individuel',
+      eyebrow: "MON OFFRE",
       title: 'Un espace pour retrouver de la clarté',
       text: 'Le travail permet de poser les faits, comprendre ce qui se joue, clarifier sa posture et avancer avec des décisions plus justes dans un cadre confidentiel.'
     },
@@ -140,11 +140,11 @@ const serviceEditorialContent: Record<string, {
   'bilan-de-competences': {
     introTitle: 'Faire le point pour construire une trajectoire professionnelle cohérente',
     introParagraphs: [
-      'Le bilan de compétences permet d’analyser son parcours, ses compétences, ses motivations, ses valeurs et ses conditions d’équilibre au travail. Il s’adresse aux salariés, professionnels en transition, entrepreneurs, étudiants ou particuliers qui souhaitent clarifier une évolution, préparer une mobilité, envisager une reconversion ou simplement mieux comprendre ce qui fait sens dans leur vie professionnelle.',
-      'Chez Equinoxe Conseil RH, le bilan de compétences est conçu comme un travail sérieux, progressif et concret. Il ne s’agit pas de produire une idée de projet en surface, mais de relier l’histoire professionnelle, les ressources personnelles, la réalité du marché, les contraintes de vie et les conditions de faisabilité.'
+      "Un parcours professionnel n'est pas qu'une succession de postes. Heureusement. C'est une histoire faite d'expériences, de réussites, de questionnements et d'apprentissages.",
+      "Le bilan de compétences vous permet de relire cette histoire avec un regard nouveau afin d'identifier ce qui vous anime, ce que vous maîtrisez et les perspectives qui s'offrent à vous. Forte de mon expertise en ressources humaines, en accompagnement des carrières et en coaching, je vous aide à transformer votre expérience en un projet professionnel cohérent, réaliste et aligné avec vos aspirations. Ensemble, nous construisons une trajectoire qui s'appuie sur vos ressources, pour laisser derrière vous vos incertitudes."
     ],
     sideNote: {
-      eyebrow: 'Projet professionnel',
+      eyebrow: "MON OFFRE",
       title: 'Faire le point sans repartir de zéro',
       text: 'Le bilan aide à relire son parcours, identifier ses ressources, explorer des pistes réalistes et construire une trajectoire professionnelle cohérente.'
     },
@@ -167,11 +167,11 @@ const serviceEditorialContent: Record<string, {
   'formations-ateliers-codeveloppement': {
     introTitle: 'Des formats collectifs pour apprendre, coopérer et transformer les pratiques',
     introParagraphs: [
-      'Les formations, ateliers et groupes de co-développement permettent de travailler les pratiques RH, managériales et relationnelles dans un cadre collectif. Ils s’adressent aux entreprises, managers, équipes RH, collectifs de travail et réseaux professionnels qui souhaitent créer un espace de recul, partager les expériences et construire des repères communs.',
-      'Equinoxe Conseil RH conçoit des formats sur mesure : ateliers de posture managériale, temps de co-développement, webinaires, formations courtes, tables rondes ou dispositifs collectifs autour de l’engagement, du sens au travail, de la coopération, de la communication, de la prévention des tensions ou de l’accompagnement du changement.'
+      "Prendre du recul sur ses pratiques est souvent plus facile lorsqu'on peut s'appuyer sur l'expérience et le regard des autres.",
+      "J'anime des ateliers et des groupes de co-développement qui permettent aux participants d'échanger autour de situations réelles, de partager leurs expériences et de construire ensemble des réponses concrètes aux défis rencontrés. Grâce à une méthode structurée et participative, chacun développe ses compétences, enrichit ses pratiques et bénéficie de la richesse du collectif pour progresser dans son activité professionnelle."
     ],
     sideNote: {
-      eyebrow: 'Collectif',
+      eyebrow: "MON OFFRE",
       title: 'Apprendre à partir des situations réelles',
       text: 'Les ateliers et le co-développement créent un cadre vivant pour partager les pratiques, analyser les situations de terrain et installer des repères communs.'
     },
@@ -196,7 +196,7 @@ const serviceEditorialContent: Record<string, {
 export function ServicesIndexPage() {
   return (
     <>
-      <SEOHead title="Services RH, coaching et bilan de compétences | Equinoxe Conseil RH" description="Conseil RH, accompagnement du changement, accompagnement individuel, bilan de compétences, formations et co-développement." />
+      <SEOHead title="Services RH, coaching et bilan de compétences | ACT&RH" description="Conseil RH, accompagnement du changement, accompagnement individuel, bilan de compétences, formations et co-développement." />
       
       {/* Section 1: Hero (With background) */}
       <div className="relative overflow-hidden border-b border-sand bg-rosé pt-14">
@@ -209,7 +209,7 @@ export function ServicesIndexPage() {
           <div>
             <p className="mb-5 inline-flex rounded-full border border-sage-dark/20 bg-sage px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Services</p>
             <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-ink sm:text-6xl animate-fade-in-up">Des accompagnements RH et coaching sur mesure</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-anthracite/80 animate-fade-in-up delay-100">Equinoxe Conseil RH accompagne les entreprises, collectifs et personnes dans leurs transitions avec une approche structurée, humaine et confidentielle.</p>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-anthracite/80 animate-fade-in-up delay-100">J'accompagne les entreprises, collectifs et personnes dans leurs transitions avec une approche structurée, humaine et confidentielle.</p>
           </div>
           <div className="mx-auto aspect-[4/3] w-full max-w-[480px] overflow-hidden rounded-[2rem] border border-sand bg-white p-3.5 shadow-soft lg:max-w-none animate-float">
             <img 
@@ -253,7 +253,7 @@ export function ServiceDetailPage() {
         <Container>
           <div className="grid gap-10 lg:grid-cols-[0.95fr_0.62fr] lg:items-start">
             <div>
-              <div className="prose-equinoxe max-w-none">
+              <div className="prose-actrh max-w-none">
                 <p className="text-lg leading-8"><HighlightedText text={service.longDescription} /></p>
                 <h2 className="mt-8 font-serif text-3xl text-ink">{editorial.introTitle}</h2>
                 {editorial.introParagraphs.map((paragraph) => (
@@ -454,7 +454,7 @@ const highlightedKeywords = [
   'bilan de compétences',
   'accompagnement du changement',
   'Conseil RH',
-  'Equinoxe Conseil RH',
+  'ACT&RH',
   'Toulouse',
   'Occitanie',
   'distance',

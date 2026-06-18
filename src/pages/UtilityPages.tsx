@@ -10,16 +10,16 @@ import { faqSchema } from '../lib/schemaMarkup';
 import { useSupabaseRows } from '../hooks/useSupabaseRows';
 import type { FAQ, Testimonial } from '../types';
 
-const COOKIE_CONSENT_KEY = 'equinoxe_cookie_consent';
-const COOKIE_PREFERENCES_KEY = 'equinoxe_cookie_preferences';
+const COOKIE_CONSENT_KEY = 'actrh_cookie_consent';
+const COOKIE_PREFERENCES_KEY = 'actrh_cookie_preferences';
 
 export function FAQPage() {
   const liveFaqs = useSupabaseRows<FAQ>('faqs', faqs, 'display_order');
   return (
     <>
       <SEOHead
-        title="FAQ Conseil RH & Coaching à Toulouse | Equinoxe Conseil RH"
-        description="Questions fréquentes sur Equinoxe Conseil RH : accompagnements RH, coaching, bilan de compétences, modalités et prise de contact."
+        title="FAQ Conseil RH & Coaching à Toulouse | ACT&RH"
+        description="Questions fréquentes sur ACT&RH : accompagnements RH, coaching, bilan de compétences, modalités et prise de contact."
         schema={faqSchema(liveFaqs)}
       />
       <PageHeader
@@ -69,7 +69,7 @@ export function FAQPage() {
 
 export function TestimonialsPage() {
   const liveTestimonials = useSupabaseRows<Testimonial>('testimonials', testimonials, 'display_order');
-  return <><SEOHead title="Témoignages | Equinoxe Conseil RH" description="Avis et témoignages administrables concernant les accompagnements Equinoxe Conseil RH." /><PageHeader eyebrow="Témoignages" title="Retours d’accompagnement" text="Les témoignages placeholders peuvent être remplacés ou masqués depuis l’administration Supabase." /><Section className="bg-white"><Container><div className="grid gap-6 md:grid-cols-2">{liveTestimonials.map((item) => <TestimonialCard key={item.id} testimonial={item} />)}</div></Container></Section></>;
+  return <><SEOHead title="Témoignages | ACT&RH" description="Avis et témoignages administrables concernant les accompagnements ACT&RH." /><PageHeader eyebrow="Témoignages" title="Retours d’accompagnement" text="Les témoignages placeholders peuvent être remplacés ou masqués depuis l’administration Supabase." /><Section className="bg-white"><Container><div className="grid gap-6 md:grid-cols-2">{liveTestimonials.map((item) => <TestimonialCard key={item.id} testimonial={item} />)}</div></Container></Section></>;
 }
 
 export function LocalSeoPage({ kind }: { kind: 'rh-toulouse' | 'coaching-toulouse' | 'bilan-toulouse' | 'changement-occitanie' | 'distance' }) {
@@ -82,11 +82,11 @@ export function LocalSeoPage({ kind }: { kind: 'rh-toulouse' | 'coaching-toulous
   }[kind];
   return (
     <>
-      <SEOHead title={`${map[0]} | Equinoxe Conseil RH`} description={map[1]} />
+      <SEOHead title={`${map[0]} | ACT&RH`} description={map[1]} />
       <PageHeader eyebrow="Page locale" title={map[0]} text={map[1]} />
       <Section className="bg-white">
-        <Container className="prose-equinoxe max-w-4xl">
-          <p><strong>Réponse courte :</strong> Equinoxe Conseil RH propose un {map[2]} avec Caroline Tillou Maratuech, consultante RH, coach professionnelle et docteure en gestion des ressources humaines.</p>
+        <Container className="prose-actrh max-w-4xl">
+          <p><strong>Réponse courte :</strong> ACT&RH propose un {map[2]} avec Caroline Tillou Maratuech, consultante RH, coach professionnelle et docteure en gestion des ressources humaines.</p>
           <p>L’accompagnement s’adresse aux entreprises, dirigeants, managers, salariés, entrepreneurs, étudiants et particuliers qui souhaitent clarifier une situation RH, managériale ou professionnelle.</p>
           <h3>Accompagnements liés</h3>
           <ul>{services.map((service) => <li key={service.slug}>{service.title}</li>)}</ul>
@@ -105,12 +105,12 @@ export function LegalPage({ type }: { type: 'mentions' | 'privacy' | 'cookies' |
   const title = { mentions: 'Mentions légales', privacy: 'Politique de confidentialité', cookies: 'Cookies', cgv: 'CGV / CGU' }[type];
   return (
     <>
-      <SEOHead title={`${title} | Equinoxe Conseil RH`} description={`${title} du site Equinoxe Conseil RH.`} />
+      <SEOHead title={`${title} | ACT&RH`} description={`${title} du site ACT&RH.`} />
       <PageHeader eyebrow="Informations légales" title={title} text="Ces contenus constituent une base propre et doivent être validés par un professionnel du droit avant publication définitive." />
-      <Section className="bg-white"><Container className="prose-equinoxe max-w-4xl">
-        <p>Éditeur : Caroline Tillou Maratuech, Equinoxe Conseil RH. SIRET : 788 556 488 00039. Adresse : 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France. Contact : contact@equinoxe-rh.fr, 06 87 02 25 08.</p>
+      <Section className="bg-white"><Container className="prose-actrh max-w-4xl">
+        <p>Éditeur : Caroline Tillou Maratuech, ACT&RH. SIRET : 788 556 488 00039. Adresse : 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France. Contact : contact.actrh@gmail.com, 06 87 02 25 08.</p>
         <p>Hébergement : Netlify. Base de données et authentification : Supabase. Les demandes envoyées via le formulaire sont utilisées uniquement pour répondre aux personnes concernées et peuvent être conservées à titre indicatif pendant une durée proportionnée au suivi de la relation.</p>
-        <p>Vous pouvez demander l’accès, la rectification ou la suppression de vos données en écrivant à contact@equinoxe-rh.fr. Aucun outil de tracking n’est imposé par défaut. Des cookies techniques peuvent être nécessaires au bon fonctionnement du site.</p>
+        <p>Vous pouvez demander l’accès, la rectification ou la suppression de vos données en écrivant à contact.actrh@gmail.com. Aucun outil de tracking n’est imposé par défaut. Des cookies techniques peuvent être nécessaires au bon fonctionnement du site.</p>
       </Container></Section>
     </>
   );
@@ -120,20 +120,20 @@ function PrivacyPage() {
   return (
     <>
       <SEOHead
-        title="Politique de confidentialité | Equinoxe Conseil RH"
-        description="Politique de confidentialité du site Equinoxe Conseil RH : données collectées, finalités, durées de conservation et droits RGPD."
+        title="Politique de confidentialité | ACT&RH"
+        description="Politique de confidentialité du site ACT&RH : données collectées, finalités, durées de conservation et droits RGPD."
       />
       <PageHeader
         eyebrow="Données personnelles"
         title="Politique de confidentialité"
-        text="Cette politique explique comment Equinoxe Conseil RH collecte, utilise et protège les données personnelles transmises via le site."
+        text="Cette politique explique comment ACT&RH collecte, utilise et protège les données personnelles transmises via le site."
       />
       <Section className="bg-ivory">
         <Container className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-start">
-          <div className="prose-equinoxe max-w-none rounded-2xl border border-sand bg-white p-7 shadow-[0_22px_70px_rgba(14,27,41,0.06)] md:p-10">
+          <div className="prose-actrh max-w-none rounded-2xl border border-sand bg-white p-7 shadow-[0_22px_70px_rgba(14,27,41,0.06)] md:p-10">
             <p><strong>Dernière mise à jour :</strong> 30 mai 2026.</p>
             <h3 className="font-serif text-3xl font-semibold text-ink">1. Responsable du traitement</h3>
-            <p>Le responsable du traitement est Caroline Tillou Maratuech, Equinoxe Conseil RH, SIRET 788 556 488 00039, située 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France.</p>
+            <p>Le responsable du traitement est Caroline Tillou Maratuech, ACT&RH, SIRET 788 556 488 00039, située 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France.</p>
             <p>Contact : <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a> - {contactInfo.phone}.</p>
 
             <h3 className="font-serif text-3xl font-semibold text-ink">2. Données collectées</h3>
@@ -147,7 +147,7 @@ function PrivacyPage() {
             <p>Les traitements reposent selon les cas sur le consentement de la personne, l’exécution de mesures précontractuelles, l’intérêt légitime à répondre aux sollicitations reçues et les obligations légales applicables à l’activité.</p>
 
             <h3 className="font-serif text-3xl font-semibold text-ink">5. Destinataires</h3>
-            <p>Les données sont destinées à Equinoxe Conseil RH. Elles peuvent être techniquement hébergées ou traitées par des prestataires nécessaires au fonctionnement du site et des outils associés, notamment Netlify pour l’hébergement et Supabase pour certaines données applicatives.</p>
+            <p>Les données sont destinées à ACT&RH. Elles peuvent être techniquement hébergées ou traitées par des prestataires nécessaires au fonctionnement du site et des outils associés, notamment Netlify pour l’hébergement et Supabase pour certaines données applicatives.</p>
             <p>Les données ne sont pas vendues, louées ou transmises à des tiers à des fins commerciales.</p>
 
             <h3 className="font-serif text-3xl font-semibold text-ink">6. Durées de conservation</h3>
@@ -158,7 +158,7 @@ function PrivacyPage() {
             <p>Pour exercer vos droits : <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>. En cas de difficulté, vous pouvez saisir la CNIL.</p>
 
             <h3 className="font-serif text-3xl font-semibold text-ink">8. Sécurité</h3>
-            <p>Equinoxe Conseil RH met en œuvre des mesures raisonnables pour protéger les données contre l’accès non autorisé, la perte, l’altération ou la divulgation. Aucun système n’étant infaillible, seules les données nécessaires doivent être transmises via les formulaires.</p>
+            <p>ACT&RH met en œuvre des mesures raisonnables pour protéger les données contre l’accès non autorisé, la perte, l’altération ou la divulgation. Aucun système n’étant infaillible, seules les données nécessaires doivent être transmises via les formulaires.</p>
 
             <h3 className="font-serif text-3xl font-semibold text-ink">9. Cookies</h3>
             <p>Les cookies et préférences de traceurs sont détaillés sur la page dédiée. Vous pouvez modifier vos choix à tout moment depuis la page Cookies.</p>
@@ -166,7 +166,7 @@ function PrivacyPage() {
 
           <aside className="rounded-2xl border border-sand bg-white p-6 shadow-[0_18px_50px_rgba(14,27,41,0.05)] lg:sticky lg:top-28">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-sage-dark">Vos droits</p>
-            <p className="mt-3 text-sm leading-6 text-anthracite/75">Pour toute demande concernant vos données personnelles, écrivez directement à Equinoxe Conseil RH.</p>
+            <p className="mt-3 text-sm leading-6 text-anthracite/75">Pour toute demande concernant vos données personnelles, écrivez directement à ACT&RH.</p>
             <a href={`mailto:${contactInfo.email}`} className="mt-5 inline-flex w-full justify-center rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-sage-dark">
               Contacter le responsable
             </a>
@@ -181,22 +181,22 @@ function TermsPage() {
   return (
     <>
       <SEOHead
-        title="CGV / CGU | Equinoxe Conseil RH"
-        description="Conditions générales d’utilisation et de vente du site Equinoxe Conseil RH."
+        title="CGV / CGU | ACT&RH"
+        description="Conditions générales d’utilisation et de vente du site ACT&RH."
       />
       <PageHeader
         eyebrow="Cadre contractuel"
         title="CGV / CGU"
-        text="Ces conditions encadrent l’utilisation du site et les principes généraux applicables aux accompagnements proposés par Equinoxe Conseil RH."
+        text="Ces conditions encadrent l’utilisation du site et les principes généraux applicables aux accompagnements proposés par ACT&RH."
       />
       <Section className="bg-ivory">
-        <Container className="prose-equinoxe max-w-5xl rounded-2xl border border-sand bg-white p-7 shadow-[0_22px_70px_rgba(14,27,41,0.06)] md:p-10">
+        <Container className="prose-actrh max-w-5xl rounded-2xl border border-sand bg-white p-7 shadow-[0_22px_70px_rgba(14,27,41,0.06)] md:p-10">
           <p><strong>Dernière mise à jour :</strong> 30 mai 2026.</p>
           <h2>1. Identification</h2>
-          <p>Le présent site est édité par Caroline Tillou Maratuech, Equinoxe Conseil RH, SIRET 788 556 488 00039, 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France.</p>
+          <p>Le présent site est édité par Caroline Tillou Maratuech, ACT&RH, SIRET 788 556 488 00039, 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France.</p>
 
           <h2>2. Objet du site</h2>
-          <p>Le site présente les activités de conseil RH, coaching professionnel, accompagnement du changement, ateliers, formations et bilan de compétences proposés par Equinoxe Conseil RH.</p>
+          <p>Le site présente les activités de conseil RH, coaching professionnel, accompagnement du changement, ateliers, formations et bilan de compétences proposés par ACT&RH.</p>
           <p>Les informations publiées ont une vocation informative. Elles ne constituent pas un engagement contractuel automatique ni un conseil personnalisé sans échange préalable.</p>
 
           <h2>3. Accès et utilisation</h2>
@@ -213,8 +213,8 @@ function TermsPage() {
           <p>Les conditions de report ou d’annulation d’un rendez-vous, d’un atelier, d’une formation ou d’une mission sont précisées dans les documents contractuels. En l’absence de précision, les parties recherchent une solution raisonnable tenant compte du calendrier, des frais engagés et du travail déjà réalisé.</p>
 
           <h2>7. Responsabilité</h2>
-          <p>Equinoxe Conseil RH intervient dans une logique d’accompagnement, de conseil et de clarification. Les décisions prises par les clients, dirigeants, managers ou bénéficiaires restent sous leur responsabilité.</p>
-          <p>Equinoxe Conseil RH ne saurait être tenue responsable d’une mauvaise utilisation des informations présentes sur le site ou d’une interruption technique indépendante de sa volonté.</p>
+          <p>ACT&RH intervient dans une logique d’accompagnement, de conseil et de clarification. Les décisions prises par les clients, dirigeants, managers ou bénéficiaires restent sous leur responsabilité.</p>
+          <p>ACT&RH ne saurait être tenue responsable d’une mauvaise utilisation des informations présentes sur le site ou d’une interruption technique indépendante de sa volonté.</p>
 
           <h2>8. Propriété intellectuelle</h2>
           <p>Les textes, contenus, éléments graphiques, structure du site, marques, logos et supports présentés sont protégés. Toute reproduction, adaptation ou diffusion non autorisée est interdite, sauf accord écrit préalable.</p>
@@ -259,8 +259,8 @@ function CookiesPage() {
   return (
     <>
       <SEOHead
-        title="Gestion des cookies | Equinoxe Conseil RH"
-        description="Informations et préférences cookies du site Equinoxe Conseil RH : cookies nécessaires, mesure d’audience et choix RGPD."
+        title="Gestion des cookies | ACT&RH"
+        description="Informations et préférences cookies du site ACT&RH : cookies nécessaires, mesure d’audience et choix RGPD."
       />
       <section className="relative overflow-hidden border-b border-sand bg-rosé">
         <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full border-[42px] border-white opacity-35" />
@@ -287,7 +287,7 @@ function CookiesPage() {
               </div>
               <h2 className="font-serif text-3xl font-semibold text-ink">Une utilisation limitée et transparente</h2>
               <p className="mt-4 leading-8 text-anthracite/75">
-                Equinoxe Conseil RH limite l’usage des cookies à ce qui est nécessaire au bon fonctionnement du site. Les cookies de mesure d’audience, lorsqu’ils sont activés, servent uniquement à comprendre les usages de manière globale.
+                ACT&RH limite l’usage des cookies à ce qui est nécessaire au bon fonctionnement du site. Les cookies de mesure d’audience, lorsqu’ils sont activés, servent uniquement à comprendre les usages de manière globale.
               </p>
               <div className="mt-6 grid gap-4 border-t border-sand pt-6 md:grid-cols-2">
                 <div>

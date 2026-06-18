@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const COOKIE_CONSENT_KEY = 'equinoxe_cookie_consent';
+const COOKIE_CONSENT_KEY = 'actrh_cookie_consent';
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);

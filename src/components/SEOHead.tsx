@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-const DEFAULT_TITLE = 'Equinoxe Conseil RH | Conseil RH, coaching et transitions professionnelles';
-const DEFAULT_DESCRIPTION = 'Equinoxe Conseil RH accompagne les entreprises, dirigeants, managers et particuliers en conseil RH, coaching professionnel, accompagnement du changement et bilan de compétences.';
+const DEFAULT_TITLE = 'ACT&RH | Conseil RH, coaching et transitions professionnelles';
+const DEFAULT_DESCRIPTION = 'ACT&RH accompagne les entreprises, dirigeants, managers et particuliers en conseil RH, coaching professionnel, accompagnement du changement et bilan de compétences.';
 const DEFAULT_IMAGE = '/images/equinoxe-social-card.png';
 
 type SEOHeadProps = {
@@ -27,19 +27,19 @@ export function SEOHead({ title, description, canonical, image, type = 'website'
     upsertMeta('property', 'og:title', pageTitle);
     upsertMeta('property', 'og:description', pageDescription);
     upsertMeta('property', 'og:type', type);
-    upsertMeta('property', 'og:site_name', 'Equinoxe Conseil RH');
+    upsertMeta('property', 'og:site_name', 'ACT&RH');
     upsertMeta('property', 'og:locale', 'fr_FR');
     upsertMeta('property', 'og:url', pageUrl);
     upsertMeta('property', 'og:image', absoluteImage);
     upsertMeta('property', 'og:image:secure_url', absoluteImage);
-    upsertMeta('property', 'og:image:alt', 'Equinoxe Conseil RH - conseil RH, coaching et accompagnement professionnel');
+    upsertMeta('property', 'og:image:alt', 'ACT&RH - conseil RH, coaching et accompagnement professionnel');
     upsertMeta('property', 'og:image:width', '1200');
     upsertMeta('property', 'og:image:height', '630');
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', pageTitle);
     upsertMeta('name', 'twitter:description', pageDescription);
     upsertMeta('name', 'twitter:image', absoluteImage);
-    upsertMeta('name', 'twitter:image:alt', 'Equinoxe Conseil RH');
+    upsertMeta('name', 'twitter:image:alt', 'ACT&RH');
     upsertLink('canonical', pageUrl);
 
     const id = 'schema-jsonld';
