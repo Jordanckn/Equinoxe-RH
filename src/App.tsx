@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { ScrollToTop } from './components/ScrollToTop';
 import { AboutPage } from './pages/AboutPage';
@@ -10,11 +11,23 @@ import { AudiencePage } from './pages/AudiencePage';
 import { PressPage } from './pages/PressPage';
 import { ServiceDetailPage, ServicesIndexPage } from './pages/ServicesPages';
 import { FAQPage, LegalPage, LocalSeoPage, TestimonialsPage } from './pages/UtilityPages';
+import { initScrollDepth, trackPageView } from './lib/analytics';
+
+function RouteTracker() {
+  const location = useLocation();
+  useEffect(() => {
+    trackPageView(location.pathname + location.search);
+    const cleanup = initScrollDepth();
+    return cleanup;
+  }, [location.pathname, location.search]);
+  return null;
+}
 
 export default function App() {
   return (
     <>
       <ScrollToTop />
+      <RouteTracker />
       <Routes>
         <Route path="/admin" element={<AdminPage />} />
         <Route path="*" element={<Layout><PublicRoutes /></Layout>} />

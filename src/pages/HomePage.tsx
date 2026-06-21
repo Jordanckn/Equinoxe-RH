@@ -1,24 +1,27 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowRight, 
-  Award, 
-  MapPin, 
-  GraduationCap, 
-  Users, 
-  Building2, 
+import {
+  ArrowRight,
+  Award,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  GraduationCap,
+  Users,
+  Building2,
   ChevronDown,
-  Compass, 
+  Compass,
   ClipboardCheck,
   HeartHandshake,
   LineChart,
   MonitorCheck,
   Phone,
   Route,
-  Shuffle, 
-  Lightbulb, 
+  Shuffle,
+  Lightbulb,
   ShieldCheck,
   Target,
-  CheckCircle2 
+  CheckCircle2
 } from 'lucide-react';
 import { BlogCard, ServiceCard, TestimonialCard } from '../components/Cards';
 import { CookieConsent } from '../components/CookieConsent';
@@ -50,6 +53,8 @@ export function HomePage() {
   const livePosts = useSupabaseRows<BlogPost>('blog_posts', posts, 'published_at');
   const liveFaqs = useSupabaseRows<FAQ>('faqs', faqs, 'display_order');
   const liveTestimonials = useSupabaseRows<Testimonial>('testimonials', testimonials, 'display_order');
+  const [pourQuiOpen, setPourQuiOpen] = useState(false);
+  const [accompagnementsOpen, setAccompagnementsOpen] = useState(false);
 
   return (
     <>
@@ -76,7 +81,7 @@ export function HomePage() {
                 J'accompagne les dirigeants d'entreprise, les managers et leurs équipes dans leurs transitions RH, managériales et organisationnelles en m'appuyant sur mon expérience professionnelle, académique et pédagogique.
               </p>
               <div className="animate-fade-in-up delay-150 flex flex-wrap gap-3 pt-2">
-                <ButtonLink to="/contact">Échanger sur votre besoin</ButtonLink>
+                <ButtonLink to="/contact" className="btn-shimmer btn-pulse">Échanger sur votre besoin</ButtonLink>
                 <ButtonLink to="/services" variant="secondary">Découvrir les accompagnements</ButtonLink>
               </div>
               <div className="animate-fade-in-up delay-200 flex flex-wrap gap-x-6 gap-y-3 pt-4 text-sm font-bold text-ink/75">
@@ -94,10 +99,10 @@ export function HomePage() {
             
             <div className="animate-fade-in delay-100 relative flex justify-center lg:justify-end">
               <div className="animate-float relative w-full max-w-[480px] overflow-hidden rounded-[2rem] border border-sand bg-white p-3.5 shadow-[0_28px_80px_rgba(14,27,41,0.08)] lg:max-w-full">
-                <img 
-                  src="/images/Professeur TILLOU Caroline - TBS Education.webp" 
-                  alt="Portrait de Caroline Tillou Maratuech" 
-                  onError={(event) => { event.currentTarget.src = '/images/caroline_portrait.png'; }}
+                <img
+                  src="https://xuuvxhvmndkqkcmgptot.supabase.co/storage/v1/object/public/site-images/hero/caroline-maratuech-act-rh-toulouse-1.webp"
+                  alt="Caroline Tillou Maratuech — Consultante RH et coach professionnelle ACT&RH Toulouse"
+                  onError={(event) => { event.currentTarget.src = '/images/Professeur TILLOU Caroline - TBS Education.webp'; }}
                   className="aspect-[4/5] h-full w-full rounded-[1.5rem] object-cover object-center sm:aspect-square"
                 />
                 <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/70 bg-white/90 p-5 shadow-[0_18px_40px_rgba(14,27,41,0.06)] backdrop-blur">
@@ -156,10 +161,20 @@ export function HomePage() {
       <Section className="bg-white">
         <Container>
           <ScrollReveal>
-            <GridTitle title="Pour qui ?" text="Un accompagnement pour les organisations comme pour les personnes, avec un cadre clair et adapté à chaque situation." />
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <GridTitle title="Pour qui ?" text="Un accompagnement pour les organisations comme pour les personnes, avec un cadre clair et adapté à chaque situation." />
+              <button
+                onClick={() => setPourQuiOpen((o) => !o)}
+                className="flex shrink-0 items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-sage-dark/40 hover:text-sage-dark"
+                aria-expanded={pourQuiOpen}
+              >
+                {pourQuiOpen ? 'Réduire' : 'En savoir plus'}
+                <ChevronDown size={16} className={`transition-transform duration-300 ${pourQuiOpen ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
           </ScrollReveal>
-          
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          <div className={`grid gap-6 overflow-hidden transition-all duration-500 sm:grid-cols-2 lg:grid-cols-3 ${pourQuiOpen ? 'mt-10 max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
             {[
               { label: 'Entreprises et dirigeants', slug: 'entreprises-dirigeants', icon: Building2, desc: 'TPE, PME et grandes structures cherchant à structurer leurs RH et accompagner leurs transformations.' },
               { label: 'Managers', slug: 'managers', icon: Compass, desc: 'Dirigeants et encadrants souhaitant développer leur posture, clarifier leur communication et gérer les tensions.' },
@@ -190,10 +205,20 @@ export function HomePage() {
       <Section className="border-y border-sand bg-sage/20">
         <Container>
           <ScrollReveal>
-            <GridTitle title="Accompagnements" text="Des services structurés pour clarifier les enjeux, sécuriser les transitions et soutenir les personnes comme les collectifs." />
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <GridTitle title="Accompagnements" text="Des services structurés pour clarifier les enjeux, sécuriser les transitions et soutenir les personnes comme les collectifs." />
+              <button
+                onClick={() => setAccompagnementsOpen((o) => !o)}
+                className="flex shrink-0 items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-sage-dark/40 hover:text-sage-dark"
+                aria-expanded={accompagnementsOpen}
+              >
+                {accompagnementsOpen ? 'Réduire' : 'En savoir plus'}
+                <ChevronDown size={16} className={`transition-transform duration-300 ${accompagnementsOpen ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
           </ScrollReveal>
-          
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          <div className={`grid gap-6 overflow-hidden transition-all duration-500 md:grid-cols-2 lg:grid-cols-3 ${accompagnementsOpen ? 'mt-10 max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
             {services.map((service, index) => (
               <ScrollReveal key={service.slug} delay={index * 100}>
                 <ServiceCard service={service} />
@@ -453,19 +478,13 @@ export function HomePage() {
         </Container>
       </Section>
 
-      {/* Témoignages Section */}
+      {/* Témoignages / Avis Section */}
       <Section className="border-y border-sand bg-rosé">
         <Container>
           <ScrollReveal>
-            <GridTitle title="Témoignages" text="Découvrez les retours d'expérience sur les accompagnements proposés." />
+            <GridTitle title="Avis clients" text="Retours d'expérience sur les accompagnements proposés par ACT&RH." />
           </ScrollReveal>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {liveTestimonials.map((t, index) => (
-              <ScrollReveal key={t.id} delay={index * 150}>
-                <TestimonialCard testimonial={t} />
-              </ScrollReveal>
-            ))}
-          </div>
+          <TestimonialsCarousel testimonials={liveTestimonials} />
         </Container>
       </Section>
 
@@ -504,18 +523,19 @@ export function HomePage() {
       <Section className="bg-white">
         <Container>
           <ScrollReveal>
-            <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-ink via-[#132233] to-[#0A121A] px-8 py-14 shadow-soft text-white sm:px-12 sm:py-20 border border-ink/20">
-              {/* Soft decorative glow */}
-              <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-champagne/10 blur-3xl" />
-              <div className="absolute -left-24 -bottom-24 h-96 w-96 rounded-full bg-sage/10 blur-3xl" />
-              
+            <div className="relative overflow-hidden rounded-[2.5rem] bg-ink px-8 py-14 shadow-soft sm:px-12 sm:py-20 border border-ink/20">
+              {/* Decorative circles — golden transparent */}
+              <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full border-[56px] border-[#C9B27C] opacity-25" />
+              <div className="absolute -left-16 -bottom-16 h-64 w-64 rounded-full border-[36px] border-[#C9B27C] opacity-20" />
+              <div className="absolute right-[30%] top-[20%] h-32 w-32 rounded-full border-[16px] border-[#C9B27C] opacity-15" />
+
               <div className="relative z-10 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
                 <div className="max-w-3xl">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-champagne">Échange gratuit & confidentiel</p>
-                  <h3 className="mt-3 font-serif text-3xl font-semibold leading-tight sm:text-5xl">Vous traversez une transition humaine, managériale ou professionnelle ?</h3>
-                  <p className="mt-4 text-lg text-white/75 leading-relaxed">Un échange permet de poser les premiers repères, sans pression commerciale.</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C9B27C]">Échange gratuit & confidentiel</p>
+                  <h3 className="mt-3 font-serif text-3xl font-semibold leading-tight text-white sm:text-5xl">Vous traversez une transition humaine, managériale ou professionnelle ?</h3>
+                  <p className="mt-4 text-lg leading-relaxed text-white">Un échange permet de poser les premiers repères, sans pression commerciale.</p>
                 </div>
-                <Link className="focus-ring shrink-0 rounded-full bg-champagne px-8 py-4 font-bold text-ink transition-all duration-300 hover:bg-white hover:text-ink hover:scale-105 shadow-[0_12px_28px_rgba(197,168,114,0.2)]" to="/contact">
+                <Link className="btn-shimmer btn-pulse focus-ring shrink-0 rounded-full bg-white px-8 py-4 font-bold text-ink shadow-[0_12px_28px_rgba(201,178,124,0.25)] transition-all duration-300 hover:bg-champagne hover:text-white hover:scale-105" to="/contact">
                   Parler de votre situation
                 </Link>
               </div>
@@ -532,6 +552,85 @@ function GridTitle({ title, text }: { title: string; text: string }) {
     <div>
       <h2 className="font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">{title}</h2>
       <p className="mt-4 max-w-2xl text-lg leading-8 text-anthracite/70">{text}</p>
+    </div>
+  );
+}
+
+function TestimonialsCarousel({ testimonials: items }: { testimonials: Testimonial[] }) {
+  const [current, setCurrent] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const perPage = typeof window !== 'undefined' && window.innerWidth >= 768 ? 2 : 1;
+  const total = items.length;
+  const maxIndex = Math.max(0, total - perPage);
+
+  const go = useCallback((idx: number) => {
+    setCurrent(Math.min(Math.max(idx, 0), maxIndex));
+  }, [maxIndex]);
+
+  const restart = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setCurrent((c) => (c >= maxIndex ? 0 : c + 1));
+    }, 5000);
+  }, [maxIndex]);
+
+  useEffect(() => {
+    restart();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [restart]);
+
+  useEffect(() => {
+    if (!trackRef.current) return;
+    const w = trackRef.current.parentElement?.clientWidth ?? 0;
+    trackRef.current.style.transform = `translateX(-${current * (w / perPage)}px)`;
+  }, [current, perPage]);
+
+  if (items.length === 0) return null;
+
+  return (
+    <div className="mt-10 select-none">
+      <div className="relative overflow-hidden rounded-2xl">
+        <div ref={trackRef} className="flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]">
+          {items.map((t) => (
+            <div key={t.id} className={`shrink-0 px-2 ${perPage === 2 ? 'w-1/2' : 'w-full'}`}>
+              <TestimonialCard testimonial={t} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Controls */}
+      <div className="mt-6 flex items-center justify-center gap-4">
+        <button
+          onClick={() => { go(current - 1); restart(); }}
+          disabled={current === 0}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-white text-ink shadow-sm transition hover:border-sage-dark/40 disabled:opacity-30"
+          aria-label="Précédent"
+        >
+          <ChevronLeft size={18} />
+        </button>
+
+        <div className="flex gap-2">
+          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { go(i); restart(); }}
+              className={`h-2 rounded-full transition-all duration-300 ${i === current ? 'w-6 bg-[#C9B27C]' : 'w-2 bg-ink/20 hover:bg-ink/40'}`}
+              aria-label={`Aller à l'avis ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => { go(current + 1); restart(); }}
+          disabled={current >= maxIndex}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-white text-ink shadow-sm transition hover:border-sage-dark/40 disabled:opacity-30"
+          aria-label="Suivant"
+        >
+          <ChevronRight size={18} />
+        </button>
+      </div>
     </div>
   );
 }

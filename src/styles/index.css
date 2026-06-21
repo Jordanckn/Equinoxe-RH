@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  color: #232323;
+  color: #111111;
   background: #ffffff;
 }
 
@@ -22,25 +22,43 @@ body {
 }
 
 ::selection {
-  background: rgba(234, 192, 189, 0.4);
-  color: #0E1B29;
+  background: rgba(0, 0, 0, 0.12);
+  color: #111111;
+}
+
+footer *::selection,
+footer::selection,
+.bg-black *::selection,
+.bg-black::selection,
+.bg-ink *::selection,
+.bg-ink::selection,
+[class*="bg-ink"]::selection,
+[class*="bg-black"]::selection {
+  background: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
 }
 
 .prose-actrh h2 {
   margin-top: 2rem;
   font-family: 'Source Serif 4', Georgia, serif;
   font-size: 1.75rem;
-  color: #0E1B29;
+  color: #111111;
 }
 
 .prose-actrh p,
 .prose-actrh li {
   line-height: 1.8;
-  color: #2D3238;
+  color: #444444;
 }
 
 .focus-ring {
   @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne focus-visible:ring-offset-2;
+}
+
+/* Admin form field */
+.field {
+  @apply w-full rounded-xl border border-ink/15 bg-ivory px-4 py-2.5 text-sm text-ink outline-none transition
+    focus:border-sage-dark focus:bg-white focus:ring-2 focus:ring-sage-dark/20;
 }
 
 /* Animations */
@@ -104,3 +122,31 @@ body {
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 .delay-500 { animation-delay: 500ms; }
+
+/* Shimmer pulse for CTA buttons */
+@keyframes btnGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,178,124,0); }
+  50% { box-shadow: 0 0 0 8px rgba(201,178,124,0.18), 0 12px 28px rgba(14,27,41,0.18); }
+}
+@keyframes btnShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.btn-pulse {
+  animation: btnGlow 2.8s ease-in-out infinite;
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%);
+  background-size: 200% 100%;
+  animation: btnShimmer 2.5s linear infinite;
+  pointer-events: none;
+}

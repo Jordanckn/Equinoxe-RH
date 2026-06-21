@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { initAnalytics } from '../lib/analytics';
 
 const COOKIE_CONSENT_KEY = 'actrh_cookie_consent';
 
@@ -7,11 +8,14 @@ export function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    setVisible(!localStorage.getItem(COOKIE_CONSENT_KEY));
+    const stored = localStorage.getItem(COOKIE_CONSENT_KEY);
+    if (stored === 'accepted') initAnalytics();
+    setVisible(!stored);
   }, []);
 
   const saveConsent = (value: 'accepted' | 'refused') => {
     localStorage.setItem(COOKIE_CONSENT_KEY, value);
+    if (value === 'accepted') initAnalytics();
     setVisible(false);
   };
 

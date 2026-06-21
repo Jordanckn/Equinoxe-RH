@@ -12,7 +12,7 @@ export function Section({ children, className = '' }: { children: ReactNode; cla
 export function ButtonLink({ to, children, variant = 'primary', className = '' }: { to: string; children: ReactNode; variant?: 'primary' | 'secondary'; className?: string }) {
   const cls =
     variant === 'primary'
-      ? 'bg-ink text-white shadow-[0_12px_28px_rgba(31,51,71,0.18)] hover:bg-sage-dark'
+      ? 'bg-ink text-white shadow-[0_12px_28px_rgba(0,0,0,0.18)] hover:bg-sage-dark'
       : 'border border-ink/15 bg-white text-ink hover:border-sage-dark hover:text-sage-dark hover:shadow-sm';
   return (
     <Link to={to} className={`focus-ring inline-flex min-h-11 items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${cls} ${className}`}>
@@ -41,5 +41,5 @@ export function PageHeader({ eyebrow, title, text }: { eyebrow?: string; title: 
 }
 
 export function Card({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={`rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_18px_44px_rgba(31,51,71,0.06)] ${className}`}>{children}</div>;
+  return <div className={`rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_18px_44px_rgba(0,0,0,0.06)] ${className}`}>{children}</div>;
 }

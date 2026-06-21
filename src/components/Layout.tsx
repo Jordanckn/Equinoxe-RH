@@ -75,7 +75,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </span>
             <span className="flex flex-col leading-none">
               <span className="font-serif text-2xl font-semibold text-ink">ACT&RH</span>
-              <span className="mt-1 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-sage-dark">Conseil RH</span>
+              <span className="mt-1 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#C9B27C]">Conseil RH</span>
             </span>
           </Link>
           <nav className="hidden items-center rounded-full border border-ink/10 bg-white px-2 py-2 shadow-[0_12px_32px_rgba(31,51,71,0.06)] lg:flex" aria-label="Navigation principale">
@@ -347,14 +347,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <img src="/images/equinoxe-RH-logo.webp" alt="" onError={(event) => { event.currentTarget.src = '/images/logo-equinoxe-rh.svg'; }} className="h-full w-full object-contain" />
                 </span>
               </span>
-              <span className="font-serif text-3xl">ACT&RH</span>
+              <span className="font-serif text-3xl text-[#C9B27C]">ACT&RH</span>
             </Link>
             <p className="mt-4 max-w-md text-white/75">Conseil RH, coaching professionnel, accompagnement du changement et bilan de compétences à Toulouse, en Occitanie et à distance.</p>
             <div className="mt-6 flex items-center gap-3" aria-label="Réseaux sociaux">
               <a
                 href={contactInfo.linkedin}
                 aria-label="LinkedIn"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-sand"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-[#C9B27C]"
               >
                 <Linkedin size={18} />
               </a>
@@ -362,43 +362,43 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 href={`mailto:${contactInfo.email}`}
                 onClick={() => trackEvent('email_click')}
                 aria-label="Envoyer un email"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-sand"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-[#C9B27C]"
               >
                 <Mail size={18} />
               </a>
             </div>
           </div>
           <div className="space-y-3 text-sm text-white/80">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-white">Contact</p>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#C9B27C]">Contact</p>
             <p>{contactInfo.address}</p>
             <p>SIRET : 788 556 488 00039</p>
             <p>{contactInfo.hours}</p>
-            <a className="flex items-center gap-2 transition-colors hover:text-sand" href={`mailto:${contactInfo.email}`} onClick={() => trackEvent('email_click')}><Mail size={16} /> {contactInfo.email}</a>
-            <a className="flex items-center gap-2 transition-colors hover:text-sand" href={`tel:${contactInfo.phoneHref}`} onClick={() => trackEvent('phone_click')}><Phone size={16} /> {contactInfo.phone}</a>
-            <a className="flex items-center gap-2 transition-colors hover:text-sand" href={contactInfo.linkedin}><Linkedin size={16} /> LinkedIn</a>
+            <a className="flex items-center gap-2 transition-colors hover:text-[#C9B27C]" href={`mailto:${contactInfo.email}`} onClick={() => trackEvent('email_click')}><Mail size={16} /> {contactInfo.email}</a>
+            <a className="flex items-center gap-2 transition-colors hover:text-[#C9B27C]" href={`tel:${contactInfo.phoneHref}`} onClick={() => trackEvent('phone_click')}><Phone size={16} /> {contactInfo.phone}</a>
+            <a className="flex items-center gap-2 transition-colors hover:text-[#C9B27C]" href={contactInfo.linkedin}><Linkedin size={16} /> LinkedIn</a>
           </div>
           <div className="grid gap-2 text-sm text-white/80">
-            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-white">Plan du site</p>
-            <Link className="transition-colors hover:text-sand" to="/">Accueil</Link>
-            <Link className="transition-colors hover:text-sand" to="/a-propos">Le Cabinet</Link>
-            <Link className="transition-colors hover:text-sand" to="/services">Conseil & Coaching</Link>
-            <Link className="transition-colors hover:text-sand" to="/blog">Ressources RH</Link>
-            <Link className="transition-colors hover:text-sand" to="/on-parle-de-nous">On parle de nous</Link>
-            <Link className="transition-colors hover:text-sand" to="/faq">FAQ</Link>
-            <Link className="transition-colors hover:text-sand" to="/contact">Contact</Link>
+            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#C9B27C]">Plan du site</p>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/">Accueil</Link>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/a-propos">Le Cabinet</Link>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/services">Conseil & Coaching</Link>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/blog">Ressources RH</Link>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/on-parle-de-nous">On parle de nous</Link>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/faq">FAQ</Link>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/contact">Contact</Link>
           </div>
           <div className="grid gap-2 text-sm text-white/80">
-            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-white">Informations</p>
-            <Link className="transition-colors hover:text-sand" to="/mentions-legales">Mentions légales</Link>
-            <Link className="transition-colors hover:text-sand" to="/politique-confidentialite">Politique de confidentialité</Link>
-            <Link className="transition-colors hover:text-sand" to="/cookies">Cookies</Link>
-            <Link className="transition-colors hover:text-sand" to="/cgv-cgu">CGV / CGU</Link>
-            <Link className="transition-colors hover:text-sand" to="/admin">Administration</Link>
+            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#C9B27C]">Informations</p>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/mentions-legales">Mentions légales</Link>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/politique-confidentialite">Politique de confidentialité</Link>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/cookies">Cookies</Link>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/cgv-cgu">CGV / CGU</Link>
+            <Link className="transition-colors hover:text-[#C9B27C]" to="/admin">Administration</Link>
           </div>
         </Container>
         <div className="border-t border-white/10 py-4 text-center text-sm text-white/65">
           site réalisé par{' '}
-          <a href="https://webfityou.com" target="_blank" rel="noreferrer" className="font-bold underline decoration-white/45 underline-offset-4 transition hover:text-sand">
+          <a href="https://webfityou.com" target="_blank" rel="noreferrer" className="font-bold underline decoration-white/45 underline-offset-4 transition hover:text-[#C9B27C]">
             WebFitYou
           </a>
         </div>

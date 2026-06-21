@@ -32,7 +32,7 @@ function FAQList({
   setOpen: (id: string | null) => void;
 }) {
   return (
-    <div className="divide-y divide-ink/10 overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_18px_44px_rgba(31,51,71,0.06)]">
+    <div className="divide-y divide-ink/10 overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_18px_44px_rgba(0,0,0,0.06)]">
       {items.map((faq) => {
         const isOpen = open === faq.id;
         return (
