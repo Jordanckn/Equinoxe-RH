@@ -736,9 +736,8 @@ function StatsAdmin() {
   const [leads, setLeads] = useState<Record<string, unknown>[]>([]);
   const [articles, setArticles] = useState<{ published: number; draft: number }>({ published: 0, draft: 0 });
   const [avisCount, setAvisCount] = useState(0);
-
-  const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
-  const CLARITY_ID = import.meta.env.VITE_CLARITY_ID as string | undefined;
+  const [events, setEvents] = useState<{ name: string; count: number }[]>([]);
+  const [recentEvents, setRecentEvents] = useState<{ name: string; path: string; created_at: string }[]>([]);
 
   useEffect(() => {
     if (!supabase) return;
@@ -748,6 +747,12 @@ function StatsAdmin() {
       setArticles({ published: d.filter((r) => r.status === 'published').length, draft: d.filter((r) => r.status === 'draft').length });
     });
     supabase.from('testimonials').select('id', { count: 'exact', head: true }).then(({ count }) => setAvisCount(count ?? 0));
+    supabase.from('page_events').select('name').then(({ data }) => {
+      const counts: Record<string, number> = {};
+      for (const row of data ?? []) counts[row.name] = (counts[row.name] ?? 0) + 1;
+      setEvents(Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([name, count]) => ({ name, count })));
+    });
+    supabase.from('page_events').select('name, path, created_at').order('created_at', { ascending: false }).limit(20).then(({ data }) => setRecentEvents(data ?? []));
   }, []);
 
   // Breakdown helpers
@@ -838,75 +843,47 @@ function StatsAdmin() {
         </div>
       )}
 
-      {/* Analytics tools */}
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
-        <div className="rounded-2xl border border-sand bg-white p-6">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="font-semibold text-ink">Google Analytics 4</p>
-              <p className="mt-1 text-sm text-anthracite/60">Sessions, pages vues, sources de trafic</p>
-            </div>
-            {GA_ID ? (
-              <a href={`https://analytics.google.com/analytics/web/#/p${GA_ID.replace('G-', '')}/reports/reportinghub`} target="_blank" rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white hover:bg-sage-dark">
-                Ouvrir <ExternalLink size={13} />
-              </a>
-            ) : (
-              <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-700">Non configuré</span>
-            )}
+      {/* Événements par type */}
+      {events.length > 0 && (
+        <div className="mt-8 rounded-2xl bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+          <p className="mb-4 text-sm font-bold uppercase tracking-widest text-anthracite/50">Clics & interactions — total cumulé</p>
+          <div className="grid gap-3">
+            {events.map(({ name, count }) => (
+              <div key={name}>
+                <div className="mb-1 flex items-center justify-between text-sm">
+                  <span className="font-mono font-semibold text-ink">{name}</span>
+                  <span className="ml-2 shrink-0 font-bold text-[#C9B27C]">{count}</span>
+                </div>
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-ivory">
+                  <div className="h-1.5 rounded-full bg-[#C9B27C]" style={{ width: `${(count / (events[0]?.count ?? 1)) * 100}%` }} />
+                </div>
+              </div>
+            ))}
           </div>
-          {GA_ID ? (
-            <p className="mt-3 rounded-xl bg-ivory px-3 py-2 font-mono text-xs text-anthracite/60">ID : {GA_ID}</p>
-          ) : (
-            <p className="mt-3 text-xs text-anthracite/50">Ajoutez <code className="font-mono">VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX</code> dans le fichier <code className="font-mono">.env</code></p>
-          )}
         </div>
+      )}
 
-        <div className="rounded-2xl border border-sand bg-white p-6">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="font-semibold text-ink">Microsoft Clarity</p>
-              <p className="mt-1 text-sm text-anthracite/60">Heatmaps, scrolls, enregistrements sessions</p>
-            </div>
-            {CLARITY_ID ? (
-              <a href={`https://clarity.microsoft.com/projects/view/${CLARITY_ID}/dashboard`} target="_blank" rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white hover:bg-sage-dark">
-                Ouvrir <ExternalLink size={13} />
-              </a>
-            ) : (
-              <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-700">Non configuré</span>
-            )}
+      {/* Événements récents */}
+      {recentEvents.length > 0 && (
+        <div className="mt-6 rounded-2xl bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+          <p className="mb-4 text-sm font-bold uppercase tracking-widest text-anthracite/50">Activité récente</p>
+          <div className="grid gap-2">
+            {recentEvents.map((ev, i) => (
+              <div key={i} className="flex items-center justify-between gap-4 rounded-xl border border-sand px-4 py-2.5 text-sm">
+                <span className="font-mono text-xs font-bold text-[#C9B27C] shrink-0">{ev.name}</span>
+                <span className="text-anthracite/60 truncate flex-1">{ev.path}</span>
+                <span className="shrink-0 text-xs text-anthracite/40">{new Date(ev.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
+              </div>
+            ))}
           </div>
-          {CLARITY_ID ? (
-            <p className="mt-3 rounded-xl bg-ivory px-3 py-2 font-mono text-xs text-anthracite/60">ID : {CLARITY_ID}</p>
-          ) : (
-            <p className="mt-3 text-xs text-anthracite/50">Ajoutez <code className="font-mono">VITE_CLARITY_ID=xxxxxxxxxx</code> dans le fichier <code className="font-mono">.env</code></p>
-          )}
         </div>
-      </div>
+      )}
 
-      {/* Events tracked */}
-      <div className="mt-4 rounded-2xl border border-sand bg-white p-6">
-        <p className="mb-4 text-sm font-bold uppercase tracking-widest text-anthracite/50">Événements trackés sur le site</p>
-        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { event: 'page_view', desc: 'Chaque changement de page' },
-            { event: 'scroll_depth', desc: 'Seuils 25 / 50 / 75 / 90%' },
-            { event: 'phone_click', desc: 'Clic sur le numéro de téléphone' },
-            { event: 'email_click', desc: 'Clic sur l\'adresse email' },
-            { event: 'contact_submit', desc: 'Soumission du formulaire de contact' },
-            { event: 'cta_click', desc: 'Clic sur un bouton CTA' },
-            { event: 'article_read', desc: 'Lecture d\'un article de blog' },
-            { event: 'section_open', desc: 'Ouverture d\'une section repliée' },
-            { event: 'blog_card_click', desc: 'Clic sur une carte article' },
-          ].map(({ event, desc }) => (
-            <div key={event} className="rounded-xl bg-ivory px-4 py-3">
-              <p className="font-mono text-xs font-bold text-[#C9B27C]">{event}</p>
-              <p className="mt-0.5 text-xs text-anthracite/60">{desc}</p>
-            </div>
-          ))}
+      {events.length === 0 && (
+        <div className="mt-8 rounded-2xl border border-sand bg-white p-6 text-center">
+          <p className="text-sm text-anthracite/50">Les clics et interactions des visiteurs apparaîtront ici dès la première visite.</p>
         </div>
-      </div>
+      )}
     </div>
   );
 }
