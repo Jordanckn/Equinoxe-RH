@@ -646,6 +646,18 @@ function FaqAdmin() {
 
   const pageInfo = FAQ_PAGES.find((p) => p.key === selectedPage) ?? FAQ_PAGES[0];
   const filteredRows = rows.filter((r) => (r.related_page ?? '') === selectedPage);
+  const isEditing = Boolean(form.id);
+
+  function startEdit(item: FAQ) {
+    setForm({ ...item });
+    setShowForm(true);
+    setTimeout(() => document.getElementById('faq-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+
+  function cancelForm() {
+    setShowForm(false);
+    setForm({ question: '', answer: '', category: 'General', related_page: selectedPage, status: 'published', display_order: 99 });
+  }
 
   return (
     <div>
@@ -661,7 +673,7 @@ function FaqAdmin() {
               Importer les FAQ initiales
             </button>
           ) : null}
-          <button onClick={() => { setForm({ ...form, related_page: selectedPage }); setShowForm(true); }}
+          <button onClick={() => { cancelForm(); setShowForm(true); }}
             className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white hover:bg-sage-dark">
             <Plus size={15} />Ajouter une FAQ
           </button>
@@ -673,7 +685,7 @@ function FaqAdmin() {
         {FAQ_PAGES.map(({ key, label }) => {
           const count = rows.filter((r) => (r.related_page ?? '') === key).length;
           return (
-            <button key={key} onClick={() => { setSelectedPage(key); setShowForm(false); }}
+            <button key={key} onClick={() => { setSelectedPage(key); cancelForm(); }}
               className={`rounded-full px-4 py-2 text-sm font-semibold transition ${selectedPage === key ? 'bg-ink text-white' : 'border border-ink/15 bg-white text-ink hover:border-sage-dark/40'}`}
             >
               {label} <span className="ml-1 opacity-60">({count})</span>
@@ -682,25 +694,37 @@ function FaqAdmin() {
         })}
       </div>
 
-      {/* Add form */}
+      {/* Add / Edit form */}
       {showForm ? (
-        <div className="mt-5 rounded-2xl border border-sage-dark/20 bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
-          <p className="mb-4 text-sm font-bold text-ink">Nouvelle FAQ — {pageInfo.label}</p>
+        <div id="faq-form" className="mt-5 rounded-2xl border border-[#C9B27C]/30 bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+          <p className="mb-4 text-sm font-bold text-ink">
+            {isEditing ? 'Modifier la FAQ' : 'Nouvelle FAQ'}{' '}
+            <span className="font-normal text-anthracite/50">— {pageInfo.label}</span>
+          </p>
           <div className="grid gap-3">
-            <Field label="Question *"><input className="field" value={form.question ?? ''} onChange={(e) => setForm((f) => ({ ...f, question: e.target.value }))} /></Field>
-            <Field label="Reponse *"><textarea className="field min-h-[120px]" value={form.answer ?? ''} onChange={(e) => setForm((f) => ({ ...f, answer: e.target.value }))} /></Field>
+            <Field label="Question *">
+              <input className="field" value={form.question ?? ''} onChange={(e) => setForm((f) => ({ ...f, question: e.target.value }))} />
+            </Field>
+            <Field label="Reponse *">
+              <textarea className="field min-h-[140px]" value={form.answer ?? ''} onChange={(e) => setForm((f) => ({ ...f, answer: e.target.value }))} />
+            </Field>
             <div className="grid gap-3 sm:grid-cols-2">
-              <Field label="Categorie"><input className="field" value={form.category ?? ''} onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))} /></Field>
+              <Field label="Categorie">
+                <input className="field" value={form.category ?? ''} onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))} />
+              </Field>
               <Field label="Statut">
                 <select className="field" value={form.status ?? 'published'} onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as 'draft' | 'published' }))}>
-                  <option value="published">Publie</option><option value="draft">Brouillon</option>
+                  <option value="published">Publie</option>
+                  <option value="draft">Brouillon</option>
                 </select>
               </Field>
             </div>
           </div>
           <div className="mt-4 flex gap-2">
-            <button onClick={() => setShowForm(false)} className="rounded-full border border-ink/15 px-4 py-2 text-sm font-semibold hover:bg-ivory">Annuler</button>
-            <button onClick={saveFaq} className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2 text-sm font-semibold text-white hover:bg-sage-dark"><Save size={14} />Enregistrer</button>
+            <button onClick={cancelForm} className="rounded-full border border-ink/15 px-4 py-2 text-sm font-semibold hover:bg-ivory">Annuler</button>
+            <button onClick={saveFaq} className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2 text-sm font-semibold text-white hover:bg-sage-dark">
+              <Save size={14} />{isEditing ? 'Mettre a jour' : 'Enregistrer'}
+            </button>
           </div>
         </div>
       ) : null}
@@ -712,9 +736,9 @@ function FaqAdmin() {
             Aucune FAQ pour <strong>{pageInfo.label}</strong>.<br />Cliquez sur "Ajouter une FAQ" ou "Importer les FAQ initiales".
           </div>
         ) : filteredRows.map((item) => (
-          <div key={item.id} className="rounded-2xl border border-sand bg-white p-5 shadow-[0_2px_10px_rgba(0,0,0,0.03)]">
+          <div key={item.id} className={`rounded-2xl border bg-white p-5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] transition ${form.id === item.id && showForm ? 'border-[#C9B27C]/40 ring-1 ring-[#C9B27C]/20' : 'border-sand'}`}>
             <div className="flex items-start justify-between gap-3">
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
                   <span className={`h-2 w-2 shrink-0 rounded-full ${item.status === 'published' ? 'bg-green-500' : 'bg-sand'}`} />
                   <p className="font-semibold text-ink">{item.question}</p>
@@ -722,7 +746,10 @@ function FaqAdmin() {
                 <p className="mt-2 text-sm leading-6 text-anthracite/70 pl-4">{item.answer}</p>
                 <p className="mt-2 text-xs text-anthracite/40 pl-4">Categorie : {item.category}</p>
               </div>
-              <IconBtn title="Supprimer" onClick={() => remove(item.id)} danger><Trash2 size={15} /></IconBtn>
+              <div className="flex shrink-0 gap-1">
+                <IconBtn title="Modifier" onClick={() => startEdit(item)}><Edit2 size={15} /></IconBtn>
+                <IconBtn title="Supprimer" onClick={() => remove(item.id)} danger><Trash2 size={15} /></IconBtn>
+              </div>
             </div>
           </div>
         ))}
