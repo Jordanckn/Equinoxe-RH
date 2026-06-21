@@ -893,6 +893,67 @@ function StatsAdmin() {
 }
 
 // ─── Settings ─────────────────────────────────────────────────────────────────
+function SiteImageUploader({ label, settingKey, description, storagePath }: {
+  label: string; settingKey: string; description: string; storagePath: string;
+}) {
+  const [current, setCurrent] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!supabase) return;
+    supabase.from('site_settings').select('value').eq('key', settingKey).single()
+      .then(({ data }) => { if (data?.value) setCurrent(data.value); });
+  }, [settingKey]);
+
+  async function handleFile(file: File) {
+    if (!file.type.startsWith('image/') || !supabase) return;
+    setError(null); setUploading(true);
+    try {
+      const webpBlob = await convertToWebP(file);
+      const filename = storagePath;
+      const { error: upErr } = await supabase.storage.from('site-images').upload(filename, webpBlob, { contentType: 'image/webp', upsert: true });
+      if (upErr) throw upErr;
+      const { data } = supabase.storage.from('site-images').getPublicUrl(filename);
+      const url = data.publicUrl + '?t=' + Date.now();
+      await supabase.from('site_settings').upsert({ key: settingKey, value: url }, { onConflict: 'key' });
+      setCurrent(url);
+    } catch (e) { setError(e instanceof Error ? e.message : 'Erreur upload'); }
+    finally { setUploading(false); }
+  }
+
+  return (
+    <div className="rounded-2xl border border-sand bg-white p-5">
+      <p className="font-semibold text-ink">{label}</p>
+      <p className="mt-1 text-xs text-anthracite/50">{description}</p>
+      <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-start">
+        {current ? (
+          <div className="relative w-full max-w-[180px] overflow-hidden rounded-xl border border-sand">
+            <img src={current} alt="" className="aspect-[4/5] w-full object-cover object-center" />
+          </div>
+        ) : (
+          <div className="flex h-32 w-[180px] shrink-0 items-center justify-center rounded-xl bg-ivory text-anthracite/30">
+            <Image size={28} />
+          </div>
+        )}
+        <div className="flex flex-col gap-3">
+          <button type="button" onClick={() => inputRef.current?.click()}
+            className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2.5 text-sm font-semibold text-ink hover:border-sage-dark/40 hover:bg-ivory">
+            {uploading ? <div className="h-4 w-4 animate-spin rounded-full border-2 border-sand border-t-ink" /> : <Upload size={15} />}
+            {uploading ? 'Conversion & upload...' : 'Changer la photo'}
+          </button>
+          <p className="text-xs text-anthracite/50">PNG, JPG ou WebP — converti automatiquement en WebP</p>
+          {error ? <p className="text-xs text-red-500">{error}</p> : null}
+          {current ? <p className="max-w-xs truncate font-mono text-[10px] text-anthracite/40">{current}</p> : null}
+          <input ref={inputRef} type="file" accept="image/*" className="hidden"
+            onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f); }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SettingsAdmin() {
   const [settings, setSettings] = useState<Record<string, string>>({});
   const [toast, setToast] = useState<string | null>(null);
@@ -919,16 +980,40 @@ function SettingsAdmin() {
     <div>
       {toast ? <Toast message={toast} /> : null}
       <h1 className="font-serif text-4xl text-ink">Parametres du site</h1>
-      <div className="mt-6 grid gap-4 rounded-2xl bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
-        {Object.entries(SETTING_LABELS).map(([key, label]) => (
-          <Field key={key} label={label}>
-            <input className="field" value={settings[key] ?? ''}
-              onChange={(e) => setSettings((s) => ({ ...s, [key]: e.target.value }))}
-              onBlur={(e) => saveSetting(key, e.target.value)}
-            />
-          </Field>
-        ))}
-        {!supabase ? <p className="text-sm text-anthracite/60">Connectez Supabase pour sauvegarder les modifications.</p> : null}
+
+      {/* Images du site */}
+      <div className="mt-6">
+        <p className="text-xs font-bold uppercase tracking-widest text-[#C9B27C]">Photos du site</p>
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <SiteImageUploader
+            label="Photo Hero — Page d'accueil"
+            description="Grande photo affichée en haut de la page d'accueil, à côté du titre principal."
+            settingKey="hero_image_url"
+            storagePath="hero/caroline-maratuech-act-rh-toulouse-1.webp"
+          />
+          <SiteImageUploader
+            label="Photo Portrait — Page Le Cabinet"
+            description="Portrait de Caroline affiché sur la page 'Le Cabinet / À propos'."
+            settingKey="cabinet_image_url"
+            storagePath="cabinet/caroline-tillou-maratuech-actrh.webp"
+          />
+        </div>
+      </div>
+
+      {/* Coordonnées */}
+      <div className="mt-8">
+        <p className="text-xs font-bold uppercase tracking-widest text-[#C9B27C]">Coordonnées & contact</p>
+        <div className="mt-4 grid gap-4 rounded-2xl bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
+          {Object.entries(SETTING_LABELS).map(([key, label]) => (
+            <Field key={key} label={label}>
+              <input className="field" value={settings[key] ?? ''}
+                onChange={(e) => setSettings((s) => ({ ...s, [key]: e.target.value }))}
+                onBlur={(e) => saveSetting(key, e.target.value)}
+              />
+            </Field>
+          ))}
+          {!supabase ? <p className="text-sm text-anthracite/60">Connectez Supabase pour sauvegarder les modifications.</p> : null}
+        </div>
       </div>
     </div>
   );

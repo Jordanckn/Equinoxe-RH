@@ -137,7 +137,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                         aria-expanded={audienceDropdownOpen}
                         aria-haspopup="true"
                       >
-                        <span>Vos situations</span>
+                        <span>Vous êtes</span>
                         <ChevronDown size={14} className={`transition-transform duration-200 ${audienceDropdownOpen ? 'rotate-180' : ''}`} />
                       </button>
                       {audienceDropdownOpen && (
@@ -145,7 +145,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                           <div className="fixed inset-0 z-10" onClick={() => setAudienceDropdownOpen(false)} />
                           <div className="absolute left-1/2 z-20 mt-4 w-[22rem] -translate-x-1/2 rounded-2xl border border-ink/10 bg-white p-3 shadow-[0_22px_70px_rgba(31,51,71,0.14)]">
                             <div className="flex items-center justify-between rounded-xl bg-rosé px-4 py-3 text-sm font-semibold text-ink">
-                              <span>Choisir selon votre situation</span>
+                              <span>Vous êtes...</span>
                               <ChevronDown size={15} />
                             </div>
                             <div className="my-2 h-px bg-ink/10" />
@@ -264,7 +264,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                           onClick={() => setMobileAudienceOpen(!mobileAudienceOpen)}
                           className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-lg font-semibold text-ink"
                         >
-                          <span>Vos situations</span>
+                          <span>Vous êtes</span>
                           <ChevronDown size={18} className={`transition-transform duration-200 ${mobileAudienceOpen ? 'rotate-180' : ''}`} />
                         </button>
                         {mobileAudienceOpen && (

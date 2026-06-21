@@ -1,8 +1,21 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
-import { sendLeadEmails } from '../lib/emailjs';
 import { trackEvent } from '../lib/analytics';
 import type { LeadInput } from '../types';
+
+const EDGE_FN_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-lead-email`;
+
+async function sendLeadEmails(lead: LeadInput) {
+  const res = await fetch(EDGE_FN_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(lead),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    console.error('Edge function error:', err);
+  }
+}
 
 const initial: LeadInput = {
   first_name: '',

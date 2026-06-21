@@ -32,6 +32,7 @@ import { ButtonLink, Card, Container, Section } from '../components/ui';
 import { contactInfo, faqs, posts, services, testimonials } from '../data/content';
 import { organizationSchema, personSchema, faqSchema } from '../lib/schemaMarkup';
 import { useSupabaseRows } from '../hooks/useSupabaseRows';
+import { supabase } from '../lib/supabaseClient';
 import type { BlogPost, FAQ, Testimonial } from '../types';
 
 const trustedLogos = [
@@ -55,6 +56,13 @@ export function HomePage() {
   const liveTestimonials = useSupabaseRows<Testimonial>('testimonials', testimonials, 'display_order');
   const [pourQuiOpen, setPourQuiOpen] = useState(false);
   const [accompagnementsOpen, setAccompagnementsOpen] = useState(false);
+  const [heroImg, setHeroImg] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!supabase) return;
+    supabase.from('site_settings').select('value').eq('key', 'hero_image_url').single()
+      .then(({ data }) => { if (data?.value) setHeroImg(data.value); });
+  }, []);
 
   return (
     <>
@@ -100,7 +108,7 @@ export function HomePage() {
             <div className="animate-fade-in delay-100 relative flex justify-center lg:justify-end">
               <div className="animate-float relative w-full max-w-[480px] overflow-hidden rounded-[2rem] border border-sand bg-white p-3.5 shadow-[0_28px_80px_rgba(14,27,41,0.08)] lg:max-w-full">
                 <img
-                  src="https://xuuvxhvmndkqkcmgptot.supabase.co/storage/v1/object/public/site-images/hero/caroline-maratuech-act-rh-toulouse-1.webp"
+                  src={heroImg ?? "https://xuuvxhvmndkqkcmgptot.supabase.co/storage/v1/object/public/site-images/hero/caroline-maratuech-act-rh-toulouse-1.webp"}
                   alt="Caroline Tillou Maratuech — Consultante RH et coach professionnelle ACT&RH Toulouse"
                   onError={(event) => { event.currentTarget.src = '/images/Professeur TILLOU Caroline - TBS Education.webp'; }}
                   className="aspect-[4/5] h-full w-full rounded-[1.5rem] object-cover object-center sm:aspect-square"

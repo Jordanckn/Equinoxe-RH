@@ -12,7 +12,7 @@ export const contactInfo = {
 };
 export const navItems = [
   { label: 'Accueil', href: '/' },
-  { label: 'Le Cabinet', href: '/a-propos' },
+  { label: 'ACT&RH', href: '/a-propos' },
   { label: 'Conseil & Coaching', href: '/services' },
   { label: 'Contact', href: '/contact' }
 ];
