@@ -26,7 +26,8 @@ function emailBase(content: string): string {
         <td style="background:${DARK};border-radius:16px 16px 0 0;padding:32px 40px;text-align:center;">
           <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:${GOLD};">CABINET CONSEIL RH & COACHING</p>
           <h1 style="margin:8px 0 0;font-size:32px;font-weight:600;color:${GOLD};letter-spacing:0.04em;">ACT&RH</h1>
-          <p style="margin:6px 0 0;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.12em;">TOULOUSE · OCCITANIE · À DISTANCE</p>
+          <p style="margin:6px 0 0;font-size:11px;color:rgba(201,178,124,0.65);letter-spacing:0.06em;font-style:italic;">Accompagnement · Conseil en Transition &amp; Ressources Humaines</p>
+          <p style="margin:6px 0 0;font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.12em;">TOULOUSE · OCCITANIE · À DISTANCE</p>
         </td>
       </tr>
       <!-- Body -->
