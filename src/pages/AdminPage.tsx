@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   BarChart2, CheckCircle, ChevronDown, ChevronRight, Edit2, ExternalLink, Eye, EyeOff,
-  FileText, HelpCircle, Image, Inbox, LayoutDashboard, LogOut,
+  FileText, HelpCircle, Image, Inbox, LayoutDashboard, LogOut, Mail, Phone,
   MessageSquare, Plus, Save, Settings, Star, Trash2, Upload, X, XCircle,
   type LucideIcon,
 } from 'lucide-react';
@@ -435,8 +435,8 @@ function ContactsAdmin() {
                       {[
                         ['Profil', String(r.profile_type ?? '-')],
                         ['Besoin', String(r.need_type ?? '-')],
-                        ['Contact prefere', String(r.preferred_contact ?? '-')],
-                        ['Telephone', String(r.phone ?? '-')],
+                        ['Contact préféré', String(r.preferred_contact ?? '-')],
+                        ['Téléphone', String(r.phone ?? '-')],
                         ['Source', String(r.source ?? '-')],
                       ].map(([label, val]) => (
                         <div key={label}><p className="text-xs font-bold text-anthracite/50">{label}</p><p className="font-semibold text-ink">{val}</p></div>
@@ -448,6 +448,25 @@ function ContactsAdmin() {
                         {String(r.message)}
                       </div>
                     ) : null}
+                    {/* Boutons d'action */}
+                    <div className="mt-5 flex flex-wrap gap-3">
+                      <a
+                        href={`mailto:${String(r.email ?? '')}?subject=Suite%20%C3%A0%20votre%20demande%20ACT%26RH&body=Bonjour%20${encodeURIComponent(String(r.first_name ?? ''))}%2C%0A%0A`}
+                        className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white hover:bg-sage-dark transition"
+                      >
+                        <Mail size={15} />
+                        Répondre par email
+                      </a>
+                      {r.phone && String(r.phone).trim() && String(r.phone) !== '-' ? (
+                        <a
+                          href={`tel:${String(r.phone)}`}
+                          className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink hover:bg-ivory transition"
+                        >
+                          <Phone size={15} />
+                          Appeler
+                        </a>
+                      ) : null}
+                    </div>
                   </div>
                 ) : null}
               </div>

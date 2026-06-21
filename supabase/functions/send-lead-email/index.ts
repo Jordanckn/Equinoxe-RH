@@ -123,13 +123,30 @@ function notificationEmail(lead: Record<string, string>): string {
       </td></tr>
     </table>
 
-    <!-- CTA réponse rapide -->
+    <!-- CTA actions -->
     <table cellpadding="0" cellspacing="0" style="margin-bottom:8px;">
       <tr>
-        <td style="background:${GOLD};border-radius:50px;padding:13px 28px;margin-right:12px;">
-          <a href="mailto:${lead.email}" style="color:${DARK};text-decoration:none;font-size:14px;font-weight:700;">
-            Répondre à ${lead.first_name}
-          </a>
+        <td style="padding-right:12px;">
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="background:${GOLD};border-radius:50px;padding:13px 28px;">
+                <a href="mailto:${lead.email}?subject=Suite%20%C3%A0%20votre%20demande%20ACT%26RH&body=Bonjour%20${encodeURIComponent(lead.first_name)}%2C%0A%0A" style="color:${DARK};text-decoration:none;font-size:14px;font-weight:700;">
+                  Répondre à ${lead.first_name}
+                </a>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="background:${DARK};border-radius:50px;padding:13px 28px;border:1px solid #333;">
+                <a href="https://act-rh.com/admin" style="color:#fff;text-decoration:none;font-size:14px;font-weight:700;">
+                  Voir dans l'admin
+                </a>
+              </td>
+            </tr>
+          </table>
         </td>
       </tr>
     </table>
