@@ -150,3 +150,37 @@ footer::selection,
   animation: btnShimmer 2.5s linear infinite;
   pointer-events: none;
 }
+
+/* Form success screen */
+@keyframes successCardIn {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes iconCirclePop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes checkDraw {
+  from { stroke-dashoffset: 48; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes successTextIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.success-card {
+  animation: successCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.success-icon-circle {
+  animation: iconCirclePop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+}
+.success-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: checkDraw 0.4s ease-out 0.55s forwards;
+}
+.success-text {
+  animation: successTextIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
