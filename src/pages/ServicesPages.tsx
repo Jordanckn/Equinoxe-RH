@@ -491,14 +491,7 @@ const sortedHighlightedKeywords = [...highlightedKeywords].sort((a, b) => b.leng
 const highlightedPattern = new RegExp(`(${sortedHighlightedKeywords.map((word) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi');
 
 function HighlightedText({ text }: { text: string }) {
-  return (
-    <>
-      {text.split(highlightedPattern).map((part, index) => {
-        const isKeyword = sortedHighlightedKeywords.some((keyword) => keyword.toLowerCase() === part.toLowerCase());
-        return isKeyword ? <strong key={`${part}-${index}`}>{part}</strong> : <span key={`${part}-${index}`}>{part}</span>;
-      })}
-    </>
-  );
+  return <>{text}</>;
 }
 
 function List({ items, ordered = false, compact = false, highlight = false }: { items: string[]; ordered?: boolean; compact?: boolean; highlight?: boolean }) {

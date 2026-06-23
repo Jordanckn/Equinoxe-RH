@@ -86,7 +86,7 @@ export function LocalSeoPage({ kind }: { kind: 'rh-toulouse' | 'coaching-toulous
       <PageHeader eyebrow="Page locale" title={map[0]} text={map[1]} />
       <Section className="bg-white">
         <Container className="prose-actrh max-w-4xl">
-          <p><strong>Réponse courte :</strong> ACT&RH propose un {map[2]} avec Caroline Tillou Maratuech, consultante RH, coach professionnelle et docteure en gestion des ressources humaines.</p>
+          <p>Réponse courte : ACT&RH propose un {map[2]} avec Caroline Tillou Maratuech, consultante RH, coach professionnelle et docteure en gestion des ressources humaines.</p>
           <p>L’accompagnement s’adresse aux entreprises, dirigeants, managers, salariés, entrepreneurs, étudiants et particuliers qui souhaitent clarifier une situation RH, managériale ou professionnelle.</p>
           <h3>Accompagnements liés</h3>
           <ul>{services.map((service) => <li key={service.slug}>{service.title}</li>)}</ul>
@@ -131,7 +131,7 @@ function PrivacyPage() {
       <Section className="bg-ivory">
         <Container className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-start">
           <div className="prose-actrh max-w-none rounded-2xl border border-sand bg-white p-7 shadow-[0_22px_70px_rgba(14,27,41,0.06)] md:p-10">
-            <p><strong>Dernière mise à jour :</strong> 30 mai 2026.</p>
+            <p>Dernière mise à jour : 30 mai 2026.</p>
             <h3 className="font-serif text-3xl font-semibold text-ink">1. Responsable du traitement</h3>
             <p>Le responsable du traitement est Caroline Tillou Maratuech, ACT&RH, SIRET 788 556 488 00039, située 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France.</p>
             <p>Contact : <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a> - {contactInfo.phone}.</p>
@@ -191,7 +191,7 @@ function TermsPage() {
       />
       <Section className="bg-ivory">
         <Container className="prose-actrh max-w-5xl rounded-2xl border border-sand bg-white p-7 shadow-[0_22px_70px_rgba(14,27,41,0.06)] md:p-10">
-          <p><strong>Dernière mise à jour :</strong> 30 mai 2026.</p>
+          <p>Dernière mise à jour : 30 mai 2026.</p>
           <h2>1. Identification</h2>
           <p>Le présent site est édité par Caroline Tillou Maratuech, ACT&RH, SIRET 788 556 488 00039, 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France.</p>
 

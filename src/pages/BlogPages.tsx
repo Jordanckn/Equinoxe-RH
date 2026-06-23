@@ -272,7 +272,7 @@ export function ArticlePage() {
                 <div className="h-full rounded-full bg-sage-dark transition-[width] duration-150" style={{ width: `${progress}%` }} />
               </div>
               <p className="mt-4 text-sm leading-6 text-anthracite/70">
-                Temps estimé : <strong className="text-ink">{readingTime(post.content)} minutes</strong>. La barre suit votre avancée dans la lecture.
+                Temps estimé : {readingTime(post.content)} minutes. La barre suit votre avancée dans la lecture.
               </p>
               <Link to="/contact" className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-sage-dark">
                 Échanger sur ce sujet <ArrowRight size={15} />

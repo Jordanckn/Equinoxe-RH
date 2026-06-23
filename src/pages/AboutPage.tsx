@@ -21,13 +21,13 @@ export function AboutPage() {
     <>
       <SEOHead
         title="ACT&RH — Conseil RH & Coaching à Toulouse | Caroline Tillou Maratuech"
-        description="ACT&RH est un cabinet indépendant fondé par Caroline Tillou Maratuech, docteure en GRH et coach certifiée RNCP 7. Accompagnement des transitions humaines, managériales et organisationnelles à Toulouse et à distance."
+        description="ACT&RH est une structure indépendante fondée par Caroline Tillou Maratuech, docteure en GRH et coach certifiée RNCP 7. Accompagnement des transitions humaines, managériales et organisationnelles à Toulouse et à distance."
         schema={personSchema}
       />
       <PageHeader
         eyebrow="À Propos"
         title="ACT&RH"
-        text="Un cabinet indépendant fondé sur une conviction : les transitions humaines se traversent mieux quand elles sont comprises, nommées et accompagnées avec justesse."
+        text="ACT&RH accompagne les transitions humaines avec une conviction : elles se traversent mieux quand elles sont comprises, nommées et accompagnées avec justesse."
       />
 
       {/* Valeurs & identité */}
@@ -43,7 +43,7 @@ export function AboutPage() {
                   L'exigence académique au service du terrain
                 </h2>
                 <p className="mt-5 text-lg leading-8 text-anthracite/80">
-                  ACT&RH conjugue ce que peu de cabinets réunissent : une <strong>rigueur scientifique issue de la recherche en GRH</strong> et une <strong>expérience opérationnelle profonde</strong>, forgée sur plus de 20 ans d'accompagnement d'entreprises, de dirigeants et de professionnels en transition.
+                  ACT&RH conjugue une rigueur scientifique issue de la recherche en GRH, une expérience de conseil RH et une pratique de l’accompagnement individuel, forgées sur plus de 20 ans auprès d'entreprises, de dirigeants et de professionnels en transition.
                 </p>
                 <p className="mt-4 text-base leading-7 text-anthracite/75">
                   Cette double compétence n'est pas un argument de vente — c'est une méthode de travail. Elle permet de poser un regard à la fois analytique et humain sur chaque situation, de ne pas plaquer de solutions standardisées, et d'aller au fond des enjeux pour construire des réponses qui tiennent.

@@ -79,9 +79,7 @@ export function ContactForm() {
             Merci{firstName ? `, ${firstName}` : ''} !
           </h2>
           <p className="text-base leading-7 text-anthracite/70">
-            Votre message a bien ete recu. Caroline Tillou Maratuech reviendra vers vous{' '}
-            <strong className="text-ink font-semibold">dans les plus brefs delais</strong>{' '}
-            afin d&apos;echanger sur votre situation et vos besoins.
+            Votre message a bien ete recu. Caroline Tillou Maratuech reviendra vers vous dans les plus brefs delais afin d&apos;echanger sur votre situation et vos besoins.
           </p>
           <p className="text-sm text-anthracite/50">
             Un email de confirmation vous a ete envoye.

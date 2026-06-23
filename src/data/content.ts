@@ -40,7 +40,7 @@ const serviceFaq = (related_page: string): FAQ[] => [
 
 export const services: Service[] = [
   {
-    title: 'Conseil RH pour entreprises',
+    title: 'Conseil RH pour TPE, PME et organisations',
     slug: 'conseil-rh-entreprises',
     shortDescription: "Un appui RH sur mesure pour les dirigeants, managers, DRH, RRH, au sein de TPE et PME confrontés à des enjeux humains, managériaux ou organisationnels, comme partenaire pour vous aider à prendre le recul nécessaire.",
     longDescription: "J'accompagne les dirigeants, managers et responsables RH dans l'analyse de leurs problématiques humaines et organisationnelles : évolution des équipes, recrutement, tensions relationnelles, transformations ou structuration des pratiques RH.",

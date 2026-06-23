@@ -54,8 +54,10 @@ export function HomePage() {
   const livePosts = useSupabaseRows<BlogPost>('blog_posts', posts, 'published_at');
   const liveFaqs = useSupabaseRows<FAQ>('faqs', faqs, 'display_order');
   const liveTestimonials = useSupabaseRows<Testimonial>('testimonials', testimonials, 'display_order');
+  const [referencesOpen, setReferencesOpen] = useState(false);
   const [pourQuiOpen, setPourQuiOpen] = useState(false);
   const [accompagnementsOpen, setAccompagnementsOpen] = useState(false);
+  const [approcheOpen, setApprocheOpen] = useState(false);
   const [heroImg, setHeroImg] = useState<string | null>(null);
 
   useEffect(() => {
@@ -100,6 +102,9 @@ export function HomePage() {
                   <span className="h-2 w-2 rounded-full bg-sage-dark" /> Coaching professionnel
                 </span>
                 <span className="inline-flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-rosé" /> Coaching personnel
+                </span>
+                <span className="inline-flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-champagne-dark" /> Bilan de compétences
                 </span>
               </div>
@@ -114,8 +119,8 @@ export function HomePage() {
                   className="aspect-[4/5] h-full w-full rounded-[1.5rem] object-cover object-center sm:aspect-square"
                 />
                 <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/70 bg-white/90 p-5 shadow-[0_18px_40px_rgba(14,27,41,0.06)] backdrop-blur">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Cabinet indépendant</p>
-                  <p className="mt-1.5 font-serif text-lg font-semibold leading-snug text-ink">Une interlocutrice unique pour cadrer, accompagner et transmettre.</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Indépendance & proximité</p>
+                  <p className="mt-1.5 font-serif text-lg font-semibold leading-snug text-ink">Une relation de confiance pour conseiller, accompagner et transmettre.</p>
                 </div>
               </div>
             </div>
@@ -145,13 +150,21 @@ export function HomePage() {
       {/* Logos Section */}
       <section className="border-b border-sand bg-white py-10">
         <Container>
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Ils nous font confiance</p>
-              <h2 className="mt-2 font-serif text-2xl font-semibold text-ink">Références et collaborations</h2>
+              <h2 className="font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">Références et collaborations</h2>
+              <p className="mt-4 max-w-2xl text-lg leading-8 text-anthracite/70">Ils nous font confiance</p>
             </div>
+            <button
+              onClick={() => setReferencesOpen((o) => !o)}
+              className="flex shrink-0 items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-sage-dark/40 hover:text-sage-dark"
+              aria-expanded={referencesOpen}
+            >
+              {referencesOpen ? 'Réduire' : 'En savoir plus'}
+              <ChevronDown size={16} className={`transition-transform duration-300 ${referencesOpen ? 'rotate-180' : ''}`} />
+            </button>
           </div>
-          <div className="relative overflow-hidden rounded-2xl border border-sand bg-ivory py-5">
+          <div className={`relative overflow-hidden rounded-2xl border border-sand bg-ivory transition-all duration-500 ${referencesOpen ? 'mt-6 max-h-44 py-5 opacity-100' : 'max-h-0 py-0 opacity-0 pointer-events-none'}`}>
             <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-ivory to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-ivory to-transparent" />
             <div className="logo-marquee flex w-max items-center gap-6">
@@ -170,7 +183,7 @@ export function HomePage() {
         <Container>
           <ScrollReveal>
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <GridTitle title="Pour qui ?" text="Un accompagnement pour les organisations comme pour les personnes, avec un cadre clair et adapté à chaque situation." />
+              <GridTitle title="Publics accompagnés" text="Un accompagnement pour les organisations comme pour les personnes, avec un cadre clair et adapté à chaque situation." />
               <button
                 onClick={() => setPourQuiOpen((o) => !o)}
                 className="flex shrink-0 items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-sage-dark/40 hover:text-sage-dark"
@@ -189,7 +202,7 @@ export function HomePage() {
               { label: 'Salariés et professionnels en transition', slug: 'salaries-transitions', icon: Shuffle, desc: 'Professionnels en reconversion ou désireux de faire un bilan complet de leur parcours.' },
               { label: 'Entrepreneurs', slug: 'entrepreneurs', icon: Lightbulb, desc: 'Créateurs de structures cherchant à poser les bonnes bases RH pour accompagner leur croissance.' },
               { label: 'Étudiants', slug: 'etudiants', icon: GraduationCap, desc: 'Jeunes diplômés ou en cours d’études souhaitant s’orienter et préparer leur entrée sur le marché.' },
-              { label: 'Collectifs et équipes', slug: 'collectifs-equipes', icon: Users, desc: 'Groupes de travail ayant besoin de cohésion, d’ateliers ou de cercles de co-développement.' }
+              { label: 'Collectifs et équipes', slug: 'collectifs-equipes', icon: Users, desc: 'Groupes de travail ayant besoin d’ateliers, de régulation ou de cercles de co-développement.' }
             ].map(({ label, slug, icon: Icon, desc }, index) => (
               <ScrollReveal key={label} delay={index * 75}>
                 <Link to={`/pour-qui/${slug}`} className="block h-full">
@@ -214,7 +227,7 @@ export function HomePage() {
         <Container>
           <ScrollReveal>
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <GridTitle title="Accompagnements" text="Des services structurés pour clarifier les enjeux, sécuriser les transitions et soutenir les personnes comme les collectifs." />
+              <GridTitle title="Domaines d’intervention" text="Des services structurés pour clarifier les enjeux, sécuriser les transitions et soutenir les personnes comme les collectifs." />
               <button
                 onClick={() => setAccompagnementsOpen((o) => !o)}
                 className="flex shrink-0 items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-sage-dark/40 hover:text-sage-dark"
@@ -236,66 +249,32 @@ export function HomePage() {
         </Container>
       </Section>
 
-      {/* SEO Editorial Section */}
+      {/* Approche Section */}
       <Section className="bg-white">
         <Container>
-          <ScrollReveal className="mx-auto max-w-3xl text-center">
-            <p className="inline-flex rounded-full border border-sage-dark/20 bg-rosé px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">
-              Conseil RH, coaching et transitions
-            </p>
-            <h2 className="mt-5 font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-              Des accompagnements RH lisibles, utiles et adaptés au terrain
-            </h2>
-            <p className="mt-5 text-lg leading-8 text-anthracite/75">
-              À Toulouse, en Occitanie ou à distance, je travaille avec les organisations et les personnes pour clarifier les situations humaines sensibles : structuration RH, posture managériale, transition professionnelle, bilan de compétences, cohésion d’équipe et accompagnement du changement.
-            </p>
-          </ScrollReveal>
-
           <ScrollReveal>
-            <div className="mt-12 grid overflow-hidden rounded-[2rem] border border-sand bg-ivory shadow-[0_22px_60px_rgba(14,27,41,0.07)] lg:grid-cols-[0.95fr_1.05fr]">
-              <div className="relative min-h-[260px] lg:min-h-full">
-                <img
-                  src="/images/toulouse-garonne.jpg"
-                  alt="Vue de Toulouse et des bords de Garonne"
-                  onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-ink/35 via-transparent to-transparent" />
-                <div className="absolute bottom-5 left-5 rounded-full border border-white/50 bg-white/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-ink backdrop-blur">
-                  Ancrage toulousain
-                </div>
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="max-w-3xl font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">Mon approche sur mesure</h2>
+                <p className="mt-4 max-w-2xl text-lg leading-8 text-anthracite/70">Conseil RH, coaching professionnel et coaching personnel</p>
               </div>
-
-              <div className="p-6 sm:p-8 lg:p-10">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Toulouse, Occitanie et France entière</p>
-                <h3 className="mt-3 font-serif text-3xl font-semibold leading-tight text-ink sm:text-4xl">
-                  Une présence locale, avec des formats souples selon la mission
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-anthracite/75 sm:text-base">
-                  Caroline Tillou Maratuech travaille depuis Toulouse avec des entreprises, dirigeants, managers et professionnels en transition. Les accompagnements peuvent se dérouler en visio, en présentiel à Toulouse ou sur site lorsque la mission le justifie, notamment pour les diagnostics RH, ateliers collectifs, accompagnements du changement et interventions auprès des équipes.
-                </p>
-
-                <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                  {[
-                    { icon: MapPin, label: 'Toulouse', text: 'Ancrage local' },
-                    { icon: MonitorCheck, label: 'Visio', text: 'Suivi à distance' },
-                    { icon: Route, label: 'Déplacement', text: 'Selon la mission' }
-                  ].map(({ icon: Icon, label, text }) => (
-                    <div key={label} className="rounded-2xl border border-sand bg-white p-4">
-                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-rosé text-sage-dark">
-                        <Icon size={18} />
-                      </span>
-                      <p className="mt-3 text-sm font-bold text-ink">{label}</p>
-                      <p className="mt-1 text-xs leading-5 text-anthracite/65">{text}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <button
+                onClick={() => setApprocheOpen((o) => !o)}
+                className="flex shrink-0 items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-sage-dark/40 hover:text-sage-dark"
+                aria-expanded={approcheOpen}
+              >
+                {approcheOpen ? 'Réduire' : 'En savoir plus'}
+                <ChevronDown size={16} className={`transition-transform duration-300 ${approcheOpen ? 'rotate-180' : ''}`} />
+              </button>
             </div>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className={`overflow-hidden transition-all duration-500 ${approcheOpen ? 'mt-10 max-h-[3200px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+            <p className="max-w-4xl text-lg leading-8 text-anthracite/75">
+              À Toulouse, en Occitanie ou à distance, je travaille avec les organisations et les personnes pour clarifier les situations humaines sensibles : structuration RH, posture managériale, transition professionnelle, bilan de compétences et accompagnement du changement.
+            </p>
+
+          <div className="mx-auto mt-8 grid max-w-5xl gap-3 md:grid-cols-3">
             {[
               {
                 icon: Target,
@@ -309,24 +288,25 @@ export function HomePage() {
               },
               {
                 icon: LineChart,
-                title: 'Faire évoluer',
+                title: 'Faire progresser',
                 text: 'Transformer les pratiques, renforcer la coopération et soutenir les trajectoires durables.'
               }
             ].map(({ icon: Icon, title, text }, index) => (
               <ScrollReveal key={title} delay={index * 100}>
-                <Card className="h-full border border-sand bg-ivory transition-all duration-500 hover:-translate-y-1 hover:border-sage-dark/25 hover:bg-white hover:shadow-soft">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-sage-dark shadow-sm">
-                    <Icon size={21} />
+                <div className="flex h-full gap-4 rounded-2xl border border-sand bg-ivory p-5">
+                  <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sage-dark shadow-sm">
+                    <Icon size={18} />
                   </span>
-                  <h3 className="mt-5 font-serif text-2xl font-semibold text-ink">{title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-anthracite/75">{text}</p>
-                </Card>
+                  <div>
+                    <h3 className="font-serif text-xl font-semibold text-ink">{title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-anthracite/75">{text}</p>
+                  </div>
+                </div>
               </ScrollReveal>
             ))}
           </div>
 
-          <div className="mt-8 grid gap-8 lg:grid-cols-[0.68fr_0.32fr] lg:items-start">
-            <ScrollReveal className="space-y-4">
+          <ScrollReveal className="mx-auto mt-8 max-w-5xl space-y-4">
               {[
                 {
                   icon: Building2,
@@ -339,14 +319,14 @@ export function HomePage() {
                   text: 'Le coaching professionnel aide les dirigeants, managers, salariés et professionnels en transition à prendre du recul sur leurs décisions, leur communication et leur posture. Il peut soutenir une prise de poste, une évolution de carrière, une difficulté relationnelle, une surcharge, une perte de confiance ou un besoin de repositionnement. L’accompagnement reste concret : clarifier la situation, identifier les ressources, travailler les marges de manoeuvre et retrouver une manière d’agir plus alignée.'
                 },
                 {
-                  icon: ClipboardCheck,
-                  title: 'Bilan de compétences et transitions professionnelles',
-                  text: 'Le bilan de compétences s’adresse aux personnes qui souhaitent faire le point sur leur parcours, leurs motivations, leurs compétences et leurs pistes d’évolution. Il ne concerne pas uniquement la reconversion : il peut aider à préparer une mobilité, retrouver du sens, sécuriser une décision ou construire un projet professionnel réaliste. L’approche articule réflexion personnelle, réalité du marché, conditions de faisabilité et équilibre de vie.'
-                },
-                {
                   icon: Shuffle,
                   title: 'Accompagnement du changement et cohésion d’équipe',
                   text: 'Une transformation RH, une croissance rapide, une fusion, une évolution de métier ou une nouvelle organisation se vit d’abord dans le quotidien des équipes. L’accompagnement du changement aide à rendre les transitions plus lisibles : clarification des objectifs, analyse des impacts humains, communication, ateliers d’équipe, soutien des managers et suivi dans la durée. L’enjeu est de préserver l’engagement, la coopération et la santé du collectif.'
+                },
+                {
+                  icon: ClipboardCheck,
+                  title: 'Bilan de compétences et transitions professionnelles',
+                  text: 'Le bilan de compétences s’adresse aux personnes qui souhaitent faire le point sur leur parcours, leurs motivations, leurs compétences et leurs pistes d’évolution. Il ne concerne pas uniquement la reconversion : il peut aider à préparer une mobilité, retrouver du sens, sécuriser une décision ou construire un projet professionnel réaliste. L’approche articule réflexion personnelle, réalité du marché, conditions de faisabilité et équilibre de vie.'
                 }
               ].map(({ icon: Icon, title, text }) => (
                 <details key={title} className="group rounded-2xl border border-sand bg-white p-0 shadow-sm transition-all duration-300 open:border-sage-dark/25 open:shadow-soft">
@@ -362,167 +342,158 @@ export function HomePage() {
                   </div>
                 </details>
               ))}
+          </ScrollReveal>
 
-              <Card className="overflow-hidden border border-sand bg-white p-0 shadow-sm">
-                <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
-                  <div className="relative min-h-[260px] overflow-hidden bg-ivory">
-                    <iframe
-                      title="Carte Google Maps - ACT&RH"
-                      src="https://www.google.com/maps?q=35%20chemin%20de%20Buissaison%2C%2031180%20Lapeyrouse-Fossat&output=embed"
-                      className="absolute inset-0 h-full w-full grayscale-[15%]"
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    />
-                    <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/5" />
-                  </div>
-
-                  <div className="p-6 sm:p-7">
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Adresse professionnelle</p>
-                    <h3 className="mt-3 font-serif text-2xl font-semibold leading-tight text-ink">
-                      Un point d’ancrage près de Toulouse
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-anthracite/75">
-                      Les rendez-vous peuvent être organisés en visioconférence, à Toulouse ou en déplacement après cadrage de l’accompagnement, notamment pour les missions en entreprise.
-                    </p>
-
-                    <div className="mt-5 grid gap-3">
-                      <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactInfo.address)}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group flex items-start gap-3 rounded-2xl border border-sand bg-ivory px-4 py-3 text-sm font-semibold text-ink transition-all hover:border-sage-dark/25 hover:bg-white"
-                      >
-                        <MapPin size={18} className="mt-0.5 shrink-0 text-sage-dark" />
-                        <span>{contactInfo.address}</span>
-                      </a>
-                      <a
-                        href={`tel:${contactInfo.phoneHref}`}
-                        className="group flex items-center gap-3 rounded-2xl border border-sand bg-ivory px-4 py-3 text-sm font-semibold text-ink transition-all hover:border-sage-dark/25 hover:bg-white"
-                      >
-                        <Phone size={18} className="shrink-0 text-sage-dark" />
-                        <span>{contactInfo.phone}</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </ScrollReveal>
-
-            <ScrollReveal className="space-y-5 lg:sticky lg:top-28">
-              <Card className="border border-sand bg-rosé">
-                <h3 className="font-serif text-2xl font-semibold text-ink">Recherches fréquentes</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {['Conseil RH Toulouse', 'Coaching professionnel', 'Bilan de compétences', 'Accompagnement du changement', 'Management', 'Transitions professionnelles', 'PME', 'Dirigeants'].map((keyword) => (
-                    <span key={keyword} className="rounded-full bg-white px-3 py-1.5 text-xs font-bold text-sage-dark">{keyword}</span>
-                  ))}
-                </div>
-              </Card>
-
-              <Card className="border border-sand bg-white">
-                <h3 className="font-serif text-2xl font-semibold text-ink">Trouver le bon accompagnement</h3>
-                <div className="mt-5 grid gap-3">
+          <ScrollReveal className="mx-auto mt-6 max-w-5xl">
+            <details className="group rounded-2xl border border-sand bg-ivory p-0 shadow-sm transition-all duration-300 open:border-sage-dark/25 open:bg-white open:shadow-soft">
+              <summary className="flex cursor-pointer list-none items-center gap-4 px-5 py-5 [&::-webkit-details-marker]:hidden">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-sage-dark">
+                  <CheckCircle2 size={20} />
+                </span>
+                <h3 className="flex-1 font-serif text-xl font-semibold leading-snug text-ink sm:text-2xl">Une méthode sobre et ajustée</h3>
+                <ChevronDown size={20} className="shrink-0 text-sage-dark transition-transform duration-300 group-open:rotate-180" />
+              </summary>
+              <div className="px-5 pb-6 pl-[4.25rem]">
+                <div className="relative grid gap-4 lg:grid-cols-7">
                   {[
-                    ['Conseil RH', '/services/conseil-rh-entreprises'],
-                    ['Coaching professionnel', '/services/accompagnement-individuel'],
-                    ['Bilan de compétences', '/services/bilan-de-competences'],
-                    ['Changement', '/services/accompagnement-changement']
-                  ].map(([label, to]) => (
-                    <Link key={label} to={to} className="group flex items-center justify-between rounded-xl border border-sand bg-ivory px-4 py-3 text-sm font-bold text-ink transition-all hover:border-sage-dark/25 hover:bg-white">
-                      {label}
-                      <ArrowRight size={15} className="text-sage-dark transition-transform group-hover:translate-x-1" />
-                    </Link>
+                    { label: 'Écouter', icon: HeartHandshake },
+                    { label: 'Comprendre', icon: Lightbulb },
+                    { label: 'Clarifier', icon: Target },
+                    { label: 'Accompagner', icon: Users },
+                    { label: 'Ajuster', icon: Shuffle },
+                    { label: 'Transmettre', icon: ClipboardCheck },
+                    { label: 'Sécuriser', icon: ShieldCheck }
+                  ].map(({ label, icon: Icon }, index) => (
+                    <div key={label} className="relative flex min-w-0 items-center gap-3 rounded-2xl border border-sand bg-white px-3 py-4 shadow-[0_10px_24px_rgba(14,27,41,0.035)] lg:flex lg:flex-col lg:items-center lg:gap-0 lg:px-2 lg:text-center xl:px-3">
+                      <span className="relative z-10 mx-0 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ink bg-ink text-[#C9B27C] lg:mx-auto">
+                        <Icon size={18} />
+                      </span>
+                      <p className="min-w-0 flex-1 whitespace-nowrap font-serif text-sm font-semibold leading-tight text-ink sm:text-base lg:order-3 lg:mt-3 lg:w-full lg:flex-none lg:text-center lg:text-[0.72rem] xl:text-[0.86rem]">{label}</p>
+                      <span className="ml-auto flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ivory text-xs font-bold text-ink lg:order-2 lg:mx-auto lg:mt-4 lg:self-center">
+                        {index + 1}
+                      </span>
+                    </div>
                   ))}
                 </div>
-              </Card>
-
-              <Card className="border border-sand bg-white">
-                <h3 className="font-serif text-2xl font-semibold text-ink">Zones d’intervention</h3>
-                <p className="mt-3 text-sm leading-7 text-anthracite/75">
-                  Toulouse, Haute-Garonne, Occitanie et accompagnements à distance partout en France.
-                </p>
-                <div className="mt-5">
-                  <ButtonLink to="/contact" className="w-full justify-center">Prendre contact</ButtonLink>
-                </div>
-              </Card>
-            </ScrollReveal>
+              </div>
+            </details>
+          </ScrollReveal>
           </div>
         </Container>
       </Section>
 
-      {/* Méthode Section */}
-      <Section className="bg-white">
-        <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr] items-center">
-          <ScrollReveal className="space-y-6">
-            <GridTitle title="Une méthode sobre et ajustée" text="Écouter, comprendre, clarifier, accompagner, ajuster, transmettre et sécuriser les transitions." />
-            <div className="overflow-hidden rounded-[2rem] border border-sand bg-white p-3 shadow-[0_20px_50px_rgba(14,27,41,0.06)] hover:shadow-soft transition-all duration-500">
-              <img 
-                src="/images/transition_professionnelle.png" 
-                alt="Méthode de planification de transition" 
-                onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }}
-                className="aspect-[4/3] w-full rounded-[1.5rem] object-cover"
-              />
+      {/* Zone géographique Section */}
+      <Section className="border-y border-sand bg-ivory">
+        <Container>
+          <ScrollReveal>
+            <div className="grid overflow-hidden rounded-[2rem] border border-sand bg-white shadow-[0_22px_60px_rgba(14,27,41,0.07)] lg:grid-cols-[0.95fr_1.05fr]">
+              <div className="relative min-h-[260px] lg:min-h-full">
+                <img
+                  src="/images/toulouse-garonne.jpg"
+                  alt="Vue de Toulouse et des bords de Garonne"
+                  onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-ink/35 via-transparent to-transparent" />
+                <div className="absolute bottom-5 left-5 rounded-full border border-white/50 bg-white/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-ink backdrop-blur">
+                  Clarifier / Sécuriser / Faire progresser
+                </div>
+              </div>
+
+              <div className="p-6 sm:p-8 lg:p-10">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Toulouse, Occitanie et France entière</p>
+                <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+                  Une présence locale, avec des formats souples selon la mission
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-anthracite/75 sm:text-base">
+                  Caroline Tillou Maratuech travaille depuis Toulouse avec des entreprises, dirigeants, managers et professionnels en transition. Les accompagnements peuvent se dérouler en visio, en présentiel à Toulouse ou sur site lorsque la mission le justifie, notamment pour les diagnostics RH, ateliers collectifs, accompagnements du changement et interventions auprès des équipes.
+                </p>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                  {[
+                    { icon: MapPin, label: 'Toulouse', text: 'Ancrage local' },
+                    { icon: MonitorCheck, label: 'Visio', text: 'Suivi à distance' },
+                    { icon: Route, label: 'Déplacement', text: 'Selon la mission' }
+                  ].map(({ icon: Icon, label, text }) => (
+                    <div key={label} className="rounded-2xl border border-sand bg-ivory p-4">
+                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-rosé text-sage-dark">
+                        <Icon size={18} />
+                      </span>
+                      <p className="mt-3 text-sm font-bold text-ink">{label}</p>
+                      <p className="mt-1 text-xs leading-5 text-anthracite/65">{text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </ScrollReveal>
-          
-          <div className="grid gap-4 sm:grid-cols-1">
-            {[
-              'Expertise académique et terrain', 
-              'Approche sur mesure', 
-              'Structure à taille humaine', 
-              'Contact direct avec Caroline', 
-              'Accompagnement individuel et collectif', 
-              'Approche centrée sur l’humain'
-            ].map((item, index) => (
-              <ScrollReveal key={item} delay={index * 100}>
-                <div className="flex items-center gap-4 rounded-2xl border border-sand bg-white p-5 shadow-sm transition-all duration-500 hover:border-sage-dark/20 hover:shadow-[0_18px_44px_rgba(14,27,41,0.06)]">
-                  <span className="rounded-full bg-sage p-2 text-sage-dark">
-                    <CheckCircle2 size={18} />
-                  </span>
-                  <span className="font-semibold text-ink text-sm sm:text-base">{item}</span>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
         </Container>
       </Section>
 
-      {/* Témoignages / Avis Section */}
-      <Section className="border-y border-sand bg-rosé">
-        <Container>
-          <ScrollReveal>
-            <GridTitle title="Avis clients" text="Retours d'expérience sur les accompagnements proposés par ACT&RH." />
-          </ScrollReveal>
-          <TestimonialsCarousel testimonials={liveTestimonials} />
-        </Container>
-      </Section>
-
-      {/* Ressources RH Section */}
+      {/* Contact Section */}
       <Section className="bg-white">
         <Container>
-          <ScrollReveal className="flex flex-wrap items-end justify-between gap-5">
-            <GridTitle title="Ressources RH" text="Articles de fond pour éclairer les transitions humaines, managériales et professionnelles." />
-            <Link className="inline-flex items-center gap-2 font-bold text-sage-dark hover:text-ink transition-colors group" to="/blog">
-              Voir le blog <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
-            </Link>
-          </ScrollReveal>
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            {livePosts.slice(0, 3).map((post, index) => (
-              <ScrollReveal key={post.id} delay={index * 100}>
-                <BlogCard post={post} />
-              </ScrollReveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
+          <ScrollReveal>
+            <Card className="overflow-hidden border border-sand bg-white p-0 shadow-sm">
+              <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
+                <div className="relative min-h-[260px] overflow-hidden bg-ivory">
+                  <iframe
+                    title="Carte Google Maps - ACT&RH"
+                    src="https://www.google.com/maps?q=35%20chemin%20de%20Buissaison%2C%2031180%20Lapeyrouse-Fossat&output=embed"
+                    className="absolute inset-0 h-full w-full grayscale-[15%]"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                  <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/5" />
+                </div>
 
-      {/* FAQ Section */}
-      <Section className="border-y border-sand bg-sage/20">
-        <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <ScrollReveal>
-            <GridTitle title="Questions fréquentes" text="Des réponses courtes pour comprendre le cadre d’intervention." />
+                <div className="p-6 sm:p-7">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Contact</p>
+                  <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-ink">Prenons contact</h2>
+                  <p className="mt-3 text-sm leading-7 text-anthracite/75">
+                    Les rendez-vous peuvent être organisés en visioconférence, à Toulouse ou en déplacement après cadrage de l’accompagnement, notamment pour les missions en entreprise.
+                  </p>
+
+                  <div className="mt-5 grid gap-3">
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactInfo.address)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group flex items-start gap-3 rounded-2xl border border-sand bg-ivory px-4 py-3 text-sm font-semibold text-ink transition-all hover:border-sage-dark/25 hover:bg-white"
+                    >
+                      <MapPin size={18} className="mt-0.5 shrink-0 text-sage-dark" />
+                      <span>{contactInfo.address}</span>
+                    </a>
+                    <a
+                      href={`tel:${contactInfo.phoneHref}`}
+                      className="group flex items-center gap-3 rounded-2xl border border-sand bg-ivory px-4 py-3 text-sm font-semibold text-ink transition-all hover:border-sage-dark/25 hover:bg-white"
+                    >
+                      <Phone size={18} className="shrink-0 text-sage-dark" />
+                      <span>{contactInfo.phone}</span>
+                    </a>
+                    <a
+                      href={`mailto:${contactInfo.email}`}
+                      className="group rounded-2xl border border-sand bg-ivory px-4 py-3 text-sm font-semibold text-ink transition-all hover:border-sage-dark/25 hover:bg-white"
+                    >
+                      {contactInfo.email}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Card>
           </ScrollReveal>
-          <ScrollReveal>
-            <FAQAccordion items={liveFaqs.slice(2, 8)} />
+
+          <ScrollReveal className="mt-6">
+            <Card className="border border-sand bg-ivory">
+              <h2 className="font-serif text-3xl font-semibold text-ink">Zones d’intervention</h2>
+              <p className="mt-3 text-sm leading-7 text-anthracite/75">
+                Toulouse, Haute-Garonne, Occitanie et accompagnements à distance partout en France.
+              </p>
+              <div className="mt-5">
+                <ButtonLink to="/contact">Prendre contact</ButtonLink>
+              </div>
+            </Card>
           </ScrollReveal>
         </Container>
       </Section>
@@ -544,11 +515,52 @@ export function HomePage() {
                   <p className="mt-4 text-lg leading-relaxed text-white">Un échange permet de poser les premiers repères, sans pression commerciale.</p>
                 </div>
                 <Link className="btn-shimmer btn-pulse focus-ring shrink-0 rounded-full bg-white px-8 py-4 font-bold text-ink shadow-[0_12px_28px_rgba(201,178,124,0.25)] transition-all duration-300 hover:bg-champagne hover:text-white hover:scale-105" to="/contact">
-                  Parler de votre situation
+                  Vous êtes...
                 </Link>
               </div>
             </div>
           </ScrollReveal>
+        </Container>
+      </Section>
+
+      {/* Témoignages / Avis Section */}
+      <Section className="border-y border-sand bg-rosé">
+        <Container>
+          <ScrollReveal>
+            <GridTitle title="Avis clients" text="Retours d'expérience sur les accompagnements proposés par ACT&RH." />
+          </ScrollReveal>
+          <TestimonialsCarousel testimonials={liveTestimonials} />
+        </Container>
+      </Section>
+
+      {/* FAQ Section */}
+      <Section className="border-y border-sand bg-sage/20">
+        <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <ScrollReveal>
+            <GridTitle title="Questions fréquentes" text="Des réponses courtes pour comprendre le cadre d’intervention." />
+          </ScrollReveal>
+          <ScrollReveal>
+            <FAQAccordion items={liveFaqs.slice(2, 8)} />
+          </ScrollReveal>
+        </Container>
+      </Section>
+
+      {/* Ressources RH Section */}
+      <Section className="bg-white">
+        <Container>
+          <ScrollReveal className="flex flex-wrap items-end justify-between gap-5">
+            <GridTitle title="Ressources RH" text="Articles de fond pour éclairer les transitions humaines, managériales et professionnelles." />
+            <Link className="inline-flex items-center gap-2 font-bold text-sage-dark hover:text-ink transition-colors group" to="/blog">
+              Voir le blog <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
+            </Link>
+          </ScrollReveal>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {livePosts.slice(0, 3).map((post, index) => (
+              <ScrollReveal key={post.id} delay={index * 100}>
+                <BlogCard post={post} />
+              </ScrollReveal>
+            ))}
+          </div>
         </Container>
       </Section>
     </>
