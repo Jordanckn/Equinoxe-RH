@@ -3,7 +3,11 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { contactInfo, navItems, services } from '../data/content';
 import { trackEvent } from '../lib/analytics';
+import { supabase } from '../lib/supabaseClient';
 import { Container } from './ui';
+
+const DEFAULT_SITE_LOGO = '/images/equinoxe-RH-logo.webp';
+const FALLBACK_SITE_LOGO = '/images/logo-equinoxe-rh.svg';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -13,7 +17,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileAudienceOpen, setMobileAudienceOpen] = useState(false);
   const [mobilePlusOpen, setMobilePlusOpen] = useState(false);
+  const [siteLogo, setSiteLogo] = useState(DEFAULT_SITE_LOGO);
   const location = useLocation();
+
+  useEffect(() => {
+    if (!supabase) return;
+    supabase.from('site_settings').select('value').eq('key', 'site_logo_url').single()
+      .then(({ data }) => {
+        if (typeof data?.value === 'string' && data.value.trim()) setSiteLogo(data.value);
+      });
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -71,7 +84,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Container className="flex h-20 items-center justify-between gap-5">
           <Link to="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="ACT&RH">
             <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm">
-              <img src="/images/equinoxe-RH-logo.webp" alt="" onError={(event) => { event.currentTarget.src = '/images/logo-equinoxe-rh.svg'; }} className="h-full w-full object-contain" />
+              <img src={siteLogo} alt="" onError={(event) => { event.currentTarget.src = FALLBACK_SITE_LOGO; }} className="h-full w-full object-contain" />
             </span>
             <span className="flex flex-col leading-none">
               <span className="font-serif text-2xl font-semibold text-ink">ACT&RH</span>
@@ -344,7 +357,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link to="/" className="inline-flex items-center gap-4" aria-label="ACT&RH">
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white">
                 <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full">
-                  <img src="/images/equinoxe-RH-logo.webp" alt="" onError={(event) => { event.currentTarget.src = '/images/logo-equinoxe-rh.svg'; }} className="h-full w-full object-contain" />
+                  <img src={siteLogo} alt="" onError={(event) => { event.currentTarget.src = FALLBACK_SITE_LOGO; }} className="h-full w-full object-contain" />
                 </span>
               </span>
               <span className="font-serif text-3xl text-[#C9B27C]">ACT&RH</span>

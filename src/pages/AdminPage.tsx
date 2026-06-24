@@ -916,11 +916,12 @@ function StatsAdmin() {
 }
 
 // ─── Settings ─────────────────────────────────────────────────────────────────
-function SiteImageUploader({ label, settingKey, description, storagePath }: {
-  label: string; settingKey: string; description: string; storagePath: string;
+function SiteImageUploader({ label, settingKey, description, storagePath, variant = 'photo' }: {
+  label: string; settingKey: string; description: string; storagePath: string; variant?: 'photo' | 'logo';
 }) {
   const [current, setCurrent] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [dragging, setDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -931,7 +932,8 @@ function SiteImageUploader({ label, settingKey, description, storagePath }: {
   }, [settingKey]);
 
   async function handleFile(file: File) {
-    if (!file.type.startsWith('image/') || !supabase) return;
+    if (!file.type.startsWith('image/')) { setError('Seules les images sont acceptées.'); return; }
+    if (!supabase) { setError('Supabase non configuré.'); return; }
     setError(null); setUploading(true);
     try {
       const webpBlob = await convertToWebP(file);
@@ -951,21 +953,55 @@ function SiteImageUploader({ label, settingKey, description, storagePath }: {
       <p className="font-semibold text-ink">{label}</p>
       <p className="mt-1 text-xs text-anthracite/50">{description}</p>
       <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-start">
-        {current ? (
-          <div className="relative w-full max-w-[180px] overflow-hidden rounded-xl border border-sand">
-            <img src={current} alt="" className="aspect-[4/5] w-full object-cover object-center" />
-          </div>
-        ) : (
-          <div className="flex h-32 w-[180px] shrink-0 items-center justify-center rounded-xl bg-ivory text-anthracite/30">
-            <Image size={28} />
-          </div>
-        )}
+        <div
+          onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+          onDragLeave={() => setDragging(false)}
+          onDrop={(e) => {
+            e.preventDefault();
+            setDragging(false);
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+          }}
+          onClick={() => inputRef.current?.click()}
+          className={`relative flex w-full max-w-[180px] shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-dashed transition ${variant === 'logo' ? 'h-32 bg-white p-4' : 'h-56 bg-ivory'} ${dragging ? 'border-sage-dark bg-sage/10' : 'border-sand hover:border-sage-dark/50'}`}
+        >
+          {current ? (
+            <img
+              src={current}
+              alt=""
+              className={variant === 'logo' ? 'max-h-full max-w-full object-contain' : 'h-full w-full object-cover object-center'}
+            />
+          ) : (
+            <div className="grid justify-items-center gap-2 text-anthracite/35">
+              {uploading ? <div className="h-8 w-8 animate-spin rounded-full border-4 border-sand border-t-sage-dark" /> : <Upload size={28} />}
+              <span className="text-center text-xs font-semibold text-anthracite/50">Glisser-déposer</span>
+            </div>
+          )}
+          {current && uploading ? (
+            <div className="absolute inset-0 flex items-center justify-center bg-white/80">
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-sand border-t-sage-dark" />
+            </div>
+          ) : null}
+        </div>
         <div className="flex flex-col gap-3">
           <button type="button" onClick={() => inputRef.current?.click()}
             className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2.5 text-sm font-semibold text-ink hover:border-sage-dark/40 hover:bg-ivory">
             {uploading ? <div className="h-4 w-4 animate-spin rounded-full border-2 border-sand border-t-ink" /> : <Upload size={15} />}
-            {uploading ? 'Conversion & upload...' : 'Changer la photo'}
+            {uploading ? 'Conversion & upload...' : variant === 'logo' ? 'Changer le logo' : 'Changer la photo'}
           </button>
+          <div
+            onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+            onDragLeave={() => setDragging(false)}
+            onDrop={(e) => {
+              e.preventDefault();
+              setDragging(false);
+              const file = e.dataTransfer.files[0];
+              if (file) handleFile(file);
+            }}
+            className={`rounded-xl border border-dashed px-4 py-3 text-xs transition ${dragging ? 'border-sage-dark bg-sage/10 text-ink' : 'border-sand bg-ivory text-anthracite/50'}`}
+          >
+            Glissez une image ici, ou cliquez sur le bouton.
+          </div>
           <p className="text-xs text-anthracite/50">PNG, JPG ou WebP — converti automatiquement en WebP</p>
           {error ? <p className="text-xs text-red-500">{error}</p> : null}
           {current ? <p className="max-w-xs truncate font-mono text-[10px] text-anthracite/40">{current}</p> : null}
@@ -1007,7 +1043,14 @@ function SettingsAdmin() {
       {/* Images du site */}
       <div className="mt-6">
         <p className="text-xs font-bold uppercase tracking-widest text-[#C9B27C]">Photos du site</p>
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
+        <div className="mt-4 grid gap-4 lg:grid-cols-3">
+          <SiteImageUploader
+            label="Logo du site"
+            description="Logo affiché en haut à gauche du site et dans le pied de page."
+            settingKey="site_logo_url"
+            storagePath="logo/act-rh-logo.webp"
+            variant="logo"
+          />
           <SiteImageUploader
             label="Photo Hero — Page d'accueil"
             description="Grande photo affichée en haut de la page d'accueil, à côté du titre principal."
