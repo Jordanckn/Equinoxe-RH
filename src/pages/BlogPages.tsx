@@ -274,7 +274,7 @@ export function ArticlePage() {
               <p className="mt-4 text-sm leading-6 text-anthracite/70">
                 Temps estimé : {readingTime(post.content)} minutes. La barre suit votre avancée dans la lecture.
               </p>
-              <Link to="/contact" className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-sage-dark">
+              <Link to="/contact" className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-sage px-5 py-3 text-sm font-bold text-white transition hover:bg-sage-dark">
                 Échanger sur ce sujet <ArrowRight size={15} />
               </Link>
             </aside>

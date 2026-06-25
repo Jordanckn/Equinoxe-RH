@@ -207,7 +207,7 @@ export function ServicesIndexPage() {
         
         <Container className="relative z-10 pb-12 pt-10 sm:pb-16 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div>
-            <p className="mb-5 inline-flex rounded-full border border-sage-dark/20 bg-sage px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Services</p>
+            <p className="mb-5 inline-flex rounded-full border border-sage-dark/20 bg-sage px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white">Services</p>
             <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-ink sm:text-6xl animate-fade-in-up">Des accompagnements RH et coaching sur mesure</h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-anthracite/80 animate-fade-in-up delay-100">J'accompagne les entreprises, collectifs et personnes dans leurs transitions avec une approche structurée, humaine et confidentielle.</p>
           </div>
@@ -500,7 +500,7 @@ function List({ items, ordered = false, compact = false, highlight = false }: { 
       <ol className={`${compact ? 'space-y-2' : 'space-y-3'} mt-4 list-none pl-0`}>
         {items.map((item, idx) => (
           <li key={item} className={`flex items-start text-anthracite/85 ${compact ? 'gap-3 text-sm' : 'gap-4'}`}>
-            <span className={`${compact ? 'h-5 w-5 text-xs' : 'h-6 w-6 text-sm'} flex shrink-0 items-center justify-center rounded-full bg-sage font-serif font-bold text-sage-dark`}>
+            <span className={`${compact ? 'h-5 w-5 text-xs' : 'h-6 w-6 text-sm'} flex shrink-0 items-center justify-center rounded-full bg-sage font-serif font-bold text-white`}>
               {idx + 1}
             </span>
             <span className="leading-7">{highlight ? <HighlightedText text={item} /> : item}</span>

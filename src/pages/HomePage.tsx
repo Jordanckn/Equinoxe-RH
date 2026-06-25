@@ -81,7 +81,7 @@ export function HomePage() {
         <Container className="relative z-10">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-6">
-              <p className="animate-fade-in inline-flex rounded-full border border-sage-dark/20 bg-sage px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">
+              <p className="animate-fade-in inline-flex rounded-full border border-sage-dark/20 bg-sage px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white">
                 Toulouse, Occitanie et à distance
               </p>
               <h1 className="animate-fade-in-up max-w-4xl text-balance font-serif text-4xl font-semibold leading-[1.06] text-ink sm:text-6xl xl:text-7xl">
@@ -135,7 +135,7 @@ export function HomePage() {
                 ['Proximité & Distance', MapPin, 'Toulouse, Occitanie et France entière']
               ].map(([label, Icon, desc]) => (
                 <div key={String(label)} className="flex items-center gap-4 rounded-xl p-4 transition-colors hover:bg-sage/20">
-                  <span className="rounded-full bg-sage px-2.5 py-2.5 text-sage-dark"><Icon size={18} /></span>
+                  <span className="rounded-full bg-sage px-2.5 py-2.5 text-white"><Icon size={18} /></span>
                   <div>
                     <h4 className="text-sm font-bold leading-tight text-ink sm:text-base">{String(label)}</h4>
                     <p className="text-xs text-anthracite/60 mt-1">{String(desc)}</p>
@@ -365,7 +365,7 @@ export function HomePage() {
                     { label: 'Sécuriser', icon: ShieldCheck }
                   ].map(({ label, icon: Icon }, index) => (
                     <div key={label} className="relative flex min-w-0 items-center gap-3 rounded-2xl border border-sand bg-white px-3 py-4 shadow-[0_10px_24px_rgba(14,27,41,0.035)] lg:flex lg:flex-col lg:items-center lg:gap-0 lg:px-2 lg:text-center xl:px-3">
-                      <span className="relative z-10 mx-0 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ink bg-ink text-[#C9B27C] lg:mx-auto">
+                      <span className="relative z-10 mx-0 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ink bg-ink text-[#D8C3B5] lg:mx-auto">
                         <Icon size={18} />
                       </span>
                       <p className="min-w-0 flex-1 whitespace-nowrap font-serif text-sm font-semibold leading-tight text-ink sm:text-base lg:order-3 lg:mt-3 lg:w-full lg:flex-none lg:text-center lg:text-[0.72rem] xl:text-[0.86rem]">{label}</p>
@@ -504,17 +504,17 @@ export function HomePage() {
           <ScrollReveal>
             <div className="relative overflow-hidden rounded-[2.5rem] bg-ink px-8 py-14 shadow-soft sm:px-12 sm:py-20 border border-ink/20">
               {/* Decorative circles — golden transparent */}
-              <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full border-[56px] border-[#C9B27C] opacity-25" />
-              <div className="absolute -left-16 -bottom-16 h-64 w-64 rounded-full border-[36px] border-[#C9B27C] opacity-20" />
-              <div className="absolute right-[30%] top-[20%] h-32 w-32 rounded-full border-[16px] border-[#C9B27C] opacity-15" />
+              <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full border-[56px] border-[#D8C3B5] opacity-25" />
+              <div className="absolute -left-16 -bottom-16 h-64 w-64 rounded-full border-[36px] border-[#D8C3B5] opacity-20" />
+              <div className="absolute right-[30%] top-[20%] h-32 w-32 rounded-full border-[16px] border-[#D8C3B5] opacity-15" />
 
               <div className="relative z-10 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
                 <div className="max-w-3xl">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C9B27C]">Échange gratuit & confidentiel</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#D8C3B5]">Échange gratuit & confidentiel</p>
                   <h3 className="mt-3 font-serif text-3xl font-semibold leading-tight text-white sm:text-5xl">Vous traversez une transition humaine, managériale ou professionnelle ?</h3>
                   <p className="mt-4 text-lg leading-relaxed text-white">Un échange permet de poser les premiers repères, sans pression commerciale.</p>
                 </div>
-                <Link className="btn-shimmer btn-pulse focus-ring shrink-0 rounded-full bg-white px-8 py-4 font-bold text-ink shadow-[0_12px_28px_rgba(201,178,124,0.25)] transition-all duration-300 hover:bg-champagne hover:text-white hover:scale-105" to="/contact">
+                <Link className="btn-shimmer btn-pulse focus-ring shrink-0 rounded-lg bg-sage px-8 py-4 font-bold text-white shadow-[0_12px_28px_rgba(111,143,130,0.24)] transition-all duration-300 hover:scale-105 hover:bg-sage-dark" to="/contact">
                   Vous êtes...
                 </Link>
               </div>
@@ -636,7 +636,7 @@ function TestimonialsCarousel({ testimonials: items }: { testimonials: Testimoni
             <button
               key={i}
               onClick={() => { go(i); restart(); }}
-              className={`h-2 rounded-full transition-all duration-300 ${i === current ? 'w-6 bg-[#C9B27C]' : 'w-2 bg-ink/20 hover:bg-ink/40'}`}
+              className={`h-2 rounded-full transition-all duration-300 ${i === current ? 'w-6 bg-[#D8C3B5]' : 'w-2 bg-ink/20 hover:bg-ink/40'}`}
               aria-label={`Aller à l'avis ${i + 1}`}
             />
           ))}

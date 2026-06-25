@@ -40,14 +40,14 @@ export function CookieConsent() {
             <button
               type="button"
               onClick={() => saveConsent('refused')}
-              className="rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-sage-dark hover:text-sage-dark"
+              className="rounded-lg border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-sage-dark hover:text-sage-dark"
             >
               Refuser
             </button>
             <button
               type="button"
               onClick={() => saveConsent('accepted')}
-              className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-sage-dark"
+              className="rounded-lg bg-sage px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-sage-dark"
             >
               Accepter
             </button>

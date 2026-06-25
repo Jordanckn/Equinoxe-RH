@@ -696,7 +696,7 @@ function FaqAdmin() {
 
       {/* Add / Edit form */}
       {showForm ? (
-        <div id="faq-form" className="mt-5 rounded-2xl border border-[#C9B27C]/30 bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+        <div id="faq-form" className="mt-5 rounded-2xl border border-[#D8C3B5]/30 bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
           <p className="mb-4 text-sm font-bold text-ink">
             {isEditing ? 'Modifier la FAQ' : 'Nouvelle FAQ'}{' '}
             <span className="font-normal text-anthracite/50">— {pageInfo.label}</span>
@@ -736,7 +736,7 @@ function FaqAdmin() {
             Aucune FAQ pour <strong>{pageInfo.label}</strong>.<br />Cliquez sur "Ajouter une FAQ" ou "Importer les FAQ initiales".
           </div>
         ) : filteredRows.map((item) => (
-          <div key={item.id} className={`rounded-2xl border bg-white p-5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] transition ${form.id === item.id && showForm ? 'border-[#C9B27C]/40 ring-1 ring-[#C9B27C]/20' : 'border-sand'}`}>
+          <div key={item.id} className={`rounded-2xl border bg-white p-5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] transition ${form.id === item.id && showForm ? 'border-[#D8C3B5]/40 ring-1 ring-[#D8C3B5]/20' : 'border-sand'}`}>
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
@@ -807,7 +807,7 @@ function StatsAdmin() {
           { label: 'Demandes reçues', value: leads.length, color: 'bg-sage' },
           { label: 'Articles publiés', value: articles.published, color: 'bg-green-100' },
           { label: 'Articles brouillon', value: articles.draft, color: 'bg-amber-50' },
-          { label: 'Avis clients', value: avisCount, color: 'bg-[#C9B27C]/15' },
+          { label: 'Avis clients', value: avisCount, color: 'bg-[#D8C3B5]/15' },
         ].map(({ label, value, color }) => (
           <div key={label} className={`rounded-2xl ${color} p-6`}>
             <p className="text-sm font-semibold text-anthracite/70">{label}</p>
@@ -829,7 +829,7 @@ function StatsAdmin() {
                     <span className="ml-2 shrink-0 font-bold text-anthracite/60">{count}</span>
                   </div>
                   <div className="h-2 w-full overflow-hidden rounded-full bg-ivory">
-                    <div className="h-2 rounded-full bg-[#C9B27C]" style={{ width: `${(count / maxLeads) * 100}%` }} />
+                    <div className="h-2 rounded-full bg-[#D8C3B5]" style={{ width: `${(count / maxLeads) * 100}%` }} />
                   </div>
                 </div>
               ))}
@@ -879,10 +879,10 @@ function StatsAdmin() {
               <div key={name}>
                 <div className="mb-1 flex items-center justify-between text-sm">
                   <span className="font-mono font-semibold text-ink">{name}</span>
-                  <span className="ml-2 shrink-0 font-bold text-[#C9B27C]">{count}</span>
+                  <span className="ml-2 shrink-0 font-bold text-[#D8C3B5]">{count}</span>
                 </div>
                 <div className="h-1.5 w-full overflow-hidden rounded-full bg-ivory">
-                  <div className="h-1.5 rounded-full bg-[#C9B27C]" style={{ width: `${(count / (events[0]?.count ?? 1)) * 100}%` }} />
+                  <div className="h-1.5 rounded-full bg-[#D8C3B5]" style={{ width: `${(count / (events[0]?.count ?? 1)) * 100}%` }} />
                 </div>
               </div>
             ))}
@@ -897,7 +897,7 @@ function StatsAdmin() {
           <div className="grid gap-2">
             {recentEvents.map((ev, i) => (
               <div key={i} className="flex items-center justify-between gap-4 rounded-xl border border-sand px-4 py-2.5 text-sm">
-                <span className="font-mono text-xs font-bold text-[#C9B27C] shrink-0">{ev.name}</span>
+                <span className="font-mono text-xs font-bold text-[#D8C3B5] shrink-0">{ev.name}</span>
                 <span className="text-anthracite/60 truncate flex-1">{ev.path}</span>
                 <span className="shrink-0 text-xs text-anthracite/40">{new Date(ev.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
               </div>
@@ -1042,7 +1042,7 @@ function SettingsAdmin() {
 
       {/* Images du site */}
       <div className="mt-6">
-        <p className="text-xs font-bold uppercase tracking-widest text-[#C9B27C]">Photos du site</p>
+        <p className="text-xs font-bold uppercase tracking-widest text-[#D8C3B5]">Photos du site</p>
         <div className="mt-4 grid gap-4 lg:grid-cols-3">
           <SiteImageUploader
             label="Logo du site"
@@ -1068,7 +1068,7 @@ function SettingsAdmin() {
 
       {/* Coordonnées */}
       <div className="mt-8">
-        <p className="text-xs font-bold uppercase tracking-widest text-[#C9B27C]">Coordonnées & contact</p>
+        <p className="text-xs font-bold uppercase tracking-widest text-[#D8C3B5]">Coordonnées & contact</p>
         <div className="mt-4 grid gap-4 rounded-2xl bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
           {Object.entries(SETTING_LABELS).map(([key, label]) => (
             <Field key={key} label={label}>

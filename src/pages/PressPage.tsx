@@ -139,7 +139,7 @@ export function PressPage() {
             <section key={section.title} className="scroll-mt-24">
               <div className="mb-8 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-sage text-sage-dark">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-sage text-white">
                     <section.icon size={24} />
                   </div>
                   <h2 className="font-serif text-3xl font-semibold leading-tight text-ink sm:text-5xl">{section.title}</h2>
@@ -165,7 +165,7 @@ function ArticleCard({ item }: { item: PressItem }) {
   return (
     <Card className="flex h-full flex-col transition-all duration-300 hover:-translate-y-1 hover:border-sage-dark/25 hover:shadow-[0_24px_60px_rgba(31,51,71,0.1)]">
       <div className="mb-5 flex flex-wrap gap-3">
-        <span className="rounded-full bg-[#EAF3FF] px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink">{item.date}</span>
+        <span className="rounded-full bg-ivory px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-ink">{item.date}</span>
       </div>
       <h3 className="font-serif text-2xl font-semibold leading-tight text-ink">{item.title}</h3>
       <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-sage-dark">{item.themes}</p>
@@ -175,7 +175,7 @@ function ArticleCard({ item }: { item: PressItem }) {
           href={item.link}
           target="_blank"
           rel="noreferrer"
-          className="focus-ring mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-white transition hover:bg-sage-dark"
+          className="focus-ring mt-6 inline-flex w-fit items-center gap-2 rounded-lg bg-sage px-5 py-2.5 text-sm font-bold text-white transition hover:bg-sage-dark"
         >
           {item.cta ?? 'En savoir plus'} <ExternalLink size={15} />
         </a>

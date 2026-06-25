@@ -12,10 +12,10 @@ export function Section({ children, className = '' }: { children: ReactNode; cla
 export function ButtonLink({ to, children, variant = 'primary', className = '' }: { to: string; children: ReactNode; variant?: 'primary' | 'secondary'; className?: string }) {
   const cls =
     variant === 'primary'
-      ? 'bg-ink text-white shadow-[0_12px_28px_rgba(0,0,0,0.18)] hover:bg-sage-dark'
+      ? 'bg-sage text-white shadow-[0_12px_28px_rgba(111,143,130,0.22)] hover:bg-sage-dark'
       : 'border border-ink/15 bg-white text-ink hover:border-sage-dark hover:text-sage-dark hover:shadow-sm';
   return (
-    <Link to={to} className={`focus-ring inline-flex min-h-11 items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${cls} ${className}`}>
+    <Link to={to} className={`focus-ring inline-flex min-h-11 items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${cls} ${className}`}>
       {children}
     </Link>
   );

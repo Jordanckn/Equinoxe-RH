@@ -173,7 +173,7 @@ export function AudiencePage() {
 
           <aside className="space-y-8 lg:sticky lg:top-24">
             <Card className="border border-sand bg-white p-8">
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-sage text-sage-dark">
+              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-sage text-white">
                 <Icon size={32} />
               </div>
               <h3 className="font-serif text-2xl font-semibold text-ink">Une approche sur mesure</h3>

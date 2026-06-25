@@ -38,7 +38,7 @@ export function AboutPage() {
 
               {/* Bloc valeurs */}
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#C9B27C]">Notre identité</p>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#D8C3B5]">Notre identité</p>
                 <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight text-ink">
                   L'exigence académique au service du terrain
                 </h2>
@@ -58,7 +58,7 @@ export function AboutPage() {
                   { Icon: Lightbulb, titre: 'Utilité réelle', texte: 'Des accompagnements concrets, ajustés à ce que vous vivez — pas à un modèle.' },
                 ].map(({ Icon, titre, texte }) => (
                   <div key={titre} className="rounded-2xl border border-sand bg-ivory p-5">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#C9B27C] shadow-sm">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#D8C3B5] shadow-sm">
                       <Icon size={20} />
                     </span>
                     <p className="mt-4 font-serif text-lg font-semibold text-ink">{titre}</p>
@@ -70,7 +70,7 @@ export function AboutPage() {
               {/* Bloc cabinet */}
               <div className="border-t border-sand pt-8">
                 <h2 className="font-serif text-3xl font-semibold text-ink">Caroline Tillou Maratuech</h2>
-                <p className="mt-1 text-sm font-bold uppercase tracking-[0.14em] text-[#C9B27C]">Fondatrice & dirigeante d'ACT&RH</p>
+                <p className="mt-1 text-sm font-bold uppercase tracking-[0.14em] text-[#D8C3B5]">Fondatrice & dirigeante d'ACT&RH</p>
                 <p className="mt-5 text-lg leading-8 text-anthracite/80">
                   Docteure en Gestion des Ressources Humaines et certifiée Coach Consultante RNCP Niveau 7, Caroline Tillou Maratuech réunit une double expertise rare : celle de la chercheuse qui comprend les dynamiques organisationnelles en profondeur, et celle de la praticienne qui sait agir dans le réel, avec les personnes, dans leurs contextes.
                 </p>
@@ -107,7 +107,7 @@ export function AboutPage() {
                     ['Approche centrée sur l\'humain', Heart, false],
                   ] as const).map(([title, Icon, isGold]) => (
                     <div key={String(title)} className="flex items-center gap-3.5">
-                      <span className={`rounded-full p-2 ${isGold ? 'bg-[#C9B27C]/15 text-[#C9B27C]' : 'bg-sage/20 text-sage-dark'}`}>
+                      <span className={`rounded-full p-2 ${isGold ? 'bg-[#D8C3B5]/15 text-[#D8C3B5]' : 'bg-sage/20 text-sage-dark'}`}>
                         <Icon size={16} />
                       </span>
                       <span className="text-sm font-semibold text-ink">{String(title)}</span>

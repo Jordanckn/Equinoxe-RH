@@ -33,7 +33,7 @@ export function FAQPage() {
             <FAQAccordion items={liveFaqs} grouped />
             <aside className="space-y-6 lg:sticky lg:top-24">
               <div className="rounded-2xl border border-sand bg-white p-6 shadow-soft">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-sage px-2.5 py-2.5 text-sage-dark">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-sage px-2.5 py-2.5 text-white">
                   <MessageCircleQuestion size={22} />
                 </div>
                 <h3 className="font-serif text-xl font-semibold text-ink">Vous ne trouvez pas la réponse ?</h3>
@@ -167,7 +167,7 @@ function PrivacyPage() {
           <aside className="rounded-2xl border border-sand bg-white p-6 shadow-[0_18px_50px_rgba(14,27,41,0.05)] lg:sticky lg:top-28">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-sage-dark">Vos droits</p>
             <p className="mt-3 text-sm leading-6 text-anthracite/75">Pour toute demande concernant vos données personnelles, écrivez directement à ACT&RH.</p>
-            <a href={`mailto:${contactInfo.email}`} className="mt-5 inline-flex w-full justify-center rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-sage-dark">
+            <a href={`mailto:${contactInfo.email}`} className="mt-5 inline-flex w-full justify-center rounded-lg bg-sage px-5 py-3 text-sm font-bold text-white transition hover:bg-sage-dark">
               Contacter le responsable
             </a>
           </aside>
@@ -364,7 +364,7 @@ function CookiesPage() {
               <button
                 type="button"
                 onClick={() => savePreferences(analytics)}
-                className="rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-sage-dark"
+                className="rounded-lg bg-sage px-5 py-3 text-sm font-bold text-white transition hover:bg-sage-dark"
               >
                 Enregistrer mes choix
               </button>
@@ -372,14 +372,14 @@ function CookiesPage() {
                 <button
                   type="button"
                   onClick={() => savePreferences(false)}
-                  className="rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-bold text-ink transition hover:border-sage-dark hover:text-sage-dark"
+                  className="rounded-lg border border-ink/15 bg-white px-5 py-2.5 text-sm font-bold text-ink transition hover:border-sage-dark hover:text-sage-dark"
                 >
                   Tout refuser
                 </button>
                 <button
                   type="button"
                   onClick={() => savePreferences(true)}
-                  className="rounded-full border border-sage-dark bg-rosé px-5 py-2.5 text-sm font-bold text-sage-dark transition hover:bg-sage-dark hover:text-white"
+                  className="rounded-lg bg-sage px-5 py-2.5 text-sm font-bold text-white transition hover:bg-sage-dark"
                 >
                   Tout accepter
                 </button>

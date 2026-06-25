@@ -60,12 +60,12 @@ export function ContactForm() {
   if (status === 'success') {
     return (
       <div className="success-card rounded-2xl border border-ink/10 bg-white shadow-[0_18px_44px_rgba(31,51,71,0.06)] px-8 py-14 flex flex-col items-center text-center">
-        <div className="success-icon-circle mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-ink shadow-[0_12px_40px_rgba(14,27,41,0.18)]">
+        <div className="success-icon-circle mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-sage shadow-[0_12px_40px_rgba(111,143,130,0.22)]">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               className="success-check"
               d="M8 21L16 29L32 13"
-              stroke="#C9B27C"
+              stroke="#D8C3B5"
               strokeWidth="3.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -74,7 +74,7 @@ export function ContactForm() {
         </div>
 
         <div className="success-text space-y-4 max-w-sm">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#C9B27C]">Demande envoyee</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#D8C3B5]">Demande envoyee</p>
           <h2 className="font-serif text-3xl font-semibold text-ink leading-snug">
             Merci{firstName ? `, ${firstName}` : ''} !
           </h2>
@@ -117,7 +117,7 @@ export function ContactForm() {
         <input required type="checkbox" checked={form.consent} onChange={(e) => setForm({ ...form, consent: e.target.checked })} />
         J&apos;accepte que les informations transmises soient utilisees pour repondre a ma demande.
       </label>
-      <button disabled={status === 'loading'} className="focus-ring rounded-full bg-ink px-6 py-3 font-semibold text-white shadow-[0_12px_28px_rgba(31,51,71,0.18)] transition hover:bg-sage-dark disabled:opacity-60">
+      <button disabled={status === 'loading'} className="focus-ring rounded-lg bg-sage px-6 py-3 font-semibold text-white shadow-[0_12px_28px_rgba(111,143,130,0.22)] transition hover:bg-sage-dark disabled:opacity-60">
         {status === 'loading' ? 'Envoi en cours...' : 'Envoyer ma demande'}
       </button>
       {status === 'error' ? <p className="rounded-lg bg-red-50 p-4 text-sm text-red-700">Le message n&apos;a pas pu etre transmis. Vous pouvez aussi ecrire directement a contact.actrh@gmail.com.</p> : null}

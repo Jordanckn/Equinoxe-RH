@@ -88,7 +88,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </span>
             <span className="flex flex-col leading-none">
               <span className="font-serif text-2xl font-semibold text-ink">ACT&RH</span>
-              <span className="mt-1 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#C9B27C]">Conseil RH</span>
+              <span className="mt-1 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#D8C3B5]">Conseil RH</span>
             </span>
           </Link>
           <nav className="hidden items-center rounded-full border border-ink/10 bg-white px-2 py-2 shadow-[0_12px_32px_rgba(31,51,71,0.06)] lg:flex" aria-label="Navigation principale">
@@ -224,10 +224,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
             })}
           </nav>
           <div className="hidden items-center gap-3 lg:flex">
-            <a onClick={() => trackEvent('phone_click')} className="focus-ring rounded-full border border-ink/10 bg-white px-4 py-2 text-sm font-semibold text-ink transition hover:border-sage-dark hover:text-sage-dark" href={`tel:${contactInfo.phoneHref}`}>
+            <a onClick={() => trackEvent('phone_click')} className="focus-ring rounded-lg border border-ink/10 bg-white px-4 py-2 text-sm font-semibold text-ink transition hover:border-sage-dark hover:text-sage-dark" href={`tel:${contactInfo.phoneHref}`}>
               {contactInfo.phone}
             </a>
-            <Link className="focus-ring inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(31,51,71,0.18)] transition hover:bg-sage-dark" to="/contact">
+            <Link className="focus-ring inline-flex items-center gap-2 rounded-lg bg-sage px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(111,143,130,0.22)] transition hover:bg-sage-dark" to="/contact">
               Contact <ArrowRight size={15} />
             </Link>
           </div>
@@ -343,7 +343,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                 );
               })}
-              <Link className="mt-2 inline-flex items-center justify-center rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" to="/contact" onClick={() => setOpen(false)}>
+              <Link className="mt-2 inline-flex items-center justify-center rounded-lg bg-sage px-5 py-3 text-sm font-semibold text-white transition hover:bg-sage-dark" to="/contact" onClick={() => setOpen(false)}>
                 Échanger sur votre besoin
               </Link>
             </Container>
@@ -360,14 +360,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <img src={siteLogo} alt="" onError={(event) => { event.currentTarget.src = FALLBACK_SITE_LOGO; }} className="h-full w-full object-contain" />
                 </span>
               </span>
-              <span className="font-serif text-3xl text-[#C9B27C]">ACT&RH</span>
+              <span className="font-serif text-3xl text-[#D8C3B5]">ACT&RH</span>
             </Link>
             <p className="mt-4 max-w-md text-white/75">Conseil RH, coaching professionnel, accompagnement du changement et bilan de compétences à Toulouse, en Occitanie et à distance.</p>
             <div className="mt-6 flex items-center gap-3" aria-label="Réseaux sociaux">
               <a
                 href={contactInfo.linkedin}
                 aria-label="LinkedIn"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-[#C9B27C]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-[#D8C3B5]"
               >
                 <Linkedin size={18} />
               </a>
@@ -375,43 +375,43 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 href={`mailto:${contactInfo.email}`}
                 onClick={() => trackEvent('email_click')}
                 aria-label="Envoyer un email"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-[#C9B27C]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-[#D8C3B5]"
               >
                 <Mail size={18} />
               </a>
             </div>
           </div>
           <div className="space-y-3 text-sm text-white/80">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#C9B27C]">Contact</p>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#D8C3B5]">Contact</p>
             <p>{contactInfo.address}</p>
             <p>SIRET : 788 556 488 00039</p>
             <p>{contactInfo.hours}</p>
-            <a className="flex items-center gap-2 transition-colors hover:text-[#C9B27C]" href={`mailto:${contactInfo.email}`} onClick={() => trackEvent('email_click')}><Mail size={16} /> {contactInfo.email}</a>
-            <a className="flex items-center gap-2 transition-colors hover:text-[#C9B27C]" href={`tel:${contactInfo.phoneHref}`} onClick={() => trackEvent('phone_click')}><Phone size={16} /> {contactInfo.phone}</a>
-            <a className="flex items-center gap-2 transition-colors hover:text-[#C9B27C]" href={contactInfo.linkedin}><Linkedin size={16} /> LinkedIn</a>
+            <a className="flex items-center gap-2 transition-colors hover:text-[#D8C3B5]" href={`mailto:${contactInfo.email}`} onClick={() => trackEvent('email_click')}><Mail size={16} /> {contactInfo.email}</a>
+            <a className="flex items-center gap-2 transition-colors hover:text-[#D8C3B5]" href={`tel:${contactInfo.phoneHref}`} onClick={() => trackEvent('phone_click')}><Phone size={16} /> {contactInfo.phone}</a>
+            <a className="flex items-center gap-2 transition-colors hover:text-[#D8C3B5]" href={contactInfo.linkedin}><Linkedin size={16} /> LinkedIn</a>
           </div>
           <div className="grid gap-2 text-sm text-white/80">
-            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#C9B27C]">Plan du site</p>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/">Accueil</Link>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/a-propos">Le Cabinet</Link>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/services">Conseil & Coaching</Link>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/blog">Ressources RH</Link>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/on-parle-de-nous">On parle de nous</Link>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/faq">FAQ</Link>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/contact">Contact</Link>
+            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#D8C3B5]">Plan du site</p>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/">Accueil</Link>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/a-propos">Le Cabinet</Link>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/services">Conseil & Coaching</Link>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/blog">Ressources RH</Link>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/on-parle-de-nous">On parle de nous</Link>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/faq">FAQ</Link>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/contact">Contact</Link>
           </div>
           <div className="grid gap-2 text-sm text-white/80">
-            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#C9B27C]">Informations</p>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/mentions-legales">Mentions légales</Link>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/politique-confidentialite">Politique de confidentialité</Link>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/cookies">Cookies</Link>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/cgv-cgu">CGV / CGU</Link>
-            <Link className="transition-colors hover:text-[#C9B27C]" to="/admin">Administration</Link>
+            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#D8C3B5]">Informations</p>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/mentions-legales">Mentions légales</Link>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/politique-confidentialite">Politique de confidentialité</Link>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/cookies">Cookies</Link>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/cgv-cgu">CGV / CGU</Link>
+            <Link className="transition-colors hover:text-[#D8C3B5]" to="/admin">Administration</Link>
           </div>
         </Container>
         <div className="border-t border-white/10 py-4 text-center text-sm text-white/65">
           site réalisé par{' '}
-          <a href="https://webfityou.com" target="_blank" rel="noreferrer" className="font-bold underline decoration-white/45 underline-offset-4 transition hover:text-[#C9B27C]">
+          <a href="https://webfityou.com" target="_blank" rel="noreferrer" className="font-bold underline decoration-white/45 underline-offset-4 transition hover:text-[#D8C3B5]">
             WebFitYou
           </a>
         </div>
