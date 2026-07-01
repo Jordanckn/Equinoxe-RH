@@ -1,12 +1,14 @@
 import type { BlogPost, FAQ, Service } from '../types';
 
-const baseUrl = 'https://www.equinoxe-rh.fr';
+const baseUrl = 'https://www.act-rh.com';
 
 export const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': ['Organization', 'ProfessionalService'],
+  '@type': ['Organization', 'ProfessionalService', 'LocalBusiness'],
   name: 'ACT&RH',
+  alternateName: 'ACT et RH',
   founder: 'Caroline Tillou Maratuech',
+  foundingDate: '2020',
   url: baseUrl,
   email: 'contact.actrh@gmail.com',
   telephone: '+33687022508',
@@ -18,8 +20,92 @@ export const organizationSchema = {
     addressRegion: 'Occitanie',
     addressCountry: 'FR'
   },
-  areaServed: ['Toulouse', 'Haute-Garonne', 'Occitanie', 'France', 'Visioconférence'],
-  sameAs: ['https://www.linkedin.com/in/caroline-tillou-maratuech-2b30372a/']
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '43.6918',
+    longitude: '1.4798'
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Toulouse' },
+    { '@type': 'AdministrativeArea', name: 'Haute-Garonne' },
+    { '@type': 'AdministrativeArea', name: 'Occitanie' },
+    { '@type': 'Country', name: 'France' }
+  ],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00'
+    }
+  ],
+  priceRange: '€€',
+  currenciesAccepted: 'EUR',
+  knowsAbout: [
+    'Conseil RH',
+    'Gestion des ressources humaines',
+    'Coaching professionnel',
+    'Accompagnement du changement',
+    'Bilan de compétences',
+    'Management',
+    'Leadership',
+    'Transitions professionnelles',
+    'Développement des compétences',
+    'Co-développement professionnel',
+    'Formations managériales',
+    'Intelligence collective',
+    'Engagement des équipes',
+    'Reconversion professionnelle'
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Accompagnements ACT&RH',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Conseil RH pour TPE, PME et organisations',
+          url: `${baseUrl}/services/conseil-rh-entreprises`
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Accompagnement du changement',
+          url: `${baseUrl}/services/accompagnement-changement`
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Accompagnement individuel',
+          url: `${baseUrl}/services/accompagnement-individuel`
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Bilan de compétences',
+          url: `${baseUrl}/services/bilan-de-competences`
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Formations, ateliers et co-développement',
+          url: `${baseUrl}/services/formations-ateliers-codeveloppement`
+        }
+      }
+    ]
+  },
+  sameAs: [
+    'https://www.linkedin.com/in/caroline-tillou-maratuech-2b30372a/'
+  ]
 };
 
 export const personSchema = {
@@ -27,8 +113,22 @@ export const personSchema = {
   '@type': 'Person',
   name: 'Caroline Tillou Maratuech',
   jobTitle: 'Consultante RH, coach professionnelle et docteure en gestion des ressources humaines',
-  worksFor: { '@type': 'Organization', name: 'ACT&RH' },
-  knowsAbout: ['Conseil RH', 'Accompagnement du changement', 'Coaching professionnel', 'Bilan de compétences']
+  honorificSuffix: 'Docteure en GRH',
+  worksFor: { '@type': 'Organization', name: 'ACT&RH', url: baseUrl },
+  alumniOf: 'Doctorat en Gestion des Ressources Humaines',
+  hasCredential: 'Coach Consultant RNCP 7',
+  knowsAbout: [
+    'Conseil RH',
+    'Accompagnement du changement',
+    'Coaching professionnel',
+    'Bilan de compétences',
+    'Management',
+    'Gestion des ressources humaines',
+    'Co-développement'
+  ],
+  sameAs: [
+    'https://www.linkedin.com/in/caroline-tillou-maratuech-2b30372a/'
+  ]
 };
 
 export function faqSchema(faqs: FAQ[]) {
@@ -50,9 +150,18 @@ export function serviceSchema(service: Service) {
     name: service.title,
     provider: organizationSchema,
     areaServed: ['Toulouse', 'Occitanie', 'France à distance'],
-    audience: service.targetAudience.join(', '),
+    audience: {
+      '@type': 'Audience',
+      audienceType: service.targetAudience.join(', ')
+    },
     description: service.shortDescription,
-    url: `${baseUrl}/services/${service.slug}`
+    url: `${baseUrl}/services/${service.slug}`,
+    serviceType: 'Conseil RH et coaching professionnel',
+    offers: {
+      '@type': 'Offer',
+      url: `${baseUrl}/contact`,
+      description: 'Premier échange sans engagement'
+    }
   };
 }
 
@@ -66,9 +175,20 @@ export function articleSchema(post: BlogPost) {
     image: image.startsWith('http') ? image : `${baseUrl}${image}`,
     keywords: post.tags.join(', '),
     author: personSchema,
-    publisher: organizationSchema,
+    publisher: {
+      ...organizationSchema,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/images/equinoxe-RH-logo.webp`
+      }
+    },
     datePublished: post.published_at,
     dateModified: post.published_at,
-    mainEntityOfPage: `${baseUrl}/blog/${post.slug}`
+    mainEntityOfPage: `${baseUrl}/blog/${post.slug}`,
+    inLanguage: 'fr-FR',
+    about: {
+      '@type': 'Thing',
+      name: post.category
+    }
   };
 }

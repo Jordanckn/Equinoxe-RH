@@ -341,7 +341,7 @@ function blogCollectionSchema(items: BlogPost[]) {
       '@type': 'BlogPosting',
       headline: post.title,
       description: post.excerpt,
-      url: `https://www.equinoxe-rh.fr/blog/${post.slug}`,
+      url: `https://www.act-rh.com/blog/${post.slug}`,
       datePublished: post.published_at,
       keywords: post.tags.join(', ')
     }))
@@ -353,9 +353,9 @@ function breadcrumbSchema(post: BlogPost) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.equinoxe-rh.fr/' },
-      { '@type': 'ListItem', position: 2, name: 'Ressources RH', item: 'https://www.equinoxe-rh.fr/blog' },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.equinoxe-rh.fr/blog/${post.slug}` }
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.act-rh.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Ressources RH', item: 'https://www.act-rh.com/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.act-rh.com/blog/${post.slug}` }
     ]
   };
 }

@@ -231,7 +231,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               Contact <ArrowRight size={15} />
             </Link>
           </div>
-          <button className="focus-ring rounded-full border border-ink/10 bg-white p-2.5 shadow-sm lg:hidden" onClick={() => setOpen(!open)} aria-label="Ouvrir le menu">
+          <button className="focus-ring rounded-full border border-ink/10 bg-white p-2.5 shadow-sm lg:hidden" onClick={() => setOpen(!open)} aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={open}>
             {open ? <X /> : <Menu />}
           </button>
         </Container>
@@ -245,13 +245,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
                       <div className="grid gap-2">
                         <button
                           onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                          aria-expanded={mobileServicesOpen}
+                          aria-controls="mobile-services-menu"
                           className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-lg font-semibold text-ink"
                         >
                           <span>{item.label}</span>
                           <ChevronDown size={18} className={`transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
                         </button>
                         {mobileServicesOpen && (
-                          <div className="ml-3 grid gap-2.5 border-l border-sage/40 pb-2 pl-4">
+                          <div id="mobile-services-menu" className="ml-3 grid gap-2.5 border-l border-sage/40 pb-2 pl-4">
                             <Link 
                               to="/services" 
                               onClick={() => { setOpen(false); setMobileServicesOpen(false); }}
@@ -275,13 +277,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
                       <div className="grid gap-2">
                         <button
                           onClick={() => setMobileAudienceOpen(!mobileAudienceOpen)}
+                          aria-expanded={mobileAudienceOpen}
+                          aria-controls="mobile-audience-menu"
                           className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-lg font-semibold text-ink"
                         >
                           <span>Vous êtes</span>
                           <ChevronDown size={18} className={`transition-transform duration-200 ${mobileAudienceOpen ? 'rotate-180' : ''}`} />
                         </button>
                         {mobileAudienceOpen && (
-                          <div className="ml-3 grid gap-2.5 border-l border-sage/40 pb-2 pl-4">
+                          <div id="mobile-audience-menu" className="ml-3 grid gap-2.5 border-l border-sage/40 pb-2 pl-4">
                             <div
                               className="py-1 text-sm font-semibold uppercase tracking-[0.15em] text-sage-dark"
                             >
@@ -308,13 +312,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <div key="plus-mobile" className="grid gap-2">
                       <button
                         onClick={() => setMobilePlusOpen(!mobilePlusOpen)}
+                        aria-expanded={mobilePlusOpen}
+                        aria-controls="mobile-plus-menu"
                         className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-lg font-semibold text-ink"
                       >
                         <span>Plus</span>
                         <ChevronDown size={18} className={`transition-transform duration-200 ${mobilePlusOpen ? 'rotate-180' : ''}`} />
                       </button>
                       {mobilePlusOpen && (
-                        <div className="ml-3 grid gap-2.5 border-l border-sage/40 pb-2 pl-4">
+                        <div id="mobile-plus-menu" className="ml-3 grid gap-2.5 border-l border-sage/40 pb-2 pl-4">
                           <Link
                             to={plusItems[0].href}
                             onClick={() => { setOpen(false); setMobilePlusOpen(false); }}

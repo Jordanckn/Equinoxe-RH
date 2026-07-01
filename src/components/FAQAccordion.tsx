@@ -38,9 +38,11 @@ function FAQList({
         return (
           <div key={faq.id} className={`transition-colors duration-200 ${isOpen ? 'bg-sage/25' : 'bg-white hover:bg-sage/10'}`}>
             <button
+              id={`faq-btn-${faq.id}`}
               className="focus-ring flex w-full items-start justify-between gap-4 px-6 py-5 text-left"
               onClick={() => setOpen(isOpen ? null : faq.id)}
               aria-expanded={isOpen}
+              aria-controls={`faq-panel-${faq.id}`}
             >
               <span className="font-semibold leading-snug text-ink">{faq.question}</span>
               <span className={`mt-0.5 shrink-0 rounded-full p-1 transition-all duration-300 ${
@@ -50,6 +52,9 @@ function FAQList({
               </span>
             </button>
             <div
+              id={`faq-panel-${faq.id}`}
+              role="region"
+              aria-labelledby={`faq-btn-${faq.id}`}
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
                 isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
               }`}

@@ -137,7 +137,7 @@ export function HomePage() {
                 <div key={String(label)} className="flex items-center gap-4 rounded-xl p-4 transition-colors hover:bg-sage/20">
                   <span className="rounded-full bg-sage px-2.5 py-2.5 text-white"><Icon size={18} /></span>
                   <div>
-                    <h4 className="text-sm font-bold leading-tight text-ink sm:text-base">{String(label)}</h4>
+                    <p className="text-sm font-bold leading-tight text-ink sm:text-base">{String(label)}</p>
                     <p className="text-xs text-anthracite/60 mt-1">{String(desc)}</p>
                   </div>
                 </div>
