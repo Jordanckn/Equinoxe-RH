@@ -170,7 +170,7 @@ export function HomePage() {
             <div className="logo-marquee flex w-max items-center gap-6">
               {[...trustedLogos, ...trustedLogos].map((logo, index) => (
                 <div key={`${logo.name}-${index}`} className="flex h-20 w-44 shrink-0 items-center justify-center rounded-xl border border-ink/5 bg-white px-5 shadow-[0_10px_30px_rgba(14,27,41,0.04)]">
-                  <img src={logo.src} alt={logo.name} onError={(event) => { event.currentTarget.src = '/images/equinoxe-RH-logo.webp'; }} className="max-h-12 max-w-full object-contain" loading="lazy" />
+                  <img src={logo.src} alt={logo.name} onError={(event) => { event.currentTarget.src = '/images/equinoxe-RH-logo.webp'; }} className="max-h-12 max-w-full object-contain" loading="lazy" width="176" height="80" />
                 </div>
               ))}
             </div>
@@ -437,7 +437,16 @@ export function HomePage() {
           <ScrollReveal>
             <Card className="overflow-hidden border border-sand bg-white p-0 shadow-sm">
               <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
-                <MapFacade />
+                <div className="relative min-h-[260px] overflow-hidden bg-sage/5">
+                  <iframe
+                    title="Carte Google Maps - ACT&RH"
+                    src="https://www.google.com/maps?q=35%20chemin%20de%20Buissaison%2C%2031180%20Lapeyrouse-Fossat&output=embed"
+                    className="absolute inset-0 h-full w-full grayscale-[15%]"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                  <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/5" />
+                </div>
 
                 <div className="p-6 sm:p-7">
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Contact</p>
@@ -558,35 +567,6 @@ export function HomePage() {
   );
 }
 
-function MapFacade() {
-  const [loaded, setLoaded] = useState(false);
-  return (
-    <div className="relative min-h-[260px] overflow-hidden bg-sage/5">
-      {loaded ? (
-        <iframe
-          title="Carte Google Maps - ACT&RH"
-          src="https://www.google.com/maps?q=35%20chemin%20de%20Buissaison%2C%2031180%20Lapeyrouse-Fossat&output=embed"
-          className="absolute inset-0 h-full w-full grayscale-[15%]"
-          loading="eager"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-      ) : (
-        <button
-          type="button"
-          onClick={() => setLoaded(true)}
-          className="absolute inset-0 flex w-full flex-col items-center justify-center gap-3 border-0 bg-transparent transition-colors hover:bg-sage/10"
-          aria-label="Afficher la carte Google Maps"
-        >
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-sage/20 text-sage-dark">
-            <MapPin size={28} />
-          </span>
-          <span className="text-sm font-medium text-anthracite/60">Afficher la carte</span>
-        </button>
-      )}
-      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/5" />
-    </div>
-  );
-}
 
 function GridTitle({ title, text }: { title: string; text: string }) {
   return (

@@ -66,7 +66,7 @@ function blogImageForCategory(category: string) {
 export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <Card className="group transition-all duration-500 hover:-translate-y-1 hover:border-champagne/30 hover:shadow-[0_30px_70px_rgba(14,27,41,0.08)] bg-white border border-sand">
-      <div className="flex gap-1 transition-transform duration-500 group-hover:scale-105" aria-label={`${testimonial.rating} sur 5`}>
+      <div role="img" className="flex gap-1 transition-transform duration-500 group-hover:scale-105" aria-label={`${testimonial.rating} sur 5`}>
         {Array.from({ length: 5 }).map((_, index) => (
           <Star key={index} size={17} className={index < testimonial.rating ? 'text-[#D8C3B5] fill-[#D8C3B5]' : 'text-sand fill-sand'} />
         ))}
