@@ -92,7 +92,7 @@ export function AboutPage() {
                 <img
                   src={photoSrc}
                   alt="Caroline Tillou Maratuech — ACT&RH"
-                  onError={(e) => { e.currentTarget.src = '/images/caroline_portrait.png'; }}
+                  onError={(e) => { e.currentTarget.src = '/images/caroline_portrait.webp'; }}
                   className="aspect-[4/5] w-full rounded-[1.25rem] object-cover object-center"
                 />
               </div>

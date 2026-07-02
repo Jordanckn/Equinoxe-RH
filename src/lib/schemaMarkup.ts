@@ -166,7 +166,7 @@ export function serviceSchema(service: Service) {
 }
 
 export function articleSchema(post: BlogPost) {
-  const image = post.cover_image_url ?? '/images/meeting_collaboration.png';
+  const image = post.cover_image_url ?? '/images/meeting_collaboration.webp';
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',

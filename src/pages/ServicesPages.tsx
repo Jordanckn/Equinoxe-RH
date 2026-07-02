@@ -23,11 +23,11 @@ import { services } from '../data/content';
 import { faqSchema, serviceSchema } from '../lib/schemaMarkup';
 
 const serviceImages: Record<string, string> = {
-  'conseil-rh-entreprises': '/images/service_conseil_rh.png',
-  'accompagnement-changement': '/images/transition_professionnelle.png',
-  'accompagnement-individuel': '/images/coaching_collaboration.png',
-  'bilan-de-competences': '/images/service_conseil_rh.png',
-  'formations-ateliers-codeveloppement': '/images/meeting_collaboration.png',
+  'conseil-rh-entreprises': '/images/service_conseil_rh.webp',
+  'accompagnement-changement': '/images/transition_professionnelle.webp',
+  'accompagnement-individuel': '/images/coaching_collaboration.webp',
+  'bilan-de-competences': '/images/service_conseil_rh.webp',
+  'formations-ateliers-codeveloppement': '/images/meeting_collaboration.webp',
 };
 
 const iconMap = {
@@ -215,7 +215,7 @@ export function ServicesIndexPage() {
             <img 
               src="/images/coaching_collaboration.png" 
               alt="Séance de coaching et conseil RH" 
-              onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }}
+              onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.webp'; }}
               className="h-full w-full rounded-[1.5rem] object-cover"
             />
           </div>
@@ -294,9 +294,9 @@ export function ServiceDetailPage() {
             <div className="space-y-5">
               <div className="overflow-hidden rounded-[2rem] border border-sand bg-white p-3.5 shadow-soft">
                 <img 
-                  src={serviceImages[service.slug] || '/images/meeting_collaboration.png'} 
+                  src={serviceImages[service.slug] || '/images/meeting_collaboration.webp'} 
                   alt={service.title} 
-                  onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }}
+                  onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.webp'; }}
                   className="aspect-[4/3] w-full rounded-[1.5rem] object-cover"
                 />
               </div>

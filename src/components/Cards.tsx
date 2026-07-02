@@ -40,8 +40,8 @@ export function BlogCard({ post }: { post: BlogPost }) {
   const image = post.cover_image_url ?? blogImageForCategory(post.category);
   return (
     <Card className="group grid h-full overflow-hidden rounded-xl p-0 transition-all duration-500 hover:-translate-y-1 hover:border-champagne/30 hover:shadow-[0_18px_42px_rgba(14,27,41,0.07)] bg-white border border-sand sm:grid-cols-[9rem_minmax(0,1fr)]">
-      <Link to={`/blog/${post.slug}`} className="block aspect-[16/7] overflow-hidden bg-sand sm:aspect-auto sm:min-h-full">
-        <img src={image} alt="" onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+      <Link to={`/blog/${post.slug}`} aria-hidden="true" tabIndex={-1} className="block aspect-[16/7] overflow-hidden bg-sand sm:aspect-auto sm:min-h-full">
+        <img src={image} alt="" onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.webp'; }} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
       </Link>
       <div className="flex min-w-0 flex-1 flex-col p-4">
         <p className="text-[0.64rem] font-bold uppercase tracking-[0.13em] text-sage-dark">{post.category}</p>
@@ -56,11 +56,11 @@ export function BlogCard({ post }: { post: BlogPost }) {
 }
 
 function blogImageForCategory(category: string) {
-  if (category.includes('changement')) return '/images/transition_professionnelle.png';
-  if (category.includes('Coaching')) return '/images/coaching_collaboration.png';
-  if (category.includes('Bilan')) return '/images/service_conseil_rh.png';
-  if (category.includes('Management')) return '/images/meeting_collaboration.png';
-  return '/images/meeting_collaboration.png';
+  if (category.includes('changement')) return '/images/transition_professionnelle.webp';
+  if (category.includes('Coaching')) return '/images/coaching_collaboration.webp';
+  if (category.includes('Bilan')) return '/images/service_conseil_rh.webp';
+  if (category.includes('Management')) return '/images/meeting_collaboration.webp';
+  return '/images/meeting_collaboration.webp';
 }
 
 export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {

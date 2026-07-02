@@ -389,9 +389,9 @@ export function HomePage() {
             <div className="grid overflow-hidden rounded-[2rem] border border-sand bg-white shadow-[0_22px_60px_rgba(14,27,41,0.07)] lg:grid-cols-[0.95fr_1.05fr]">
               <div className="relative min-h-[260px] lg:min-h-full">
                 <img
-                  src="/images/toulouse-garonne.jpg"
+                  src="/images/toulouse-garonne.webp"
                   alt="Vue de Toulouse et des bords de Garonne"
-                  onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.png'; }}
+                  onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.webp'; }}
                   className="absolute inset-0 h-full w-full object-cover"
                   loading="lazy"
                 />
@@ -437,16 +437,7 @@ export function HomePage() {
           <ScrollReveal>
             <Card className="overflow-hidden border border-sand bg-white p-0 shadow-sm">
               <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
-                <div className="relative min-h-[260px] overflow-hidden bg-ivory">
-                  <iframe
-                    title="Carte Google Maps - ACT&RH"
-                    src="https://www.google.com/maps?q=35%20chemin%20de%20Buissaison%2C%2031180%20Lapeyrouse-Fossat&output=embed"
-                    className="absolute inset-0 h-full w-full grayscale-[15%]"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                  <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/5" />
-                </div>
+                <MapFacade />
 
                 <div className="p-6 sm:p-7">
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Contact</p>
@@ -564,6 +555,36 @@ export function HomePage() {
         </Container>
       </Section>
     </>
+  );
+}
+
+function MapFacade() {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className="relative min-h-[260px] overflow-hidden bg-sage/5">
+      {loaded ? (
+        <iframe
+          title="Carte Google Maps - ACT&RH"
+          src="https://www.google.com/maps?q=35%20chemin%20de%20Buissaison%2C%2031180%20Lapeyrouse-Fossat&output=embed"
+          className="absolute inset-0 h-full w-full grayscale-[15%]"
+          loading="eager"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setLoaded(true)}
+          className="absolute inset-0 flex w-full flex-col items-center justify-center gap-3 border-0 bg-transparent transition-colors hover:bg-sage/10"
+          aria-label="Afficher la carte Google Maps"
+        >
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-sage/20 text-sage-dark">
+            <MapPin size={28} />
+          </span>
+          <span className="text-sm font-medium text-anthracite/60">Afficher la carte</span>
+        </button>
+      )}
+      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/5" />
+    </div>
   );
 }
 
