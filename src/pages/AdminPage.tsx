@@ -759,12 +759,78 @@ function FaqAdmin() {
 }
 
 // ─── Stats ────────────────────────────────────────────────────────────────────
+
+// Noms de pages lisibles (au lieu des URL) pour l'espace admin
+const PAGE_LABELS: Record<string, string> = {
+  '/': 'Accueil',
+  '/a-propos': 'À propos',
+  '/on-parle-de-nous': 'On parle de nous',
+  '/services': 'Services',
+  '/blog': 'Blog',
+  '/faq': 'FAQ',
+  '/temoignages': 'Témoignages',
+  '/contact': 'Contact',
+  '/conseil-rh-toulouse': 'Conseil RH à Toulouse',
+  '/coaching-professionnel-toulouse': 'Coaching professionnel à Toulouse',
+  '/bilan-de-competences-toulouse': 'Bilan de compétences à Toulouse',
+  '/accompagnement-changement-occitanie': 'Accompagnement du changement — Occitanie',
+  '/conseil-rh-a-distance': 'Conseil RH à distance',
+  '/mentions-legales': 'Mentions légales',
+  '/politique-confidentialite': 'Politique de confidentialité',
+  '/cookies': 'Cookies',
+  '/cgv-cgu': 'CGV / CGU',
+  '/admin': 'Espace admin',
+};
+
+// Types d'interactions en clair
+const EVENT_LABELS: Record<string, string> = {
+  page_view: 'Visite de la page',
+  phone_click: 'Clic sur le téléphone',
+  email_click: 'Clic sur l’email',
+  contact_submit: 'Formulaire de contact envoyé',
+  cta_click: 'Clic sur un bouton d’action',
+  article_read: 'Article lu',
+  bilan_request: 'Demande de bilan de compétences',
+  company_request: 'Demande entreprise',
+  individual_request: 'Demande particulier',
+  scroll_depth: 'Lecture en profondeur',
+  section_open: 'Ouverture d’une section',
+  blog_card_click: 'Clic sur un article du blog',
+  service_card_click: 'Clic sur un service',
+};
+
+function prettySlug(s: string) {
+  return s.replace(/-/g, ' ').replace(/(^|\s)\S/g, (c) => c.toUpperCase());
+}
+
+function pageLabel(path: string | null | undefined): string {
+  if (!path) return 'Page inconnue';
+  const clean = path.split('?')[0].replace(/\/+$/, '') || '/';
+  if (PAGE_LABELS[clean]) return PAGE_LABELS[clean];
+  const seg = clean.split('/').filter(Boolean);
+  if (seg[0] === 'services' && seg[1]) return `Service — ${prettySlug(seg[1])}`;
+  if (seg[0] === 'blog' && seg[1]) return `Article — ${prettySlug(seg[1])}`;
+  if (seg[0] === 'pour-qui' && seg[1]) return `Pour qui — ${prettySlug(seg[1])}`;
+  return clean;
+}
+
+function eventLabel(name: string): string {
+  return EVENT_LABELS[name] ?? name;
+}
+
+type PageStat = {
+  path: string;
+  label: string;
+  count: number;
+  recent: { name: string; created_at: string }[];
+};
+
 function StatsAdmin() {
   const [leads, setLeads] = useState<Record<string, unknown>[]>([]);
   const [articles, setArticles] = useState<{ published: number; draft: number }>({ published: 0, draft: 0 });
   const [avisCount, setAvisCount] = useState(0);
-  const [events, setEvents] = useState<{ name: string; count: number }[]>([]);
-  const [recentEvents, setRecentEvents] = useState<{ name: string; path: string; created_at: string }[]>([]);
+  const [pageStats, setPageStats] = useState<PageStat[]>([]);
+  const [expandedPage, setExpandedPage] = useState<string | null>(null);
 
   useEffect(() => {
     if (!supabase) return;
@@ -774,12 +840,21 @@ function StatsAdmin() {
       setArticles({ published: d.filter((r) => r.status === 'published').length, draft: d.filter((r) => r.status === 'draft').length });
     });
     supabase.from('testimonials').select('id', { count: 'exact', head: true }).then(({ count }) => setAvisCount(count ?? 0));
-    supabase.from('page_events').select('name').then(({ data }) => {
-      const counts: Record<string, number> = {};
-      for (const row of data ?? []) counts[row.name] = (counts[row.name] ?? 0) + 1;
-      setEvents(Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([name, count]) => ({ name, count })));
-    });
-    supabase.from('page_events').select('name, path, created_at').order('created_at', { ascending: false }).limit(20).then(({ data }) => setRecentEvents(data ?? []));
+    supabase
+      .from('page_events')
+      .select('name, path, created_at')
+      .order('created_at', { ascending: false })
+      .limit(3000)
+      .then(({ data }) => {
+        const groups: Record<string, PageStat> = {};
+        for (const row of data ?? []) {
+          const clean = String(row.path || '/').split('?')[0].replace(/\/+$/, '') || '/';
+          const g = groups[clean] ?? (groups[clean] = { path: clean, label: pageLabel(clean), count: 0, recent: [] });
+          g.count += 1;
+          if (g.recent.length < 20) g.recent.push({ name: row.name, created_at: row.created_at });
+        }
+        setPageStats(Object.values(groups).sort((a, b) => b.count - a.count));
+      });
   }, []);
 
   // Breakdown helpers
@@ -870,19 +945,19 @@ function StatsAdmin() {
         </div>
       )}
 
-      {/* Événements par type */}
-      {events.length > 0 && (
+      {/* Clics & interactions — total cumulé, par page */}
+      {pageStats.length > 0 && (
         <div className="mt-8 rounded-2xl bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
           <p className="mb-4 text-sm font-bold uppercase tracking-widest text-anthracite/50">Clics & interactions — total cumulé</p>
           <div className="grid gap-3">
-            {events.map(({ name, count }) => (
-              <div key={name}>
+            {pageStats.map(({ path, label, count }) => (
+              <div key={path}>
                 <div className="mb-1 flex items-center justify-between text-sm">
-                  <span className="font-mono font-semibold text-ink">{name}</span>
+                  <span className="font-semibold text-ink truncate">{label}</span>
                   <span className="ml-2 shrink-0 font-bold text-[#D8C3B5]">{count}</span>
                 </div>
                 <div className="h-1.5 w-full overflow-hidden rounded-full bg-ivory">
-                  <div className="h-1.5 rounded-full bg-[#D8C3B5]" style={{ width: `${(count / (events[0]?.count ?? 1)) * 100}%` }} />
+                  <div className="h-1.5 rounded-full bg-[#D8C3B5]" style={{ width: `${(count / (pageStats[0]?.count ?? 1)) * 100}%` }} />
                 </div>
               </div>
             ))}
@@ -890,23 +965,49 @@ function StatsAdmin() {
         </div>
       )}
 
-      {/* Événements récents */}
-      {recentEvents.length > 0 && (
+      {/* Activité récente — détail par page (repliable) */}
+      {pageStats.length > 0 && (
         <div className="mt-6 rounded-2xl bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
-          <p className="mb-4 text-sm font-bold uppercase tracking-widest text-anthracite/50">Activité récente</p>
+          <p className="text-sm font-bold uppercase tracking-widest text-anthracite/50">Activité récente — détail par page</p>
+          <p className="mb-4 mt-1 text-xs text-anthracite/40">Cliquez sur une page pour voir l’horaire de ses 20 dernières interactions.</p>
           <div className="grid gap-2">
-            {recentEvents.map((ev, i) => (
-              <div key={i} className="flex items-center justify-between gap-4 rounded-xl border border-sand px-4 py-2.5 text-sm">
-                <span className="font-mono text-xs font-bold text-[#D8C3B5] shrink-0">{ev.name}</span>
-                <span className="text-anthracite/60 truncate flex-1">{ev.path}</span>
-                <span className="shrink-0 text-xs text-anthracite/40">{new Date(ev.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</span>
-              </div>
-            ))}
+            {pageStats.map(({ path, label, count, recent }) => {
+              const open = expandedPage === path;
+              return (
+                <div key={path} className="overflow-hidden rounded-xl border border-sand">
+                  <button
+                    type="button"
+                    onClick={() => setExpandedPage(open ? null : path)}
+                    className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm transition hover:bg-ivory"
+                  >
+                    <span className="flex min-w-0 items-center gap-2">
+                      {open
+                        ? <ChevronDown size={15} className="shrink-0 text-anthracite/40" />
+                        : <ChevronRight size={15} className="shrink-0 text-anthracite/40" />}
+                      <span className="truncate font-semibold text-ink">{label}</span>
+                    </span>
+                    <span className="shrink-0 font-bold text-anthracite/60">{count} {count > 1 ? 'clics' : 'clic'}</span>
+                  </button>
+                  {open && (
+                    <ul className="grid gap-1.5 border-t border-sand bg-ivory/40 px-4 py-3">
+                      {recent.map((ev, i) => (
+                        <li key={i} className="flex items-center justify-between gap-4 text-xs">
+                          <span className="truncate text-anthracite/60">{eventLabel(ev.name)}</span>
+                          <span className="shrink-0 text-anthracite/40">
+                            {new Date(ev.created_at).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
 
-      {events.length === 0 && (
+      {pageStats.length === 0 && (
         <div className="mt-8 rounded-2xl border border-sand bg-white p-6 text-center">
           <p className="text-sm text-anthracite/50">Les clics et interactions des visiteurs apparaîtront ici dès la première visite.</p>
         </div>
