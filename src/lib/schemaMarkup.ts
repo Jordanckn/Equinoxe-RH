@@ -14,16 +14,16 @@ export const organizationSchema = {
   telephone: '+33687022508',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '35 chemin de Buissaison',
-    postalCode: '31180',
-    addressLocality: 'Lapeyrouse-Fossat',
+    streetAddress: '10bis rue de Garin',
+    postalCode: '31500',
+    addressLocality: 'Toulouse',
     addressRegion: 'Occitanie',
     addressCountry: 'FR'
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: '43.6918',
-    longitude: '1.4798'
+    latitude: '43.5960',
+    longitude: '1.4830'
   },
   areaServed: [
     { '@type': 'City', name: 'Toulouse' },

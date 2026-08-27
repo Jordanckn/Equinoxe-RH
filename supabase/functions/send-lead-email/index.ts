@@ -41,7 +41,7 @@ function emailBase(content: string): string {
         <td style="background:${IVORY};border:1px solid ${SAND};border-top:none;border-radius:0 0 16px 16px;padding:24px 40px;text-align:center;">
           <p style="margin:0;font-size:12px;color:#888;line-height:1.7;">
             ACT&RH — Caroline Tillou Maratuech<br/>
-            35 chemin de Buissaison, 31180 Lapeyrouse-Fossat<br/>
+            10bis rue de Garin, 31500 Toulouse<br/>
             <a href="mailto:contact.actrh@gmail.com" style="color:${GOLD};text-decoration:none;">contact.actrh@gmail.com</a> · 06 87 02 25 08
           </p>
           <p style="margin:16px 0 0;font-size:11px;color:#aaa;">Ce message a été généré automatiquement depuis le site act-rh.com</p>

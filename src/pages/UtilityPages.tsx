@@ -108,7 +108,7 @@ export function LegalPage({ type }: { type: 'mentions' | 'privacy' | 'cookies' |
       <SEOHead title={`${title} | ACT&RH`} description={`${title} du site ACT&RH.`} />
       <PageHeader eyebrow="Informations légales" title={title} text="Ces contenus constituent une base propre et doivent être validés par un professionnel du droit avant publication définitive." />
       <Section className="bg-white"><Container className="prose-actrh max-w-4xl">
-        <p>Éditeur : Caroline Tillou Maratuech, ACT&RH. SIRET : 788 556 488 00039. Adresse : 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France. Contact : contact.actrh@gmail.com, 06 87 02 25 08.</p>
+        <p>Éditeur : Caroline Tillou Maratuech, ACT&RH. SIRET : 788 556 488 00039. Adresse : 10bis rue de Garin, 31500 Toulouse, France. Contact : contact.actrh@gmail.com, 06 87 02 25 08.</p>
         <p>Hébergement : Netlify. Base de données et authentification : Supabase. Les demandes envoyées via le formulaire sont utilisées uniquement pour répondre aux personnes concernées et peuvent être conservées à titre indicatif pendant une durée proportionnée au suivi de la relation.</p>
         <p>Vous pouvez demander l’accès, la rectification ou la suppression de vos données en écrivant à contact.actrh@gmail.com. Aucun outil de tracking n’est imposé par défaut. Des cookies techniques peuvent être nécessaires au bon fonctionnement du site.</p>
       </Container></Section>
@@ -133,7 +133,7 @@ function PrivacyPage() {
           <div className="prose-actrh max-w-none rounded-2xl border border-sand bg-white p-7 shadow-[0_22px_70px_rgba(14,27,41,0.06)] md:p-10">
             <p>Dernière mise à jour : 30 mai 2026.</p>
             <h3 className="font-serif text-3xl font-semibold text-ink">1. Responsable du traitement</h3>
-            <p>Le responsable du traitement est Caroline Tillou Maratuech, ACT&RH, SIRET 788 556 488 00039, située 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France.</p>
+            <p>Le responsable du traitement est Caroline Tillou Maratuech, ACT&RH, SIRET 788 556 488 00039, située 10bis rue de Garin, 31500 Toulouse, France.</p>
             <p>Contact : <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a> - {contactInfo.phone}.</p>
 
             <h3 className="font-serif text-3xl font-semibold text-ink">2. Données collectées</h3>
@@ -193,7 +193,7 @@ function TermsPage() {
         <Container className="prose-actrh max-w-5xl rounded-2xl border border-sand bg-white p-7 shadow-[0_22px_70px_rgba(14,27,41,0.06)] md:p-10">
           <p>Dernière mise à jour : 30 mai 2026.</p>
           <h2>1. Identification</h2>
-          <p>Le présent site est édité par Caroline Tillou Maratuech, ACT&RH, SIRET 788 556 488 00039, 35 chemin de Buissaison, 31180 Lapeyrouse-Fossat, France.</p>
+          <p>Le présent site est édité par Caroline Tillou Maratuech, ACT&RH, SIRET 788 556 488 00039, 10bis rue de Garin, 31500 Toulouse, France.</p>
 
           <h2>2. Objet du site</h2>
           <p>Le site présente les activités de conseil RH, coaching professionnel, accompagnement du changement, ateliers, formations et bilan de compétences proposés par ACT&RH.</p>

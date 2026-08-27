@@ -6,7 +6,7 @@ export const contactInfo = {
   phone: '06 87 02 25 08',
   phoneHref: '+33687022508',
   email: 'contact.actrh@gmail.com',
-  address: '35 chemin de Buissaison, 31180 Lapeyrouse-Fossat',
+  address: '10bis rue de Garin, 31500 Toulouse',
   hours: '9h à 18h, sauf samedi',
   linkedin: 'https://www.linkedin.com/in/caroline-tillou-maratuech-2b30372a/'
 };

@@ -153,7 +153,7 @@ insert into public.site_settings (key, value, is_public) values
 ('email', '"contact@equinoxe-rh.fr"', true),
 ('hours', '"9h à 18h sauf samedi"', true),
 ('linkedin', '"https://www.linkedin.com/"', true),
-('address', '"35 chemin de Buissaison, 31180 Lapeyrouse-Fossat"', true),
+('address', '"10bis rue de Garin, 31500 Toulouse"', true),
 ('site_logo_url', '"/images/equinoxe-RH-logo.webp"', true),
 ('main_cta', '"Échanger sur votre besoin"', true)
 on conflict (key) do nothing;

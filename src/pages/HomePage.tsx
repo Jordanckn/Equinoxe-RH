@@ -440,7 +440,7 @@ export function HomePage() {
                 <div className="relative min-h-[260px] overflow-hidden bg-sage/5">
                   <iframe
                     title="Carte Google Maps - ACT&RH"
-                    src="https://www.google.com/maps?q=35%20chemin%20de%20Buissaison%2C%2031180%20Lapeyrouse-Fossat&output=embed"
+                    src="https://www.google.com/maps?q=10bis%20rue%20de%20Garin%2C%2031500%20Toulouse&output=embed"
                     className="absolute inset-0 h-full w-full grayscale-[15%]"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
