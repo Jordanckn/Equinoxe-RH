@@ -179,7 +179,7 @@ export function articleSchema(post: BlogPost) {
       ...organizationSchema,
       logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}/images/equinoxe-RH-logo.webp`
+        url: `${baseUrl}/images/act-rh-icon.webp`
       }
     },
     datePublished: post.published_at,

@@ -82,14 +82,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </a>
       <header className="sticky top-0 z-40 border-b border-ink/10 bg-white/90 backdrop-blur-xl">
         <Container className="flex h-20 items-center justify-between gap-5">
-          <Link to="/" className="focus-ring flex items-center gap-3 rounded-full" aria-label="ACT&RH">
-            <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm">
-              <img src={siteLogo} alt="" onError={(event) => { event.currentTarget.src = FALLBACK_SITE_LOGO; }} className="h-full w-full object-contain" />
-            </span>
-            <span className="flex flex-col leading-none">
-              <span className="font-serif text-2xl font-semibold text-ink">ACT&RH</span>
-              <span className="mt-1 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#D8C3B5]">Conseil RH</span>
-            </span>
+          <Link to="/" className="focus-ring rounded-lg" aria-label="ACT&RH">
+            <img
+              src={siteLogo}
+              alt="ACT&RH – Conseil RH & accompagnement individuel"
+              onError={(event) => { event.currentTarget.src = FALLBACK_SITE_LOGO; }}
+              className="h-10 w-auto object-contain sm:h-11"
+            />
           </Link>
           <nav className="hidden items-center rounded-full border border-ink/10 bg-white px-2 py-2 shadow-[0_12px_32px_rgba(31,51,71,0.06)] lg:flex" aria-label="Navigation principale">
             {navItems.map((item) => {
@@ -357,13 +356,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <footer className="border-t border-ink/10 bg-ink text-white">
         <Container className="grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-[1.2fr_0.9fr_0.9fr_0.8fr]">
           <div>
-            <Link to="/" className="inline-flex items-center gap-4" aria-label="ACT&RH">
-              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white">
-                <span className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full">
-                  <img src={siteLogo} alt="" onError={(event) => { event.currentTarget.src = FALLBACK_SITE_LOGO; }} className="h-full w-full object-contain" />
-                </span>
+            <Link to="/" className="inline-flex items-center" aria-label="ACT&RH">
+              <span className="inline-flex items-center rounded-2xl bg-white px-5 py-3 shadow-sm">
+                <img
+                  src={siteLogo}
+                  alt="ACT&RH – Conseil RH & accompagnement individuel"
+                  onError={(event) => { event.currentTarget.src = FALLBACK_SITE_LOGO; }}
+                  className="h-12 w-auto object-contain"
+                />
               </span>
-              <span className="font-serif text-3xl text-[#D8C3B5]">ACT&RH</span>
             </Link>
             <p className="mt-4 max-w-md text-white/75">Conseil RH, coaching professionnel, accompagnement du changement et bilan de compétences à Toulouse, en Occitanie et à distance.</p>
             <div className="mt-6 flex items-center gap-3" aria-label="Réseaux sociaux">

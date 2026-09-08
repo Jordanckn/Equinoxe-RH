@@ -1,4 +1,5 @@
-import { BadgeCheck, BookOpenText, ExternalLink, Mic2 } from 'lucide-react';
+import { ArrowRight, BadgeCheck, BookOpenText, ExternalLink, Mic2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { SEOHead } from '../components/SEOHead';
 import { Card, Container, PageHeader, Section } from '../components/ui';
 
@@ -93,19 +94,19 @@ const pressSections: PressSection[] = [
         cta: 'En savoir plus'
       },
       {
-        title: 'EQINOX - Conseil RH & coaching professionnel',
+        title: 'Equinoxe Conseil RH',
         date: 'Site de cabinet',
         themes: 'Conseil RH, coaching individuel, coaching d’équipe, leadership, accompagnement du changement',
-        text: 'Avec EQINOX, Caroline accompagne dirigeants, managers et équipes dans les moments clés de leur évolution professionnelle. Le site présente une offre sur-mesure de conseil RH et de coaching individuel et collectif pour travailler le leadership, la performance, l’alignement avec le sens et l’équilibre vie professionnelle / vie personnelle.',
-        link: 'https://www.eqinoxcoaching.com',
-        cta: 'Découvrir EQINOX'
+        text: 'Avec Equinoxe Conseil RH, Caroline accompagne dirigeants, managers et équipes dans les moments clés de leur évolution professionnelle. Une offre sur-mesure de conseil RH et de coaching individuel et collectif pour travailler le leadership, la performance, l’alignement avec le sens et l’équilibre vie professionnelle / vie personnelle.',
+        link: 'https://www.linkedin.com/in/caroline-maratuech-089050357/',
+        cta: 'Découvrir Equinoxe Conseil RH'
       },
       {
         title: 'ACT&RH - Notre expertise',
         date: 'Site de cabinet',
         themes: 'Raison d’être, RSE, évolution des modèles managériaux et organisationnels, capital humain',
         text: 'Sur le site ACT&RH, l’expertise mise en avant vise à aider les organisations à révéler leur raison d’être, structurer leur démarche RSE et faire évoluer leurs modèles managériaux autour du capital humain. On y retrouve la conviction que la performance durable passe par des pratiques managériales alignées avec le sens, la santé et l’engagement des équipes.',
-        link: 'https://equinoxe-management.com/notre-expertise/',
+        link: '/services',
         cta: 'Découvrir notre expertise'
       },
       {
@@ -171,14 +172,23 @@ function ArticleCard({ item }: { item: PressItem }) {
       <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-sage-dark">{item.themes}</p>
       <p className="mt-4 flex-1 leading-7 text-anthracite/75">{item.text}</p>
       {item.link ? (
-        <a
-          href={item.link}
-          target="_blank"
-          rel="noreferrer"
-          className="focus-ring mt-6 inline-flex w-fit items-center gap-2 rounded-lg bg-sage px-5 py-2.5 text-sm font-bold text-white transition hover:bg-sage-dark"
-        >
-          {item.cta ?? 'En savoir plus'} <ExternalLink size={15} />
-        </a>
+        item.link.startsWith('/') ? (
+          <Link
+            to={item.link}
+            className="focus-ring mt-6 inline-flex w-fit items-center gap-2 rounded-lg bg-sage px-5 py-2.5 text-sm font-bold text-white transition hover:bg-sage-dark"
+          >
+            {item.cta ?? 'En savoir plus'} <ArrowRight size={15} />
+          </Link>
+        ) : (
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noreferrer"
+            className="focus-ring mt-6 inline-flex w-fit items-center gap-2 rounded-lg bg-sage px-5 py-2.5 text-sm font-bold text-white transition hover:bg-sage-dark"
+          >
+            {item.cta ?? 'En savoir plus'} <ExternalLink size={15} />
+          </a>
+        )
       ) : null}
     </Card>
   );
