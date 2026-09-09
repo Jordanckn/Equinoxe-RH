@@ -63,9 +63,8 @@ export function ContactForm() {
         <div className="success-icon-circle mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-sage shadow-[0_12px_40px_rgba(111,143,130,0.22)]">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-              className="success-check"
+              className="success-check stroke-champagne"
               d="M8 21L16 29L32 13"
-              stroke="#D8C3B5"
               strokeWidth="3.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -74,7 +73,7 @@ export function ContactForm() {
         </div>
 
         <div className="success-text space-y-4 max-w-sm">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#D8C3B5]">Demande envoyee</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-champagne-dark">Demande envoyee</p>
           <h2 className="font-serif text-3xl font-semibold text-ink leading-snug">
             Merci{firstName ? `, ${firstName}` : ''} !
           </h2>

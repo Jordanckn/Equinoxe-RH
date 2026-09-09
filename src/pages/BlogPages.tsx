@@ -5,7 +5,7 @@ import { BlogCard } from '../components/Cards';
 import { SEOHead } from '../components/SEOHead';
 import { Container, Section } from '../components/ui';
 import { posts } from '../data/content';
-import { articleSchema } from '../lib/schemaMarkup';
+import { articleSchema, breadcrumbSchema } from '../lib/schemaMarkup';
 import { useSupabaseRows } from '../hooks/useSupabaseRows';
 import type { BlogPost } from '../types';
 
@@ -214,7 +214,7 @@ export function ArticlePage() {
         description={post.seo_description ?? post.excerpt}
         image={image}
         type="article"
-        schema={[articleSchema({ ...post, cover_image_url: image }), breadcrumbSchema(post)]}
+        schema={[articleSchema({ ...post, cover_image_url: image }), breadcrumbSchema([{ name: 'Accueil', url: '/' }, { name: 'Ressources RH', url: '/blog' }, { name: post.title, url: `/blog/${post.slug}` }])]}
       />
       <div className="fixed left-0 right-0 top-20 z-30 h-1 bg-white/70 backdrop-blur">
         <div className="h-full bg-sage-dark transition-[width] duration-150" style={{ width: `${progress}%` }} />
@@ -348,14 +348,3 @@ function blogCollectionSchema(items: BlogPost[]) {
   };
 }
 
-function breadcrumbSchema(post: BlogPost) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.act-rh.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Ressources RH', item: 'https://www.act-rh.com/blog' },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.act-rh.com/blog/${post.slug}` }
-    ]
-  };
-}

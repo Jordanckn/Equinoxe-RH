@@ -5,8 +5,8 @@ export function Container({ children, className = '' }: { children: ReactNode; c
   return <div className={`mx-auto w-full max-w-7xl px-5 sm:px-8 ${className}`}>{children}</div>;
 }
 
-export function Section({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <section className={`py-16 sm:py-24 ${className}`}>{children}</section>;
+export function Section({ children, className = '', id }: { children: ReactNode; className?: string; id?: string }) {
+  return <section id={id} className={`py-16 sm:py-24 ${className}`}>{children}</section>;
 }
 
 export function ButtonLink({ to, children, variant = 'primary', className = '' }: { to: string; children: ReactNode; variant?: 'primary' | 'secondary'; className?: string }) {

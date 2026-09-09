@@ -68,13 +68,12 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     <Card className="group transition-all duration-500 hover:-translate-y-1 hover:border-champagne/30 hover:shadow-[0_30px_70px_rgba(14,27,41,0.08)] bg-white border border-sand">
       <div role="img" className="flex gap-1 transition-transform duration-500 group-hover:scale-105" aria-label={`${testimonial.rating} sur 5`}>
         {Array.from({ length: 5 }).map((_, index) => (
-          <Star key={index} size={17} className={index < testimonial.rating ? 'text-[#D8C3B5] fill-[#D8C3B5]' : 'text-sand fill-sand'} />
+          <Star key={index} size={17} className={index < testimonial.rating ? 'text-champagne-dark fill-champagne-dark' : 'text-sand fill-sand'} />
         ))}
       </div>
       <p className="mt-5 leading-7 text-anthracite/80 italic">"{testimonial.content}"</p>
       <p className="mt-5 font-semibold text-ink">{testimonial.client_name}</p>
       <p className="text-sm text-anthracite/60">{testimonial.client_role}</p>
-      {testimonial.is_placeholder ? <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-sage-dark">Placeholder administrable</p> : null}
     </Card>
   );
 }

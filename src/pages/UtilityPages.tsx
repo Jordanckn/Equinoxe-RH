@@ -18,8 +18,8 @@ export function FAQPage() {
   return (
     <>
       <SEOHead
-        title="FAQ Conseil RH & Coaching à Toulouse | ACT&RH"
-        description="Questions fréquentes sur ACT&RH : accompagnements RH, coaching, bilan de compétences, modalités et prise de contact."
+        title="FAQ | Conseil RH & accompagnement individuel | ACT&RH"
+        description="Questions fréquentes sur ACT&RH : conseil RH, accompagnement individuel, bilan de compétences, modalités et prise de contact."
         schema={faqSchema(liveFaqs)}
       />
       <PageHeader
@@ -68,8 +68,24 @@ export function FAQPage() {
 }
 
 export function TestimonialsPage() {
-  const liveTestimonials = useSupabaseRows<Testimonial>('testimonials', testimonials, 'display_order');
-  return <><SEOHead title="Témoignages | ACT&RH" description="Avis et témoignages administrables concernant les accompagnements ACT&RH." /><PageHeader eyebrow="Témoignages" title="Retours d’accompagnement" text="Les témoignages placeholders peuvent être remplacés ou masqués depuis l’administration Supabase." /><Section className="bg-white"><Container><div className="grid gap-6 md:grid-cols-2">{liveTestimonials.map((item) => <TestimonialCard key={item.id} testimonial={item} />)}</div></Container></Section></>;
+  const liveTestimonials = useSupabaseRows<Testimonial>('testimonials', testimonials, 'display_order').filter((t) => !t.is_placeholder);
+  return (
+    <>
+      <SEOHead title="Témoignages | ACT&RH" description="Retours d'expérience sur les accompagnements ACT&RH." />
+      <PageHeader eyebrow="Témoignages" title="Retours d'accompagnement" text="Des retours sur des situations réellement accompagnées : le contexte, l'intervention et ce qu'elle a permis." />
+      <Section className="bg-white">
+        <Container>
+          {liveTestimonials.length > 0 ? (
+            <div className="grid gap-6 md:grid-cols-2">
+              {liveTestimonials.map((item) => <TestimonialCard key={item.id} testimonial={item} />)}
+            </div>
+          ) : (
+            <p className="text-center text-anthracite/70">Les retours d'expérience seront publiés ici prochainement.</p>
+          )}
+        </Container>
+      </Section>
+    </>
+  );
 }
 
 export function LocalSeoPage({ kind }: { kind: 'rh-toulouse' | 'coaching-toulouse' | 'bilan-toulouse' | 'changement-occitanie' | 'distance' }) {

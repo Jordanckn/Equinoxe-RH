@@ -23,14 +23,14 @@ import {
   Target,
   CheckCircle2
 } from 'lucide-react';
-import { BlogCard, ServiceCard, TestimonialCard } from '../components/Cards';
+import { BlogCard, TestimonialCard } from '../components/Cards';
 import { CookieConsent } from '../components/CookieConsent';
 import { FAQAccordion } from '../components/FAQAccordion';
 import { SEOHead } from '../components/SEOHead';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ButtonLink, Card, Container, Section } from '../components/ui';
-import { contactInfo, faqs, posts, services, testimonials } from '../data/content';
-import { organizationSchema, personSchema, faqSchema } from '../lib/schemaMarkup';
+import { contactInfo, faqs, posts, testimonials } from '../data/content';
+import { organizationSchema, personSchema, faqSchema, websiteSchema } from '../lib/schemaMarkup';
 import { useSupabaseRows } from '../hooks/useSupabaseRows';
 import { supabase } from '../lib/supabaseClient';
 import type { BlogPost, FAQ, Testimonial } from '../types';
@@ -45,18 +45,14 @@ const trustedLogos = [
   { name: 'Cornell University', src: '/Logo/Cornell University Logo PNG Vectors Free Download.webp' },
   { name: 'La REF Toulouse', src: '/Logo/La REF Toulouse, mercredi 20 octobre 2021.webp' },
   { name: 'Toulouse Métropole', src: '/Logo/Réf - Toulouse Métropole.webp' },
-  { name: 'Pharmabest, Pharmacie Lafayette, Pharmactiv', src: '/Logo/Annuaire des groupements Pharmabest, Pharmacie Lafayette, Pharmactiv....webp' },
-  { name: 'Partenaire professionnel', src: '/Logo/posts.webp' },
-  { name: 'Partenaire RH', src: '/Logo/posts 2.webp' }
+  { name: 'Pharmabest, Pharmacie Lafayette, Pharmactiv', src: '/Logo/Annuaire des groupements Pharmabest, Pharmacie Lafayette, Pharmactiv....webp' }
 ];
 
 export function HomePage() {
   const livePosts = useSupabaseRows<BlogPost>('blog_posts', posts, 'published_at');
   const liveFaqs = useSupabaseRows<FAQ>('faqs', faqs, 'display_order');
-  const liveTestimonials = useSupabaseRows<Testimonial>('testimonials', testimonials, 'display_order');
+  const liveTestimonials = useSupabaseRows<Testimonial>('testimonials', testimonials, 'display_order').filter((t) => !t.is_placeholder);
   const [referencesOpen, setReferencesOpen] = useState(false);
-  const [pourQuiOpen, setPourQuiOpen] = useState(false);
-  const [accompagnementsOpen, setAccompagnementsOpen] = useState(false);
   const [approcheOpen, setApprocheOpen] = useState(false);
   const [heroImg, setHeroImg] = useState<string | null>(null);
 
@@ -68,7 +64,7 @@ export function HomePage() {
 
   return (
     <>
-      <SEOHead title="Conseil RH, coaching et accompagnement du changement à Toulouse | ACT&RH" description="Caroline Tillou Maratuech accompagne entreprises, dirigeants, managers et particuliers à Toulouse, en Occitanie et à distance." schema={[organizationSchema, personSchema, faqSchema(liveFaqs.slice(0, 5))]} />
+      <SEOHead title="ACT&RH | Conseil RH & accompagnement individuel — Caroline Tillou Maratuech" description="Comprendre ce qui se joue, clarifier les choix, construire la suite. Conseil RH et accompagnement individuel à Toulouse, en Occitanie, en France et à distance." schema={[organizationSchema, personSchema, faqSchema(liveFaqs.slice(0, 5)), websiteSchema]} />
       <CookieConsent />
       
       {/* Hero Section */}
@@ -82,16 +78,16 @@ export function HomePage() {
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-6">
               <p className="animate-fade-in inline-flex rounded-full border border-sage-dark/20 bg-sage px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white">
-                Toulouse, Occitanie et à distance
+                Toulouse · Occitanie · France · À distance
               </p>
               <h1 className="animate-fade-in-up max-w-4xl text-balance font-serif text-4xl font-semibold leading-[1.06] text-ink sm:text-6xl xl:text-7xl">
-                Comprendre les transformations pour mieux les conduire.
+                Comprendre ce qui se joue. Clarifier les choix. Construire la suite.
               </h1>
               <p className="animate-fade-in-up delay-100 max-w-2xl text-lg leading-8 text-anthracite/80">
-                J'accompagne les dirigeants d'entreprise, les managers et leurs équipes dans leurs transitions RH, managériales et organisationnelles en m'appuyant sur mon expérience professionnelle, académique et pédagogique.
+                Conseil RH & accompagnement professionnel et personnel — pour les organisations confrontées à des enjeux humains et pour les personnes en évolution, transition ou questionnement.
               </p>
               <div className="animate-fade-in-up delay-150 flex flex-wrap gap-3 pt-2">
-                <ButtonLink to="/contact" className="btn-shimmer btn-pulse">Échanger sur votre besoin</ButtonLink>
+                <ButtonLink to="/contact" className="btn-shimmer btn-pulse">Parler de ma situation</ButtonLink>
                 <ButtonLink to="/services" variant="secondary">Découvrir les accompagnements</ButtonLink>
               </div>
               <div className="animate-fade-in-up delay-200 flex flex-wrap gap-x-6 gap-y-3 pt-4 text-sm font-bold text-ink/75">
@@ -99,10 +95,10 @@ export function HomePage() {
                   <span className="h-2 w-2 rounded-full bg-champagne" /> Conseil RH
                 </span>
                 <span className="inline-flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-sage-dark" /> Coaching professionnel
+                  <span className="h-2 w-2 rounded-full bg-sage-dark" /> Accompagnement individuel
                 </span>
                 <span className="inline-flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-rosé" /> Coaching personnel
+                  <span className="h-2 w-2 rounded-full bg-rosé" /> Accompagnement du changement
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-champagne-dark" /> Bilan de compétences
@@ -114,7 +110,7 @@ export function HomePage() {
               <div className="animate-float relative w-full max-w-[480px] overflow-hidden rounded-[2rem] border border-sand bg-white p-3.5 shadow-[0_28px_80px_rgba(14,27,41,0.08)] lg:max-w-full">
                 <img
                   src={heroImg ?? "https://xuuvxhvmndkqkcmgptot.supabase.co/storage/v1/object/public/site-images/hero/caroline-maratuech-act-rh-toulouse-1.webp"}
-                  alt="Caroline Tillou Maratuech — Consultante RH et coach professionnelle ACT&RH Toulouse"
+                  alt="Caroline Tillou Maratuech — Consultante RH et accompagnement individuel, ACT&RH"
                   onError={(event) => { event.currentTarget.src = '/images/Professeur TILLOU Caroline - TBS Education.webp'; }}
                   className="aspect-[4/5] h-full w-full rounded-[1.5rem] object-cover object-center sm:aspect-square"
                 />
@@ -129,10 +125,10 @@ export function HomePage() {
           <div className="animate-fade-in-up delay-300 mt-16 rounded-2xl border border-sand bg-white p-4 shadow-soft md:p-5">
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                ['20 ans d’expérience', Award, 'Pratique terrain consolidée'], 
-                ['Doctorat en GRH', GraduationCap, 'Rigueur scientifique et enseignement'], 
-                ['Coach Consultant RNCP 7', Users, 'Accompagnement certifié de haut niveau'], 
-                ['Proximité & Distance', MapPin, 'Toulouse, Occitanie et France entière']
+                ['Docteure en GRH', GraduationCap, 'Gestion des ressources humaines'],
+                ['+ 20 ans', Award, 'De recherche et de pratique'],
+                ['Enseignante-chercheuse', Users, 'TBS Education'],
+                ['Consultante RH', MapPin, 'Et accompagnement individuel']
               ].map(([label, Icon, desc]) => (
                 <div key={String(label)} className="flex items-center gap-4 rounded-xl p-4 transition-colors hover:bg-sage/20">
                   <span className="rounded-full bg-sage px-2.5 py-2.5 text-white"><Icon size={18} /></span>
@@ -143,6 +139,20 @@ export function HomePage() {
                 </div>
               ))}
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Double regard */}
+      <section className="border-b border-sand bg-white py-10">
+        <Container>
+          <div className="mx-auto flex max-w-4xl flex-col items-start gap-4 rounded-2xl border border-sand bg-ivory p-6 sm:flex-row sm:items-center sm:p-8">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sage/40 text-sage-dark">
+              <Compass size={22} />
+            </span>
+            <p className="text-lg leading-8 text-ink">
+              Mon approche repose sur un double regard : celui de la recherche en gestion des ressources humaines et celui de la pratique des organisations.
+            </p>
           </div>
         </Container>
       </section>
@@ -178,42 +188,34 @@ export function HomePage() {
         </Container>
       </section>
 
-      {/* Pour qui ? Section */}
+      {/* Votre situation Section */}
       <Section className="bg-white">
         <Container>
           <ScrollReveal>
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <GridTitle title="Publics accompagnés" text="Un accompagnement pour les organisations comme pour les personnes, avec un cadre clair et adapté à chaque situation." />
-              <button
-                onClick={() => setPourQuiOpen((o) => !o)}
-                className="flex shrink-0 items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-sage-dark/40 hover:text-sage-dark"
-                aria-expanded={pourQuiOpen}
-              >
-                {pourQuiOpen ? 'Réduire' : 'En savoir plus'}
-                <ChevronDown size={16} className={`transition-transform duration-300 ${pourQuiOpen ? 'rotate-180' : ''}`} />
-              </button>
-            </div>
+            <GridTitle title="Votre situation" text="Avant de parler de prestations, il s'agit de reconnaître la situation que vous traversez." />
           </ScrollReveal>
 
-          <div className={`grid gap-6 overflow-hidden transition-all duration-500 sm:grid-cols-2 lg:grid-cols-3 ${pourQuiOpen ? 'mt-10 max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { label: 'Entreprises et dirigeants', slug: 'entreprises-dirigeants', icon: Building2, desc: 'TPE, PME et grandes structures cherchant à structurer leurs RH et accompagner leurs transformations.' },
-              { label: 'Managers', slug: 'managers', icon: Compass, desc: 'Dirigeants et encadrants souhaitant développer leur posture, clarifier leur communication et gérer les tensions.' },
-              { label: 'Salariés et professionnels en transition', slug: 'salaries-transitions', icon: Shuffle, desc: 'Professionnels en reconversion ou désireux de faire un bilan complet de leur parcours.' },
-              { label: 'Entrepreneurs', slug: 'entrepreneurs', icon: Lightbulb, desc: 'Créateurs de structures cherchant à poser les bonnes bases RH pour accompagner leur croissance.' },
-              { label: 'Étudiants', slug: 'etudiants', icon: GraduationCap, desc: 'Jeunes diplômés ou en cours d’études souhaitant s’orienter et préparer leur entrée sur le marché.' },
-              { label: 'Collectifs et équipes', slug: 'collectifs-equipes', icon: Users, desc: 'Groupes de travail ayant besoin d’ateliers, de régulation ou de cercles de co-développement.' }
-            ].map(({ label, slug, icon: Icon, desc }, index) => (
-              <ScrollReveal key={label} delay={index * 75}>
-                <Link to={`/pour-qui/${slug}`} className="block h-full">
-                  <Card className="group hover:-translate-y-2 hover:border-champagne/30 hover:shadow-[0_24px_50px_rgba(14,27,41,0.06)] transition-all duration-500 flex flex-col justify-between h-full border border-sand">
+              { text: 'Je ne sais plus quelle direction donner à ma carrière.', icon: Compass, href: '/services/bilan-de-competences' },
+              { text: 'Je prends un poste de manager et je veux réussir cette transition.', icon: Users, href: '/pour-qui/managers' },
+              { text: 'Mon organisation change et je dois accompagner mes équipes.', icon: Shuffle, href: '/services/accompagnement-changement' },
+              { text: 'Je suis dirigeant et je dois professionnaliser mes pratiques RH.', icon: Building2, href: '/services/conseil-rh-entreprises' },
+              { text: 'J’ai beaucoup d’expérience, mais je ne sais plus comment la valoriser.', icon: Lightbulb, href: '/pour-qui/salaries-transitions' },
+              { text: 'Je quitte une carrière militaire ou sportive et je dois construire la suite.', icon: ArrowRight, href: '/services/bilan-de-competences' }
+            ].map(({ text, icon: Icon, href }, index) => (
+              <ScrollReveal key={text} delay={index * 75}>
+                <Link to={href} className="block h-full">
+                  <Card className="group hover:-translate-y-2 hover:border-champagne/30 hover:shadow-[0_24px_50px_rgba(14,27,41,0.06)] transition-all duration-500 flex h-full flex-col justify-between border border-sand">
                     <div>
-                      <div className="mb-4 text-sage-dark group-hover:text-champagne transition-colors duration-500">
+                      <div className="mb-4 text-sage-dark group-hover:text-champagne-dark transition-colors duration-500">
                         <Icon size={26} />
                       </div>
-                      <h3 className="font-serif text-2xl font-semibold text-ink group-hover:text-sage-dark transition-colors duration-500">{label}</h3>
-                      <p className="mt-3 text-sm leading-6 text-anthracite/75">{desc}</p>
+                      <p className="font-serif text-xl font-semibold leading-snug text-ink">« {text} »</p>
                     </div>
+                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-sage-dark transition-transform duration-300 group-hover:translate-x-1">
+                      Voir comment j'interviens <ArrowRight size={15} />
+                    </span>
                   </Card>
                 </Link>
               </ScrollReveal>
@@ -222,30 +224,72 @@ export function HomePage() {
         </Container>
       </Section>
 
-      {/* Accompagnements Section */}
+      {/* Deux portes d'entrée */}
       <Section className="border-y border-sand bg-sage/20">
-        <Container>
+        <Container className="space-y-14">
           <ScrollReveal>
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <GridTitle title="Domaines d’intervention" text="Des services structurés pour clarifier les enjeux, sécuriser les transitions et soutenir les personnes comme les collectifs." />
-              <button
-                onClick={() => setAccompagnementsOpen((o) => !o)}
-                className="flex shrink-0 items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:border-sage-dark/40 hover:text-sage-dark"
-                aria-expanded={accompagnementsOpen}
-              >
-                {accompagnementsOpen ? 'Réduire' : 'En savoir plus'}
-                <ChevronDown size={16} className={`transition-transform duration-300 ${accompagnementsOpen ? 'rotate-180' : ''}`} />
-              </button>
+            <div className="rounded-[2rem] border border-sand bg-white p-6 sm:p-10">
+              <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+                <div>
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-sage text-white">
+                    <Building2 size={24} />
+                  </div>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Pour les organisations</p>
+                  <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-ink sm:text-4xl">Des situations RH qui nécessitent un regard extérieur</h2>
+                  <p className="mt-4 text-base leading-7 text-anthracite/75">
+                    J'interviens auprès des dirigeants, managers et professionnels RH, dans les TPE, PME comme dans des organisations plus importantes, lorsque les enjeux humains, managériaux ou organisationnels nécessitent de prendre du recul et de structurer une réponse.
+                  </p>
+                  <div className="mt-6">
+                    <ButtonLink to="/services#organisations">Découvrir les accompagnements pour les organisations</ButtonLink>
+                  </div>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {[
+                    { title: 'Conseil RH', text: 'Structuration RH, pratiques managériales, situations individuelles ou collectives, accompagnement des transformations.', href: '/services/conseil-rh-entreprises' },
+                    { title: 'Accompagnement du changement', text: 'Préparer, accompagner et ancrer les évolutions individuelles, collectives et organisationnelles.', href: '/services/accompagnement-changement' },
+                    { title: 'Managers et collectifs', text: 'Posture, communication, coopération, régulation des tensions, ateliers et co-développement.', href: '/services/formations-ateliers-codeveloppement' }
+                  ].map((item) => (
+                    <Link key={item.title} to={item.href} className="group rounded-2xl border border-sand bg-ivory p-5 transition-all duration-300 hover:-translate-y-1 hover:border-sage-dark/25 hover:bg-white">
+                      <h3 className="font-serif text-lg font-semibold text-ink group-hover:text-sage-dark transition-colors">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-anthracite/70">{item.text}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </ScrollReveal>
 
-          <div className={`grid gap-6 overflow-hidden transition-all duration-500 md:grid-cols-2 lg:grid-cols-3 ${accompagnementsOpen ? 'mt-10 max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
-            {services.map((service, index) => (
-              <ScrollReveal key={service.slug} delay={index * 100}>
-                <ServiceCard service={service} />
-              </ScrollReveal>
-            ))}
-          </div>
+          <ScrollReveal>
+            <div className="rounded-[2rem] border border-sand bg-white p-6 sm:p-10">
+              <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+                <div>
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-sage text-white">
+                    <HeartHandshake size={24} />
+                  </div>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Pour vous</p>
+                  <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-ink sm:text-4xl">Prendre du recul. Décider. Avancer.</h2>
+                  <p className="mt-4 text-base leading-7 text-anthracite/75">
+                    Il y a des moments où l'on a besoin de faire le point, de prendre du recul ou simplement de pouvoir réfléchir autrement à une situation. Une question professionnelle, une prise de responsabilité, une transition de carrière, mais aussi une difficulté à décider, un manque de confiance ou l'envie de retrouver un nouvel élan : les sujets peuvent être très différents. J'accompagne les personnes qui souhaitent mieux comprendre ce qu'elles vivent, identifier leurs ressources, faire des choix et avancer avec davantage de clarté.
+                  </p>
+                  <div className="mt-6">
+                    <ButtonLink to="/services#vous">Découvrir l'accompagnement individuel</ButtonLink>
+                  </div>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {[
+                    { title: 'Bilan de compétences', text: 'Analyser son parcours, identifier ses ressources et construire un projet cohérent.', href: '/services/bilan-de-competences' },
+                    { title: 'Accompagnement individuel', text: 'Prendre du recul, renforcer la confiance en soi, préparer une décision ou traverser une période de changement.', href: '/services/accompagnement-individuel' },
+                    { title: 'Transitions et évolutions', text: 'Reconversion, mobilité, évolution professionnelle, seconde partie de carrière ou changement de trajectoire.', href: '/pour-qui/salaries-transitions' }
+                  ].map((item) => (
+                    <Link key={item.title} to={item.href} className="group rounded-2xl border border-sand bg-ivory p-5 transition-all duration-300 hover:-translate-y-1 hover:border-sage-dark/25 hover:bg-white">
+                      <h3 className="font-serif text-lg font-semibold text-ink group-hover:text-sage-dark transition-colors">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-anthracite/70">{item.text}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </Container>
       </Section>
 
@@ -255,8 +299,8 @@ export function HomePage() {
           <ScrollReveal>
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <h2 className="max-w-3xl font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">Mon approche sur mesure</h2>
-                <p className="mt-4 max-w-2xl text-lg leading-8 text-anthracite/70">Conseil RH, coaching professionnel et coaching personnel</p>
+                <h2 className="max-w-3xl font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">Comprendre → Clarifier → Faire progresser</h2>
+                <p className="mt-4 max-w-2xl text-lg leading-8 text-anthracite/70">Le fil rouge de chaque accompagnement, pour les organisations comme pour les personnes.</p>
               </div>
               <button
                 onClick={() => setApprocheOpen((o) => !o)}
@@ -271,25 +315,25 @@ export function HomePage() {
 
           <div className={`overflow-hidden transition-all duration-500 ${approcheOpen ? 'mt-10 max-h-[3200px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
             <p className="max-w-4xl text-lg leading-8 text-anthracite/75">
-              À Toulouse, en Occitanie ou à distance, je travaille avec les organisations et les personnes pour clarifier les situations humaines sensibles : structuration RH, posture managériale, transition professionnelle, bilan de compétences et accompagnement du changement.
+              À Toulouse, en Occitanie, en France ou à distance, je travaille avec les organisations et les personnes confrontées à des situations de changement, de transition ou de questionnement, avec une même manière de faire : comprendre avant d'agir, clarifier les choix possibles, puis construire la suite.
             </p>
 
           <div className="mx-auto mt-8 grid max-w-5xl gap-3 md:grid-cols-3">
             {[
               {
-                icon: Target,
-                title: 'Clarifier',
-                text: 'Comprendre les enjeux, nommer les tensions et poser les bons repères avant d’agir.'
+                icon: Lightbulb,
+                title: 'Comprendre',
+                text: 'Comprendre la situation avant de chercher une solution : observer, questionner, considérer le contexte, identifier les faits, les perceptions, les contraintes et les marges de manœuvre.'
               },
               {
-                icon: ShieldCheck,
-                title: 'Sécuriser',
-                text: 'Créer un cadre confidentiel, structuré et fiable pour les décisions RH ou professionnelles.'
+                icon: Target,
+                title: 'Clarifier',
+                text: 'Créer un cadre structuré et confidentiel pour regarder les situations difficiles sans jugement ni précipitation, et identifier les pistes qui répondent aux besoins définis.'
               },
               {
                 icon: LineChart,
                 title: 'Faire progresser',
-                text: 'Transformer les pratiques, renforcer la coopération et soutenir les trajectoires durables.'
+                text: 'Transformer cette compréhension en décisions, en nouvelles pratiques ou en trajectoires concrètes — professionnelles, personnelles, individuelles ou organisationnelles.'
               }
             ].map(({ icon: Icon, title, text }, index) => (
               <ScrollReveal key={title} delay={index * 100}>
@@ -309,14 +353,19 @@ export function HomePage() {
           <ScrollReveal className="mx-auto mt-8 max-w-5xl space-y-4">
               {[
                 {
+                  icon: Lightbulb,
+                  title: 'Concrètement, qu’est-ce qu’une approche scientifique change ?',
+                  text: "Une approche scientifique ne consiste pas à appliquer des théories à des personnes ou à des organisations comme on appliquerait une recette. Elle consiste à s'appuyer sur des connaissances éprouvées pour mieux comprendre les phénomènes observés, questionner ses propres intuitions et éviter les explications trop rapides. Dans l'accompagnement professionnel comme dans le conseil RH, cette exigence de rigueur permet notamment de distinguer ce qui relève des faits, des perceptions, des comportements, du contexte organisationnel ou des représentations. Cette approche est ensuite confrontée à la réalité du terrain : chaque organisation, chaque parcours et chaque situation possède ses propres contraintes. L'objectif n'est donc pas d'appliquer une méthode. C'est de mieux comprendre pour mieux agir."
+                },
+                {
                   icon: Building2,
                   title: 'Conseil RH pour TPE, PME et organisations',
                   text: "Le conseil RH permet de structurer les pratiques, clarifier les rôles, accompagner une réorganisation ou traiter une situation humaine devenue complexe. J'interviens auprès des dirigeants, responsables RH et managers pour analyser le fonctionnement réel, repérer les points de fragilité et construire des réponses adaptées : diagnostic RH, accompagnement de transformation, ateliers collectifs, régulation des tensions, fidélisation des talents, qualité de vie au travail et soutien au management."
                 },
                 {
                   icon: HeartHandshake,
-                  title: 'Coaching professionnel et posture managériale',
-                  text: 'Le coaching professionnel aide les dirigeants, managers, salariés et professionnels en transition à prendre du recul sur leurs décisions, leur communication et leur posture. Il peut soutenir une prise de poste, une évolution de carrière, une difficulté relationnelle, une surcharge, une perte de confiance ou un besoin de repositionnement. L’accompagnement reste concret : clarifier la situation, identifier les ressources, travailler les marges de manoeuvre et retrouver une manière d’agir plus alignée.'
+                  title: 'Accompagnement individuel et posture managériale',
+                  text: 'Un accompagnement professionnel — pouvant prendre la forme d’un coaching lorsque ce format est adapté à la situation — aide les dirigeants, managers, salariés et professionnels en transition à prendre du recul sur leurs décisions, leur communication et leur posture. Il peut soutenir une prise de poste, une évolution de carrière, une difficulté relationnelle, une surcharge, une perte de confiance ou un besoin de repositionnement. L’accompagnement reste concret : clarifier la situation, identifier les ressources, travailler les marges de manoeuvre et retrouver une manière d’agir plus alignée.'
                 },
                 {
                   icon: Shuffle,
@@ -365,7 +414,7 @@ export function HomePage() {
                     { label: 'Sécuriser', icon: ShieldCheck }
                   ].map(({ label, icon: Icon }, index) => (
                     <div key={label} className="relative flex min-w-0 items-center gap-3 rounded-2xl border border-sand bg-white px-3 py-4 shadow-[0_10px_24px_rgba(14,27,41,0.035)] lg:flex lg:flex-col lg:items-center lg:gap-0 lg:px-2 lg:text-center xl:px-3">
-                      <span className="relative z-10 mx-0 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ink bg-ink text-[#D8C3B5] lg:mx-auto">
+                      <span className="relative z-10 mx-0 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ink bg-ink text-champagne lg:mx-auto">
                         <Icon size={18} />
                       </span>
                       <p className="min-w-0 flex-1 whitespace-nowrap font-serif text-sm font-semibold leading-tight text-ink sm:text-base lg:order-3 lg:mt-3 lg:w-full lg:flex-none lg:text-center lg:text-[0.72rem] xl:text-[0.86rem]">{label}</p>
@@ -379,6 +428,31 @@ export function HomePage() {
             </details>
           </ScrollReveal>
           </div>
+        </Container>
+      </Section>
+
+      {/* Recherche + terrain */}
+      <Section className="bg-white">
+        <Container>
+          <ScrollReveal>
+            <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-champagne-dark">Recherche → Terrain → Transmission → Accompagnement</p>
+                <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">Une approche fondée sur la recherche et l'expérience</h2>
+              </div>
+              <div className="space-y-5 text-base leading-7 text-anthracite/80">
+                <p>
+                  La recherche en gestion des ressources humaines aide à comprendre les mécanismes qui traversent la vie professionnelle : les comportements au travail, la motivation, l'engagement, les relations professionnelles, les dynamiques organisationnelles, le changement et les transitions professionnelles, ou encore la relation entre managers et collaborateurs.
+                </p>
+                <p>
+                  Mais les organisations et les personnes ne se résument jamais à des modèles théoriques. Ces connaissances doivent être confrontées au contexte, à l'histoire, aux contraintes, aux acteurs et aux situations particulières de chaque accompagnement.
+                </p>
+                <p>
+                  Cette combinaison — des clés de lecture issues de la recherche, mises à l'épreuve du terrain — est la signature d'ACT&RH.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </Container>
       </Section>
 
@@ -402,7 +476,7 @@ export function HomePage() {
               </div>
 
               <div className="p-6 sm:p-8 lg:p-10">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Toulouse, Occitanie et France entière</p>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Toulouse · Occitanie · France · À distance</p>
                 <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-ink sm:text-4xl">
                   Une présence locale, avec des formats souples selon la mission
                 </h2>
@@ -504,18 +578,20 @@ export function HomePage() {
           <ScrollReveal>
             <div className="relative overflow-hidden rounded-[2.5rem] bg-ink px-8 py-14 shadow-soft sm:px-12 sm:py-20 border border-ink/20">
               {/* Decorative circles — golden transparent */}
-              <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full border-[56px] border-[#D8C3B5] opacity-25" />
-              <div className="absolute -left-16 -bottom-16 h-64 w-64 rounded-full border-[36px] border-[#D8C3B5] opacity-20" />
-              <div className="absolute right-[30%] top-[20%] h-32 w-32 rounded-full border-[16px] border-[#D8C3B5] opacity-15" />
+              <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full border-[56px] border-champagne opacity-25" />
+              <div className="absolute -left-16 -bottom-16 h-64 w-64 rounded-full border-[36px] border-champagne opacity-20" />
+              <div className="absolute right-[30%] top-[20%] h-32 w-32 rounded-full border-[16px] border-champagne opacity-15" />
 
               <div className="relative z-10 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
                 <div className="max-w-3xl">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#D8C3B5]">Échange gratuit & confidentiel</p>
-                  <h3 className="mt-3 font-serif text-3xl font-semibold leading-tight text-white sm:text-5xl">Vous traversez une transition humaine, managériale ou professionnelle ?</h3>
-                  <p className="mt-4 text-lg leading-relaxed text-white">Un échange permet de poser les premiers repères, sans pression commerciale.</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-champagne">Échange gratuit & confidentiel</p>
+                  <h3 className="mt-3 font-serif text-3xl font-semibold leading-tight text-white sm:text-5xl">Une situation à clarifier ?</h3>
+                  <p className="mt-4 text-lg leading-relaxed text-white">
+                    Vous n'avez pas nécessairement besoin d'avoir déjà identifié la solution. Un premier échange permet de poser le contexte, clarifier votre besoin et déterminer si ACT&RH est le bon interlocuteur. Premier échange gratuit et confidentiel.
+                  </p>
                 </div>
                 <Link className="btn-shimmer btn-pulse focus-ring shrink-0 rounded-lg bg-sage px-8 py-4 font-bold text-white shadow-[0_12px_28px_rgba(111,143,130,0.24)] transition-all duration-300 hover:scale-105 hover:bg-sage-dark" to="/contact">
-                  Vous êtes...
+                  Parler de ma situation
                 </Link>
               </div>
             </div>
@@ -524,14 +600,16 @@ export function HomePage() {
       </Section>
 
       {/* Témoignages / Avis Section */}
-      <Section className="border-y border-sand bg-rosé">
-        <Container>
-          <ScrollReveal>
-            <GridTitle title="Avis clients" text="Retours d'expérience sur les accompagnements proposés par ACT&RH." />
-          </ScrollReveal>
-          <TestimonialsCarousel testimonials={liveTestimonials} />
-        </Container>
-      </Section>
+      {liveTestimonials.length > 0 ? (
+        <Section className="border-y border-sand bg-rosé">
+          <Container>
+            <ScrollReveal>
+              <GridTitle title="Avis clients" text="Retours d'expérience sur les accompagnements proposés par ACT&RH." />
+            </ScrollReveal>
+            <TestimonialsCarousel testimonials={liveTestimonials} />
+          </Container>
+        </Section>
+      ) : null}
 
       {/* FAQ Section */}
       <Section className="border-y border-sand bg-sage/20">
@@ -549,7 +627,7 @@ export function HomePage() {
       <Section className="bg-white">
         <Container>
           <ScrollReveal className="flex flex-wrap items-end justify-between gap-5">
-            <GridTitle title="Ressources RH" text="Articles de fond pour éclairer les transitions humaines, managériales et professionnelles." />
+            <GridTitle title="Ressources RH" text="Recherches, analyses et observations de terrain sur les transitions humaines, managériales et professionnelles." />
             <Link className="inline-flex items-center gap-2 font-bold text-sage-dark hover:text-ink transition-colors group" to="/blog">
               Voir le blog <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
             </Link>
@@ -637,7 +715,7 @@ function TestimonialsCarousel({ testimonials: items }: { testimonials: Testimoni
             <button
               key={i}
               onClick={() => { go(i); restart(); }}
-              className={`h-2 rounded-full transition-all duration-300 ${i === current ? 'w-6 bg-[#D8C3B5]' : 'w-2 bg-ink/20 hover:bg-ink/40'}`}
+              className={`h-2 rounded-full transition-all duration-300 ${i === current ? 'w-6 bg-champagne' : 'w-2 bg-ink/20 hover:bg-ink/40'}`}
               aria-label={`Aller à l'avis ${i + 1}`}
             />
           ))}

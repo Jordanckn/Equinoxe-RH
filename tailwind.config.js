@@ -4,16 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        or: '#D8C3B5',
+        or: '#E3D3C9',
         ivory: '#FAF8F5',
         sand: '#E5DDD6',
         sage: '#6F8F82',
         'sage-dark': '#5E7C70',
         ink: '#30343A',
         anthracite: '#30343A',
-        champagne: '#D8C3B5',
+        champagne: '#E3D3C9',
         'champagne-dark': '#BCA596',
-        rosé: '#D8C3B5'
+        rosé: '#E3D3C9'
       },
       fontFamily: {
         serif: ['Cormorant Garamond', 'Georgia', 'serif'],

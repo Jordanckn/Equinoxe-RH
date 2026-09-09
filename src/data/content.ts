@@ -12,9 +12,9 @@ export const contactInfo = {
 };
 export const navItems = [
   { label: 'Accueil', href: '/' },
-  { label: 'ACT&RH', href: '/a-propos' },
-  { label: 'Conseil & Coaching', href: '/services' },
-  { label: 'Contact', href: '/contact' }
+  { label: 'Pour les organisations', href: '/services' },
+  { label: 'Ma démarche', href: '/a-propos' },
+  { label: 'Ressources', href: '/blog' }
 ];
 
 const serviceFaq = (related_page: string): FAQ[] => [
@@ -78,8 +78,8 @@ export const services: Service[] = [
     method: ['Écoute de la situation', 'Clarification des objectifs', 'Séances régulières', 'Travail sur les ressources', 'Bilan des avancées'],
     examples: ['Prise de fonction manager', 'Transition professionnelle', 'Difficulté relationnelle', 'Besoin de clarification avant une décision'],
     faqs: serviceFaq('accompagnement-individuel'),
-    seoTitle: 'Coaching Professionnel & Accompagnement Individuel | Toulouse',
-    seoDescription: 'Accompagnement individuel pour managers, dirigeants, salariés, entrepreneurs, étudiants et particuliers à Toulouse ou à distance.'
+    seoTitle: 'Accompagnement Individuel & Coaching Professionnel | ACT&RH',
+    seoDescription: 'Accompagnement individuel pour managers, dirigeants, salariés, entrepreneurs, étudiants et particuliers à Toulouse, en Occitanie ou à distance.'
   },
   {
     title: 'Bilan de compétences',
@@ -113,13 +113,13 @@ export const services: Service[] = [
 
 export const faqs: FAQ[] = [
   { id: 'faq-1', question: 'Qui est Caroline Tillou Maratuech ?', answer: "Caroline Tillou Maratuech est consultante RH, coach professionnelle, docteure en gestion des ressources humaines et fondatrice d'ACT&RH.", category: 'Général', status: 'published', display_order: 1 },
-  { id: 'faq-2', question: "Qu'est-ce qu'ACT&RH ?", answer: "ACT&RH accompagne les entreprises, dirigeants, managers et particuliers dans leurs enjeux RH, managériaux et professionnels.", category: 'Général', status: 'published', display_order: 2 },
+  { id: 'faq-2', question: "Qu'est-ce qu'ACT&RH ?", answer: "ACT&RH est une activité indépendante de conseil RH et d'accompagnement individuel fondée par Caroline Tillou Maratuech, docteure en gestion des ressources humaines. Elle intervient auprès des organisations et des personnes confrontées à des situations d'évolution, de changement, de transition ou de questionnement, en combinant recherche en GRH, plus de 20 ans de pratique, enseignement, conseil RH et accompagnement individuel.", category: 'Général', status: 'published', display_order: 2 },
   { id: 'faq-3', question: 'Intervenez-vous à Toulouse uniquement ?', answer: 'Non. Les interventions ont lieu à Toulouse, en Haute-Garonne, en Occitanie et partout en France à distance.', category: 'Modalités', status: 'published', display_order: 3 },
   { id: 'faq-4', question: "Proposez-vous des accompagnements à distance ?", answer: "Oui. La visioconférence permet d'organiser des accompagnements individuels ou collectifs avec un cadre clair et souple.", category: 'Modalités', status: 'published', display_order: 4 },
   { id: 'faq-5', question: 'Travaillez-vous avec les particuliers ?', answer: 'Oui. Caroline accompagne salariés, managers, entrepreneurs, étudiants et particuliers en transition professionnelle.', category: 'Publics', status: 'published', display_order: 5 },
   { id: 'faq-6', question: 'Travaillez-vous avec les entreprises ?', answer: "Oui. ACT&RH intervient auprès de dirigeants, managers, équipes RH, TPE, PME et structures en transformation.", category: 'Publics', status: 'published', display_order: 6 },
   { id: 'faq-7', question: 'Comment se déroule un premier rendez-vous ?', answer: "Le premier échange sert à comprendre votre situation, préciser votre besoin et identifier le type d'accompagnement adapté.", category: 'Modalités', status: 'published', display_order: 7 },
-  { id: 'faq-8', question: 'Quelle est la différence entre conseil RH, coaching et bilan de compétences ?', answer: "Le conseil RH porte sur les enjeux d'organisation et de pratiques RH. Le coaching accompagne une personne ou un collectif dans sa posture et ses décisions. Le bilan de compétences clarifie un projet professionnel.", category: 'Services', status: 'published', display_order: 8 },
+  { id: 'faq-8', question: 'Quelle est la différence entre conseil RH, accompagnement individuel et bilan de compétences ?', answer: "Le conseil RH porte sur les enjeux d'organisation et de pratiques RH d'une entreprise. L'accompagnement individuel, qui peut prendre la forme d'un coaching lorsque ce format est adapté à la situation, aide une personne à clarifier sa posture et ses décisions. Le bilan de compétences aide à relire un parcours pour construire un projet professionnel.", category: 'Services', status: 'published', display_order: 8 },
   { id: 'faq-9', question: "Proposez-vous des accompagnements collectifs ?", answer: 'Oui. Des ateliers, formations, webinaires, tables rondes et groupes de co-développement peuvent être conçus selon les besoins.', category: 'Services', status: 'published', display_order: 9 },
   { id: 'faq-10', question: 'Comment prendre contact ?', answer: 'Vous pouvez utiliser le formulaire de contact, appeler le 06 87 02 25 08 ou écrire à contact.actrh@gmail.com.', category: 'Contact', status: 'published', display_order: 10 }
 ];

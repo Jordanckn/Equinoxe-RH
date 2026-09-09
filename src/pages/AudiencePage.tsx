@@ -12,6 +12,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { services } from '../data/content';
+import { breadcrumbSchema } from '../lib/schemaMarkup';
 
 const audienceContent: Record<string, any> = {
   'entreprises-dirigeants': {
@@ -45,7 +46,7 @@ const audienceContent: Record<string, any> = {
       'Équilibre entre exigences opérationnelles et soutien humain'
     ],
     examples: [
-      'Coaching individuel pour un manager faisant face à une équipe désengagée.',
+      'Accompagnement individuel pour un manager faisant face à une équipe désengagée.',
       'Atelier sur la délégation et le feedback constructif.',
       'Accompagnement à la gestion du temps et des priorités managériales.'
     ],
@@ -136,9 +137,10 @@ export function AudiencePage() {
 
   return (
     <>
-      <SEOHead 
-        title={`${audience.title} | Accompagnement RH & Coaching | ACT&RH`} 
-        description={audience.description} 
+      <SEOHead
+        title={`${audience.title} | Conseil RH & accompagnement individuel | ACT&RH`}
+        description={audience.description}
+        schema={breadcrumbSchema([{ name: 'Accueil', url: '/' }, { name: audience.title, url: `/pour-qui/${slug}` }])}
       />
       <PageHeader eyebrow={audience.eyebrow} title={audience.title} text={audience.description} />
       

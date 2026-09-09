@@ -7,9 +7,11 @@ export const organizationSchema = {
   '@type': ['Organization', 'ProfessionalService', 'LocalBusiness'],
   name: 'ACT&RH',
   alternateName: 'ACT et RH',
+  description: "ACT&RH est une activité indépendante de conseil RH et d'accompagnement individuel fondée par Caroline Tillou Maratuech, docteure en gestion des ressources humaines, qui intervient auprès des organisations et des personnes confrontées à des situations d'évolution, de changement, de transition ou de questionnement.",
   founder: 'Caroline Tillou Maratuech',
   foundingDate: '2020',
   url: baseUrl,
+  logo: `${baseUrl}/images/act-rh-icon.webp`,
   email: 'contact.actrh@gmail.com',
   telephone: '+33687022508',
   address: {
@@ -112,7 +114,8 @@ export const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Caroline Tillou Maratuech',
-  jobTitle: 'Consultante RH, coach professionnelle et docteure en gestion des ressources humaines',
+  description: "Docteure en gestion des ressources humaines, enseignante-chercheuse à TBS Education, consultante RH et professionnelle de l'accompagnement individuel. Fondatrice d'ACT&RH.",
+  jobTitle: 'Docteure en gestion des ressources humaines, enseignante-chercheuse, consultante RH et coach professionnelle',
   honorificSuffix: 'Docteure en GRH',
   worksFor: { '@type': 'Organization', name: 'ACT&RH', url: baseUrl },
   alumniOf: 'Doctorat en Gestion des Ressources Humaines',
@@ -120,6 +123,7 @@ export const personSchema = {
   knowsAbout: [
     'Conseil RH',
     'Accompagnement du changement',
+    'Accompagnement individuel',
     'Coaching professionnel',
     'Bilan de compétences',
     'Management',
@@ -130,6 +134,27 @@ export const personSchema = {
     'https://www.linkedin.com/in/caroline-tillou-maratuech-2b30372a/'
   ]
 };
+
+export const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'ACT&RH',
+  url: baseUrl,
+  inLanguage: 'fr-FR'
+};
+
+export function breadcrumbSchema(items: { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url.startsWith('http') ? item.url : `${baseUrl}${item.url}`
+    }))
+  };
+}
 
 export function faqSchema(faqs: FAQ[]) {
   return {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-const DEFAULT_TITLE = 'ACT&RH | Conseil RH, coaching personnel et transitions professionnelles';
-const DEFAULT_DESCRIPTION = 'ACT&RH accompagne les entreprises, dirigeants, managers et particuliers en conseil RH, coaching professionnel, coaching personnel, accompagnement du changement et bilan de compétences.';
+const DEFAULT_TITLE = 'ACT&RH | Conseil RH & accompagnement individuel — Caroline Tillou Maratuech';
+const DEFAULT_DESCRIPTION = "Comprendre ce qui se joue, clarifier les choix, construire la suite. Conseil RH et accompagnement individuel à Toulouse, en Occitanie, en France et à distance.";
 const DEFAULT_IMAGE = '/images/equinoxe-social-card.png';
 
 type SEOHeadProps = {

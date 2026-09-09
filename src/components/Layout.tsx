@@ -37,41 +37,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
     };
   }, [open]);
 
-  const audienceItems = [
+  const pourVousItems = [
     {
-      label: 'Entreprises et dirigeants',
-      href: '/pour-qui/entreprises-dirigeants',
-      desc: 'Structurer les RH et accompagner les transformations.'
+      label: 'Bilan de compétences',
+      href: '/services/bilan-de-competences',
+      desc: 'Analyser son parcours et construire un projet cohérent.'
     },
     {
-      label: 'Managers',
-      href: '/pour-qui/managers',
-      desc: 'Développer sa posture et gérer les tensions.'
+      label: 'Accompagnement individuel',
+      href: '/services/accompagnement-individuel',
+      desc: 'Prendre du recul, décider, traverser une période de changement.'
     },
     {
-      label: 'Salariés et professionnels en transition',
+      label: 'Transitions et évolutions',
       href: '/pour-qui/salaries-transitions',
-      desc: 'Clarifier un parcours, une évolution ou une reconversion.'
-    },
-    {
-      label: 'Entrepreneurs',
-      href: '/pour-qui/entrepreneurs',
-      desc: 'Poser des bases RH solides dès la croissance.'
-    },
-    {
-      label: 'Étudiants',
-      href: '/pour-qui/etudiants',
-      desc: 'Préparer son orientation et son entrée sur le marché.'
-    },
-    {
-      label: 'Collectifs et équipes',
-      href: '/pour-qui/collectifs-equipes',
-      desc: 'Renforcer la cohésion et l’intelligence collective.'
+      desc: 'Reconversion, mobilité, seconde partie de carrière.'
     }
   ];
   const plusItems = [
+    { label: 'Ressources RH', href: '/blog', desc: 'Recherches, analyses et repères sur les transitions RH.' },
     { label: 'On parle de nous', href: '/on-parle-de-nous', desc: 'Articles, publications et interventions médias.' },
-    { label: 'Ressources RH', href: '/blog', desc: 'Articles et repères sur les transitions RH.' },
     { label: 'FAQ', href: '/faq', desc: 'Réponses aux questions fréquentes.' }
   ];
 
@@ -115,8 +100,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                         <>
                           <div className="fixed inset-0 z-10" onClick={() => setServicesDropdownOpen(false)} />
                           <div className="absolute left-1/2 z-20 mt-4 w-[22rem] -translate-x-1/2 rounded-2xl border border-ink/10 bg-white p-3 shadow-[0_22px_70px_rgba(31,51,71,0.14)]">
-                            <Link 
-                              to="/services" 
+                            <Link
+                              to="/services#organisations"
                               onClick={() => setServicesDropdownOpen(false)}
                               className="flex items-center justify-between rounded-xl bg-rosé px-4 py-3 text-sm font-semibold text-ink transition-colors hover:text-sage-dark"
                             >
@@ -124,9 +109,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                               <ArrowRight size={15} />
                             </Link>
                             <div className="my-2 h-px bg-ink/10" />
-                            {services.map((s) => (
-                              <Link 
-                                key={s.slug} 
+                            {services.filter((s) => ['conseil-rh-entreprises', 'accompagnement-changement', 'formations-ateliers-codeveloppement'].includes(s.slug)).map((s) => (
+                              <Link
+                                key={s.slug}
                                 to={`/services/${s.slug}`}
                                 onClick={() => setServicesDropdownOpen(false)}
                                 className="block rounded-xl px-4 py-3 text-sm font-medium text-ink/80 transition-all hover:bg-sage/15 hover:text-ink"
@@ -149,7 +134,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                         aria-expanded={audienceDropdownOpen}
                         aria-haspopup="true"
                       >
-                        <span>Vous êtes</span>
+                        <span>Pour vous</span>
                         <ChevronDown size={14} className={`transition-transform duration-200 ${audienceDropdownOpen ? 'rotate-180' : ''}`} />
                       </button>
                       {audienceDropdownOpen && (
@@ -157,11 +142,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                           <div className="fixed inset-0 z-10" onClick={() => setAudienceDropdownOpen(false)} />
                           <div className="absolute left-1/2 z-20 mt-4 w-[22rem] -translate-x-1/2 rounded-2xl border border-ink/10 bg-white p-3 shadow-[0_22px_70px_rgba(31,51,71,0.14)]">
                             <div className="flex items-center justify-between rounded-xl bg-rosé px-4 py-3 text-sm font-semibold text-ink">
-                              <span>Vous êtes...</span>
+                              <span>Prendre du recul, décider, avancer</span>
                               <ChevronDown size={15} />
                             </div>
                             <div className="my-2 h-px bg-ink/10" />
-                            {audienceItems.map((audience) => (
+                            {pourVousItems.map((audience) => (
                               <Link
                                 key={audience.href}
                                 to={audience.href}
@@ -178,7 +163,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   </div>
                 );
               }
-              if (item.href === '/contact') {
+              if (item.href === '/blog') {
                 const isPlusActive = location.pathname.startsWith('/on-parle-de-nous') || location.pathname.startsWith('/blog') || location.pathname.startsWith('/faq');
                 return (
                   <div key="plus" className="relative">
@@ -192,7 +177,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                       aria-expanded={plusDropdownOpen}
                       aria-haspopup="true"
                     >
-                      <span>Plus</span>
+                      <span>{item.label}</span>
                       <ChevronDown size={14} className={`transition-transform duration-200 ${plusDropdownOpen ? 'rotate-180' : ''}`} />
                     </button>
                     {plusDropdownOpen && (
@@ -252,14 +237,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
                         </button>
                         {mobileServicesOpen && (
                           <div className="ml-3 grid gap-2.5 border-l border-sage/40 pb-2 pl-4">
-                            <Link 
-                              to="/services" 
+                            <Link
+                              to="/services#organisations"
                               onClick={() => { setOpen(false); setMobileServicesOpen(false); }}
                               className="py-1 text-sm font-semibold uppercase tracking-[0.15em] text-sage-dark"
                             >
-                              Tous les services
+                              Tous les accompagnements
                             </Link>
-                            {services.map((s) => (
+                            {services.filter((s) => ['conseil-rh-entreprises', 'accompagnement-changement', 'formations-ateliers-codeveloppement'].includes(s.slug)).map((s) => (
                               <Link
                                 key={s.slug}
                                 to={`/services/${s.slug}`}
@@ -278,7 +263,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                           aria-expanded={mobileAudienceOpen}
                           className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-lg font-semibold text-ink"
                         >
-                          <span>Vous êtes</span>
+                          <span>Pour vous</span>
                           <ChevronDown size={18} className={`transition-transform duration-200 ${mobileAudienceOpen ? 'rotate-180' : ''}`} />
                         </button>
                         {mobileAudienceOpen && (
@@ -286,9 +271,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                             <div
                               className="py-1 text-sm font-semibold uppercase tracking-[0.15em] text-sage-dark"
                             >
-                              Selon votre profil
+                              Prendre du recul, décider, avancer
                             </div>
-                            {audienceItems.map((audience) => (
+                            {pourVousItems.map((audience) => (
                               <Link
                                 key={audience.href}
                                 to={audience.href}
@@ -304,7 +289,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     </div>
                   );
                 }
-                if (item.href === '/contact') {
+                if (item.href === '/blog') {
                   return (
                     <div key="plus-mobile" className="grid gap-2">
                       <button
@@ -312,7 +297,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                         aria-expanded={mobilePlusOpen}
                         className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-lg font-semibold text-ink"
                       >
-                        <span>Plus</span>
+                        <span>{item.label}</span>
                         <ChevronDown size={18} className={`transition-transform duration-200 ${mobilePlusOpen ? 'rotate-180' : ''}`} />
                       </button>
                       {mobilePlusOpen && (
@@ -366,12 +351,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 />
               </span>
             </Link>
-            <p className="mt-4 max-w-md text-white/75">Conseil RH, coaching professionnel, accompagnement du changement et bilan de compétences à Toulouse, en Occitanie et à distance.</p>
+            <p className="mt-4 max-w-md text-white/75">Conseil RH et accompagnement individuel. Comprendre ce qui se joue, clarifier les choix, construire la suite. Toulouse · Occitanie · France · À distance.</p>
             <div className="mt-6 flex items-center gap-3" aria-label="Réseaux sociaux">
               <a
                 href={contactInfo.linkedin}
                 aria-label="LinkedIn"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-[#D8C3B5]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-champagne"
               >
                 <Linkedin size={18} />
               </a>
@@ -379,43 +364,44 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 href={`mailto:${contactInfo.email}`}
                 onClick={() => trackEvent('email_click')}
                 aria-label="Envoyer un email"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-[#D8C3B5]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/8 text-white transition hover:border-sand hover:text-champagne"
               >
                 <Mail size={18} />
               </a>
             </div>
           </div>
           <div className="space-y-3 text-sm text-white/80">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#D8C3B5]">Contact</p>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-champagne">Contact</p>
             <p>{contactInfo.address}</p>
             <p>SIRET : 788 556 488 00039</p>
             <p>{contactInfo.hours}</p>
-            <a className="flex items-center gap-2 transition-colors hover:text-[#D8C3B5]" href={`mailto:${contactInfo.email}`} onClick={() => trackEvent('email_click')}><Mail size={16} /> {contactInfo.email}</a>
-            <a className="flex items-center gap-2 transition-colors hover:text-[#D8C3B5]" href={`tel:${contactInfo.phoneHref}`} onClick={() => trackEvent('phone_click')}><Phone size={16} /> {contactInfo.phone}</a>
-            <a className="flex items-center gap-2 transition-colors hover:text-[#D8C3B5]" href={contactInfo.linkedin}><Linkedin size={16} /> LinkedIn</a>
+            <a className="flex items-center gap-2 transition-colors hover:text-champagne" href={`mailto:${contactInfo.email}`} onClick={() => trackEvent('email_click')}><Mail size={16} /> {contactInfo.email}</a>
+            <a className="flex items-center gap-2 transition-colors hover:text-champagne" href={`tel:${contactInfo.phoneHref}`} onClick={() => trackEvent('phone_click')}><Phone size={16} /> {contactInfo.phone}</a>
+            <a className="flex items-center gap-2 transition-colors hover:text-champagne" href={contactInfo.linkedin}><Linkedin size={16} /> LinkedIn</a>
           </div>
           <div className="grid gap-2 text-sm text-white/80">
-            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#D8C3B5]">Plan du site</p>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/">Accueil</Link>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/a-propos">Le Cabinet</Link>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/services">Conseil & Coaching</Link>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/blog">Ressources RH</Link>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/on-parle-de-nous">On parle de nous</Link>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/faq">FAQ</Link>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/contact">Contact</Link>
+            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-champagne">Plan du site</p>
+            <Link className="transition-colors hover:text-champagne" to="/">Accueil</Link>
+            <Link className="transition-colors hover:text-champagne" to="/a-propos">Ma démarche</Link>
+            <Link className="transition-colors hover:text-champagne" to="/services">Pour les organisations</Link>
+            <Link className="transition-colors hover:text-champagne" to="/services#vous">Pour vous</Link>
+            <Link className="transition-colors hover:text-champagne" to="/blog">Ressources RH</Link>
+            <Link className="transition-colors hover:text-champagne" to="/on-parle-de-nous">On parle de nous</Link>
+            <Link className="transition-colors hover:text-champagne" to="/faq">FAQ</Link>
+            <Link className="transition-colors hover:text-champagne" to="/contact">Contact</Link>
           </div>
           <div className="grid gap-2 text-sm text-white/80">
-            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-[#D8C3B5]">Informations</p>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/mentions-legales">Mentions légales</Link>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/politique-confidentialite">Politique de confidentialité</Link>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/cookies">Cookies</Link>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/cgv-cgu">CGV / CGU</Link>
-            <Link className="transition-colors hover:text-[#D8C3B5]" to="/admin">Administration</Link>
+            <p className="mb-1 text-xs font-bold uppercase tracking-[0.16em] text-champagne">Informations</p>
+            <Link className="transition-colors hover:text-champagne" to="/mentions-legales">Mentions légales</Link>
+            <Link className="transition-colors hover:text-champagne" to="/politique-confidentialite">Politique de confidentialité</Link>
+            <Link className="transition-colors hover:text-champagne" to="/cookies">Cookies</Link>
+            <Link className="transition-colors hover:text-champagne" to="/cgv-cgu">CGV / CGU</Link>
+            <Link className="transition-colors hover:text-champagne" to="/admin">Administration</Link>
           </div>
         </Container>
         <div className="border-t border-white/10 py-4 text-center text-sm text-white/65">
           site réalisé par{' '}
-          <a href="https://webfityou.com" target="_blank" rel="noreferrer" className="font-bold underline decoration-white/45 underline-offset-4 transition hover:text-[#D8C3B5]">
+          <a href="https://webfityou.com" target="_blank" rel="noreferrer" className="font-bold underline decoration-white/45 underline-offset-4 transition hover:text-champagne">
             WebFitYou
           </a>
         </div>

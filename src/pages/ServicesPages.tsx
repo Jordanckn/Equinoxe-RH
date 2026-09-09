@@ -20,7 +20,10 @@ import { FAQAccordion } from '../components/FAQAccordion';
 import { SEOHead } from '../components/SEOHead';
 import { ButtonLink, Card, Container, PageHeader, Section } from '../components/ui';
 import { services } from '../data/content';
-import { faqSchema, serviceSchema } from '../lib/schemaMarkup';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../lib/schemaMarkup';
+
+const ORGANISATIONS_SLUGS = ['conseil-rh-entreprises', 'accompagnement-changement', 'formations-ateliers-codeveloppement'];
+const VOUS_SLUGS = ['accompagnement-individuel', 'bilan-de-competences'];
 
 const serviceImages: Record<string, string> = {
   'conseil-rh-entreprises': '/images/service_conseil_rh.webp',
@@ -194,27 +197,34 @@ const serviceEditorialContent: Record<string, {
 };
 
 export function ServicesIndexPage() {
+  const organisationsServices = services.filter((s) => ORGANISATIONS_SLUGS.includes(s.slug));
+  const vousServices = services.filter((s) => VOUS_SLUGS.includes(s.slug));
+
   return (
     <>
-      <SEOHead title="Services RH, coaching et bilan de compétences | ACT&RH" description="Conseil RH, accompagnement du changement, accompagnement individuel, bilan de compétences, formations et co-développement." />
-      
+      <SEOHead
+        title="Conseil RH pour les organisations & accompagnement individuel | ACT&RH"
+        description="Conseil RH, accompagnement du changement, formations et co-développement pour les organisations. Bilan de compétences et accompagnement individuel pour les personnes."
+        schema={breadcrumbSchema([{ name: 'Accueil', url: '/' }, { name: 'Pour les organisations & pour vous', url: '/services' }])}
+      />
+
       {/* Section 1: Hero (With background) */}
       <div className="relative overflow-hidden border-b border-sand bg-rosé pt-14">
         {/* Decorative background elements - enhanced visibility and explicit styling */}
         <div className="absolute -right-20 -top-20 z-0 h-[450px] w-[450px] rounded-full border-[55px] border-white opacity-40" />
         <div className="absolute -left-10 -bottom-10 z-0 h-72 w-72 rounded-full border-[35px] border-white opacity-25" />
         <div className="absolute right-[20%] top-1/3 z-0 h-40 w-40 rounded-full border-[15px] border-white opacity-20" />
-        
+
         <Container className="relative z-10 pb-12 pt-10 sm:pb-16 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div>
-            <p className="mb-5 inline-flex rounded-full border border-sage-dark/20 bg-sage px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white">Services</p>
-            <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-ink sm:text-6xl animate-fade-in-up">Des accompagnements RH et coaching sur mesure</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-anthracite/80 animate-fade-in-up delay-100">J'accompagne les entreprises, collectifs et personnes dans leurs transitions avec une approche structurée, humaine et confidentielle.</p>
+            <p className="mb-5 inline-flex rounded-full border border-sage-dark/20 bg-sage px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white">Accompagnements</p>
+            <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-ink sm:text-6xl animate-fade-in-up">Pour les organisations, et pour vous</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-anthracite/80 animate-fade-in-up delay-100">Deux formes d'accompagnement, une même manière de travailler : comprendre la situation, clarifier les choix, construire la suite.</p>
           </div>
           <div className="mx-auto aspect-[4/3] w-full max-w-[480px] overflow-hidden rounded-[2rem] border border-sand bg-white p-3.5 shadow-soft lg:max-w-none animate-float">
-            <img 
-              src="/images/coaching_collaboration.png" 
-              alt="Séance de coaching et conseil RH" 
+            <img
+              src="/images/coaching_collaboration.png"
+              alt="Conseil RH et accompagnement individuel"
               onError={(event) => { event.currentTarget.src = '/images/meeting_collaboration.webp'; }}
               className="h-full w-full rounded-[1.5rem] object-cover"
             />
@@ -222,11 +232,32 @@ export function ServicesIndexPage() {
         </Container>
       </div>
 
-      {/* Section 2: Services List (Without background) */}
-      <Section className="bg-white">
+      {/* Section 2: Pour les organisations */}
+      <Section id="organisations" className="scroll-mt-24 bg-white">
         <Container>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => (
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Pour les organisations</p>
+          <h2 className="mt-3 max-w-2xl font-serif text-3xl font-semibold leading-tight text-ink sm:text-4xl">Des situations RH qui nécessitent un regard extérieur</h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-anthracite/75">
+            J'interviens auprès des dirigeants, managers et professionnels RH, dans les TPE, PME comme dans des organisations plus importantes, lorsque les enjeux humains, managériaux ou organisationnels nécessitent de prendre du recul et de structurer une réponse.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {organisationsServices.map((service) => (
+              <ServiceCard key={service.slug} service={service} />
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Section 3: Pour vous */}
+      <Section id="vous" className="scroll-mt-24 border-t border-sand bg-ivory">
+        <Container>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Pour vous</p>
+          <h2 className="mt-3 max-w-2xl font-serif text-3xl font-semibold leading-tight text-ink sm:text-4xl">Prendre du recul. Décider. Avancer.</h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-anthracite/75">
+            J'accompagne les personnes qui souhaitent mieux comprendre ce qu'elles vivent, identifier leurs ressources, faire des choix et avancer avec davantage de clarté — qu'il s'agisse d'une question professionnelle, d'une prise de responsabilité, d'une transition de carrière ou d'un besoin de prendre du recul.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {vousServices.map((service) => (
               <ServiceCard key={service.slug} service={service} />
             ))}
           </div>
@@ -243,7 +274,7 @@ export function ServiceDetailPage() {
   
   return (
     <>
-      <SEOHead title={service.seoTitle} description={service.seoDescription} schema={[serviceSchema(service), faqSchema(service.faqs)]} />
+      <SEOHead title={service.seoTitle} description={service.seoDescription} schema={[serviceSchema(service), faqSchema(service.faqs), breadcrumbSchema([{ name: 'Accueil', url: '/' }, { name: 'Accompagnements', url: '/services' }, { name: service.title, url: `/services/${service.slug}` }])]} />
       
       {/* Section 1: PageHeader (With background, handled by default PageHeader styling) */}
       <PageHeader eyebrow="Accompagnement" title={service.title} text={service.shortDescription} />
