@@ -75,7 +75,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               className="h-10 w-auto object-contain sm:h-11"
             />
           </Link>
-          <nav className="hidden items-center rounded-full border border-ink/10 bg-white px-2 py-2 shadow-[0_12px_32px_rgba(31,51,71,0.06)] lg:flex" aria-label="Navigation principale">
+          <nav className="hidden items-center gap-1 rounded-full border border-ink/10 bg-white px-2 py-2 shadow-[0_12px_32px_rgba(31,51,71,0.06)] lg:flex" aria-label="Navigation principale">
             {navItems.map((item) => {
               if (item.href === '/services') {
                 const isAudienceActive = location.pathname.startsWith('/pour-qui');
