@@ -38,15 +38,12 @@ export function AboutPage() {
 
               {/* Bloc valeurs */}
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-champagne-dark">Notre identité</p>
-                <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight text-ink">
-                  L'exigence académique au service du terrain
-                </h2>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-champagne-dark">Ce qui nourrit ma pratique</p>
                 <p className="mt-5 text-lg leading-8 text-anthracite/80">
-                  ACT&RH conjugue une rigueur scientifique issue de la recherche en GRH, une expérience de conseil RH et une pratique de l’accompagnement individuel, forgées sur plus de 20 ans auprès d'entreprises, de dirigeants et de professionnels en transition.
+                  Ce qui m'intéresse depuis longtemps, ce sont les situations dans toute leur richesse : ce que vivent les personnes, ce qui se joue dans les organisations, les relations qui se nouent et les choix auxquels chacun peut être confronté.
                 </p>
                 <p className="mt-4 text-base leading-7 text-anthracite/75">
-                  Cette double compétence n'est pas un argument de vente — c'est une méthode de travail. Elle permet de poser un regard à la fois analytique et humain sur chaque situation, de ne pas plaquer de solutions standardisées, et d'aller au fond des enjeux pour construire des réponses qui tiennent.
+                  Mon parcours m'a conduite à croiser recherche, enseignement, conseil et accompagnement, avec une même envie : prendre du recul, mettre les situations en perspective et chercher ce qui peut réellement faire évoluer les choses.
                 </p>
               </div>
 
@@ -69,29 +66,31 @@ export function AboutPage() {
 
               {/* Les quatre dimensions */}
               <div className="border-t border-sand pt-8">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-champagne-dark">Quatre dimensions complémentaires</p>
-                <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">Recherche, enseignement, conseil RH, accompagnement</h2>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-champagne-dark">Un parcours à la croisée de la recherche, du terrain et de l'accompagnement</p>
+                <p className="mt-5 text-base leading-7 text-anthracite/75">
+                  Depuis plus de 20 ans, je travaille sur les questions de ressources humaines, de management et de relations au travail. Ces différentes activités se sont développées en parallèle et se nourrissent les unes des autres.
+                </p>
                 <div className="mt-6 space-y-4">
                   {[
                     {
                       icon: BookOpen,
                       title: 'La recherche',
-                      text: "Caroline est titulaire d'un doctorat en gestion des ressources humaines. Elle mène depuis plus de 20 ans des recherches en sciences de gestion autour notamment de l'engagement au travail, du sens au travail, des relations professionnelles, de la gestion du changement et des transformations organisationnelles. Sa recherche est appliquée et part de problématiques réelles d'entreprises et d'organisations. Sa thèse a notamment été menée en collaboration avec le SYNTEC Conseil en Management auprès d'acteurs du secteur en France."
+                      text: "Titulaire d'un doctorat en gestion des ressources humaines, je mène depuis plus de 20 ans des recherches en sciences de gestion sur des sujets tels que l'engagement au travail, le sens au travail, les relations professionnelles, la gestion du changement ou encore les transformations des organisations. Cette recherche est avant tout une recherche appliquée : elle part de questions rencontrées dans les entreprises et les organisations, parfois dans des contextes ou des secteurs d'activité spécifiques. À titre d'exemple, ma thèse fut menée en collaboration avec le SYNTEC Conseil en Management et réalisée auprès d'une vingtaine d'acteurs du secteur en France. Cette attention portée aux réalités professionnelles reste au cœur de ma façon de travailler."
                     },
                     {
                       icon: GraduationCap,
                       title: "L'enseignement",
-                      text: "Caroline est enseignante-chercheuse à TBS Education. Enseigner, transmettre et confronter ses travaux à la réflexion des étudiants et des professionnels qu'elle forme nourrit directement sa pratique de conseil et d'accompagnement : c'est un point de passage constant entre la recherche et le terrain."
+                      text: "L'enseignement, à TBS Education, prolonge cette réflexion. Transmettre des connaissances suppose de les questionner, de les mettre en perspective et de les confronter aux expériences et aux interrogations de celles et ceux qui se forment aux métiers des ressources humaines et du management."
                     },
                     {
                       icon: Building2,
                       title: 'Le conseil RH',
-                      text: "Le conseil RH confronte les concepts issus de la recherche aux réalités quotidiennes des organisations : structuration des pratiques, posture managériale, situations individuelles ou collectives, accompagnement des transformations. C'est là que les cadres de lecture rencontrent les contraintes réelles d'une équipe, d'un dirigeant ou d'une organisation."
+                      text: "Le conseil RH m'amène à travailler au plus près des organisations et de leurs enjeux concrets. Il permet de confronter les concepts et les modèles aux réalités du quotidien, aux contraintes, aux relations et aux choix auxquels les acteurs doivent faire face."
                     },
                     {
                       icon: HeartHandshake,
                       title: "L'accompagnement individuel",
-                      text: "L'accompagnement individuel s'adresse aux personnes confrontées à une évolution professionnelle, une prise de responsabilité, un questionnement ou une transition. Il permet de prendre du recul sur une difficulté ponctuelle, d'identifier ses marges de manœuvre et d'avancer avec plus de clarté."
+                      text: "J'ai développé une activité de conseil et d'accompagnement individuel avec l'envie de rester encore davantage au contact des entreprises et de celles et ceux qui y travaillent. Évolution professionnelle, prise de responsabilité, questionnement, transition ou difficulté ponctuelle : certaines périodes nécessitent de pouvoir prendre du recul, poser les choses et retrouver des marges de manœuvre."
                     }
                   ].map(({ icon: Icon, title, text }) => (
                     <details key={title} className="group rounded-2xl border border-sand bg-ivory p-0 shadow-sm transition-all duration-300 open:border-sage-dark/25 open:bg-white open:shadow-soft">
@@ -110,12 +109,14 @@ export function AboutPage() {
                 </div>
               </div>
 
-              {/* Pourquoi ces dimensions sont réunies */}
+              {/* Pourquoi réunir ces différentes dimensions */}
               <div className="border-t border-sand pt-8">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-champagne-dark">Pourquoi ces dimensions sont réunies</p>
-                <h2 className="mt-3 font-serif text-3xl font-semibold text-ink">Recherche → Terrain → Transmission → Accompagnement</h2>
+                <h2 className="font-serif text-3xl font-semibold text-ink">Pourquoi réunir ces différentes dimensions ?</h2>
                 <p className="mt-5 text-base leading-7 text-anthracite/75">
-                  La recherche apporte des clés de lecture. Le terrain confronte ces clés à la réalité. L'enseignement permet de prendre du recul et de transmettre. L'accompagnement permet de mobiliser tout cela au service d'une situation singulière.
+                  Parce qu'elles ne s'opposent pas : elles se complètent. La recherche apporte des clés de lecture. Le terrain confronte ces clés à la réalité. L'enseignement permet de prendre du recul et de transmettre. L'accompagnement permet de mobiliser tout cela au service d'une situation singulière.
+                </p>
+                <p className="mt-4 text-base leading-7 text-anthracite/75">
+                  C'est cette boucle qui donne aujourd'hui son sens à mon activité : continuer à apprendre, confronter les connaissances au réel, transmettre ce que j'en retire et mettre cette compréhension au service de personnes et d'organisations qui cherchent à avancer.
                 </p>
                 <div className="relative mt-6 grid gap-4 sm:grid-cols-4">
                   {[
@@ -139,12 +140,12 @@ export function AboutPage() {
 
               {/* Positionnement personnel */}
               <div className="border-t border-sand pt-8">
-                <h2 className="font-serif text-3xl font-semibold text-ink">Une même question, des réponses différentes</h2>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-champagne-dark">Positionnement personnel</p>
                 <p className="mt-5 text-base leading-7 text-anthracite/75">
-                  Caroline ne cherche pas à appliquer des réponses toutes faites. Une même question peut appeler des réponses différentes selon la personne, l'organisation, son histoire, ses ressources et son contexte.
+                  Je ne crois pas aux réponses toutes faites. Une même question peut appeler des réponses très différentes selon la personne, l'organisation, son histoire, ses ressources et le contexte dans lequel elle se trouve.
                 </p>
                 <p className="mt-4 text-base leading-7 text-anthracite/75">
-                  Son rôle n'est pas de décider à la place du client. Il consiste à apporter un regard extérieur, structurer la réflexion, mettre la situation en perspective et identifier ce qui peut réellement être fait.
+                  Mon rôle n'est pas de décider à la place de la personne ou de l'organisation, ni de lui apporter une solution préfabriquée. Il est de poser un regard extérieur, structurer la réflexion et aider à identifier ce qui peut réellement être fait.
                 </p>
               </div>
 
@@ -152,7 +153,10 @@ export function AboutPage() {
               <div className="border-t border-sand pt-8">
                 <h2 className="font-serif text-3xl font-semibold text-ink">ACT&RH</h2>
                 <p className="mt-5 text-lg leading-8 text-anthracite/80">
-                  ACT&RH a été créé pour réunir deux formes d'intervention : le conseil en ressources humaines pour les organisations, et l'accompagnement individuel pour les personnes. Une même manière de travailler : partir du réel, regarder ce qui se joue, mobiliser des connaissances solides et construire une réponse adaptée.
+                  J'ai créé ACT&RH pour réunir ces différentes dimensions dans une même activité : le conseil en ressources humaines pour les organisations et l'accompagnement individuel pour les personnes.
+                </p>
+                <p className="mt-4 text-base leading-7 text-anthracite/75">
+                  Deux formes d'intervention, mais une même manière de travailler : partir du réel, prendre le temps de regarder ce qui se joue, s'appuyer sur des connaissances solides et construire une réponse adaptée à chaque situation. Parce que faire évoluer une situation demande parfois de la hauteur, de la méthode et un espace pour penser autrement.
                 </p>
                 <div className="mt-6 rounded-2xl border border-sand bg-ivory p-6">
                   <p className="font-serif text-lg font-semibold text-ink">Caroline Tillou Maratuech</p>

@@ -2,6 +2,7 @@ import { ArrowRight, BadgeCheck, BookOpenText, ExternalLink, Mic2 } from 'lucide
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../components/SEOHead';
 import { Card, Container, PageHeader, Section } from '../components/ui';
+import { trustedLogos } from '../data/content';
 
 type PressItem = {
   title: string;
@@ -125,14 +126,27 @@ export function PressPage() {
   return (
     <>
       <SEOHead
-        title="On parle de nous | Publications, médias et expertise | ACT&RH"
+        title="On parle de nous | Publications et interventions médias | ACT&RH"
         description="Publications scientifiques, interventions médias et présence professionnelle de Caroline Tillou Maratuech, consultante RH, coach et enseignante-chercheuse."
       />
       <PageHeader
         eyebrow="On parle de nous"
-        title="Publications, médias et expertise"
+        title="Publications et interventions médias"
         text="Chercheuse en management des ressources humaines, consultante RH et coach, Caroline Tillou Maratuech est régulièrement publiée dans des revues scientifiques et intervient sur le sens au travail, l’engagement et la santé au travail."
       />
+
+      <section className="border-b border-sand bg-ivory py-10">
+        <Container>
+          <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-sage-dark">Ils nous font confiance</p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-5">
+            {trustedLogos.map((logo) => (
+              <div key={logo.name} className="flex h-16 w-36 shrink-0 items-center justify-center rounded-xl border border-ink/5 bg-white px-4 shadow-[0_10px_30px_rgba(14,27,41,0.04)]">
+                <img src={logo.src} alt={logo.name} loading="lazy" className="max-h-9 max-w-full object-contain" />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
 
       <Section className="bg-white">
         <Container className="space-y-16">

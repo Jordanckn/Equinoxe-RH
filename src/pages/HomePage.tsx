@@ -29,24 +29,11 @@ import { FAQAccordion } from '../components/FAQAccordion';
 import { SEOHead } from '../components/SEOHead';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ButtonLink, Card, Container, Section } from '../components/ui';
-import { contactInfo, faqs, posts, testimonials } from '../data/content';
+import { contactInfo, faqs, posts, testimonials, trustedLogos } from '../data/content';
 import { organizationSchema, personSchema, faqSchema, websiteSchema } from '../lib/schemaMarkup';
 import { useSupabaseRows } from '../hooks/useSupabaseRows';
 import { supabase } from '../lib/supabaseClient';
 import type { BlogPost, FAQ, Testimonial } from '../types';
-
-const trustedLogos = [
-  { name: 'Harmonie Mutuelle', src: '/Logo/Harmonie Mutuelle logo.webp' },
-  { name: 'Prévaly', src: '/Logo/Prevaly logo.webp' },
-  { name: 'HEC Montréal', src: '/Logo/Logo de HEC Montréal.webp' },
-  { name: 'Toulouse School of Management', src: '/Logo/Logo de Toulouse School of Management.webp' },
-  { name: 'Kedge Business School', src: '/Logo/File-Kedgebs-logo.png.webp' },
-  { name: 'Conseil Formation SIRH', src: '/Logo/Conseil, Formation, SIRH - 15 ans dexpertise en Gestion des Compétences.webp' },
-  { name: 'Cornell University', src: '/Logo/Cornell University Logo PNG Vectors Free Download.webp' },
-  { name: 'La REF Toulouse', src: '/Logo/La REF Toulouse, mercredi 20 octobre 2021.webp' },
-  { name: 'Toulouse Métropole', src: '/Logo/Réf - Toulouse Métropole.webp' },
-  { name: 'Pharmabest, Pharmacie Lafayette, Pharmactiv', src: '/Logo/Annuaire des groupements Pharmabest, Pharmacie Lafayette, Pharmactiv....webp' }
-];
 
 export function HomePage() {
   const livePosts = useSupabaseRows<BlogPost>('blog_posts', posts, 'published_at');
@@ -77,6 +64,9 @@ export function HomePage() {
         <Container className="relative z-10">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-6">
+              <p className="animate-fade-in text-sm font-semibold uppercase tracking-[0.14em] text-anthracite/55">
+                ACT&RH — Accompagnement, Conseil en Transition & RH
+              </p>
               <p className="animate-fade-in inline-flex rounded-full border border-sage-dark/20 bg-sage px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white">
                 Toulouse · Occitanie · France · À distance
               </p>

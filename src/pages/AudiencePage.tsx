@@ -178,9 +178,9 @@ export function AudiencePage() {
               <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-sage text-white">
                 <Icon size={32} />
               </div>
-              <h3 className="font-serif text-2xl font-semibold text-ink">Une approche sur mesure</h3>
+              <h3 className="font-serif text-2xl font-semibold text-ink">Comprendre avant d'agir</h3>
               <p className="mt-4 text-anthracite/75 leading-7">
-                Parce que chaque {audience.title.toLowerCase().slice(0, -1)} est unique, mon accompagnement commence toujours par une phase d'écoute pour calibrer la réponse la plus juste.
+                Chaque situation a son contexte : l'accompagnement commence toujours par prendre le temps de le comprendre, avant de construire une réponse adaptée.
               </p>
               <div className="mt-8">
                 <ButtonLink to="/contact" className="w-full justify-center">Parler de votre besoin</ButtonLink>

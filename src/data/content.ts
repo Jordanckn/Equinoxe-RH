@@ -10,6 +10,19 @@ export const contactInfo = {
   hours: '9h à 18h, sauf samedi',
   linkedin: 'https://www.linkedin.com/in/caroline-tillou-maratuech-2b30372a/'
 };
+export const trustedLogos = [
+  { name: 'Harmonie Mutuelle', src: '/Logo/Harmonie Mutuelle logo.webp' },
+  { name: 'Prévaly', src: '/Logo/Prevaly logo.webp' },
+  { name: 'HEC Montréal', src: '/Logo/Logo de HEC Montréal.webp' },
+  { name: 'Toulouse School of Management', src: '/Logo/Logo de Toulouse School of Management.webp' },
+  { name: 'Kedge Business School', src: '/Logo/File-Kedgebs-logo.png.webp' },
+  { name: 'Conseil Formation SIRH', src: '/Logo/Conseil, Formation, SIRH - 15 ans dexpertise en Gestion des Compétences.webp' },
+  { name: 'Cornell University', src: '/Logo/Cornell University Logo PNG Vectors Free Download.webp' },
+  { name: 'La REF Toulouse', src: '/Logo/La REF Toulouse, mercredi 20 octobre 2021.webp' },
+  { name: 'Toulouse Métropole', src: '/Logo/Réf - Toulouse Métropole.webp' },
+  { name: 'Pharmabest, Pharmacie Lafayette, Pharmactiv', src: '/Logo/Annuaire des groupements Pharmabest, Pharmacie Lafayette, Pharmactiv....webp' }
+];
+
 export const navItems = [
   { label: 'Accueil', href: '/' },
   { label: 'Pour les organisations', href: '/services' },

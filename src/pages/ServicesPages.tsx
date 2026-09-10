@@ -83,7 +83,7 @@ const serviceEditorialContent: Record<string, {
     formats: [
       { icon: 'compass', title: 'Diagnostic court', text: 'Pour clarifier rapidement une situation RH ou managériale.' },
       { icon: 'users', title: 'Ateliers dirigeants ou managers', text: 'Pour aligner les pratiques et partager un cadre commun.' },
-      { icon: 'route', title: 'Mission sur mesure', text: 'Pour accompagner une transformation dans la durée.' }
+      { icon: 'route', title: 'Mission dans la durée', text: 'Pour accompagner une transformation qui se joue sur plusieurs mois.' }
     ]
   },
   'accompagnement-changement': {
@@ -144,7 +144,7 @@ const serviceEditorialContent: Record<string, {
     introTitle: 'Faire le point pour construire une trajectoire professionnelle cohérente',
     introParagraphs: [
       "Un parcours professionnel n'est pas qu'une succession de postes. Heureusement. C'est une histoire faite d'expériences, de réussites, de questionnements et d'apprentissages.",
-      "Le bilan de compétences vous permet de relire cette histoire avec un regard nouveau afin d'identifier ce qui vous anime, ce que vous maîtrisez et les perspectives qui s'offrent à vous. Forte de mon expertise en ressources humaines, en accompagnement des carrières et en coaching, je vous aide à transformer votre expérience en un projet professionnel cohérent, réaliste et aligné avec vos aspirations. Ensemble, nous construisons une trajectoire qui s'appuie sur vos ressources, pour laisser derrière vous vos incertitudes."
+      "Le bilan de compétences vous permet de relire cette histoire avec un regard nouveau afin d'identifier ce qui vous anime, ce que vous maîtrisez et les perspectives qui s'offrent à vous. Docteure en gestion des ressources humaines et forte de plus de 20 ans de pratique en accompagnement des carrières, je vous aide à transformer votre expérience en un projet professionnel cohérent, réaliste et aligné avec vos aspirations. Ensemble, nous construisons une trajectoire qui s'appuie sur vos ressources, pour laisser derrière vous vos incertitudes."
     ],
     sideNote: {
       eyebrow: "MON OFFRE",
